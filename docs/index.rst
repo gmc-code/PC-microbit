@@ -35,5 +35,3 @@ Index:
 
     lessons/For_loops.rst
     lessons/For_loops_with_range.rst
-
-    lessons/While_loops.rst
