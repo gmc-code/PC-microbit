@@ -9,7 +9,7 @@ PC-Microbit
 | Micropython is a version of python for running on small devices like the microbit.
 
 .. image:: images/microbit_happy.png
-    :scale: 30 %
+    :scale: 50 %
 
 Micropython simulator:
 ----------------------------------------
