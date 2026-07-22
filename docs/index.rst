@@ -67,8 +67,8 @@ Index:
     breadboards/Potentiometer_with_LED.rst
 
     breadboards/Piezo_Buzzer_1.rst
-    breadboards/Piezo_Buzzer_4.rst
-    breadboards/Piezo_Buzzer_3rst
+    breadboards/Piezo_Buzzer_2.rst
+    breadboards/Piezo_Buzzer_3.rst
     breadboards/Piezo_Buzzer_4.rst
 
 
