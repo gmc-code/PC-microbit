@@ -15,13 +15,13 @@ Loop through a word
 
     from microbit import *
 
-    word = "Hello"
+    word = "HELLO"
 
     while True:
         for letter in word:
             display.scroll(letter)
 
-The loop shows one letter at a time.
+The loop scrolls one letter at a time.
 
 It scrolls:
 

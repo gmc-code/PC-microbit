@@ -47,3 +47,29 @@ Index:
     lessons/For_loops_with_range_2.rst
 
     lessons/Nested_For_Loops.rst
+
+
+.. toctree::
+    :maxdepth: 2
+    :caption: BreadBoards
+    :numbered:
+
+    breadboards/Breadboard_connections.rst
+    breadboards/Edge_Connector.rst
+    breadboards/LEDs_digital.rst
+    breadboards/Changing_LED_brightness.rst
+
+    breadboards/Motor_with_transistor_1.rst
+    breadboards/Motor_with_transistor_2.rst
+    breadboards/Motor_with_transistor_3.rst
+
+    breadboards/Potentiometer.rst
+    breadboards/Potentiometer_with_LED.rst
+
+    breadboards/Piezo_Buzzer_1.rst
+    breadboards/Piezo_Buzzer_4.rst
+    breadboards/Piezo_Buzzer_3rst
+    breadboards/Piezo_Buzzer_4.rst
+
+
+
