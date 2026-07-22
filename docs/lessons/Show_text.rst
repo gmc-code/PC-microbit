@@ -7,14 +7,14 @@ What is ``display.show()``?
 
 ``display.show()`` shows text or numbers on the micro:bit screen.
 
-Unlike ``display.scroll()``, the text does **not** move.
+The text does **not** move.
 
 Each letter is shown one at a time.
 
 You can show:
 
 * text
-* whole numbers
+* numbers
 
 Example: Show text
 ^^^^^^^^^^^^^^^^^^
