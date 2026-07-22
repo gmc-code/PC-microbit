@@ -2,7 +2,7 @@
 Clearing the Screen
 ====================================================
 
-The last letter stays on the screen.
+WHne using show, the last letter stays on the screen.
 
 You can clear the screen to make it blank.
 
@@ -51,7 +51,9 @@ The program:
     #. Clear the screen.
     #. Wait 1 second.
     #. Show your age.
-    #. Clear the screen again.
+    #. Wait 1 second.
+    #. Clear the screen.
+    #. Wait 1 second.
 
     .. dropdown::
         :icon: codescan

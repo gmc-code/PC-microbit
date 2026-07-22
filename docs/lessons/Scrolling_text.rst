@@ -10,7 +10,7 @@ What is ``display.scroll()``?
 You can scroll:
 
 * text
-* whole numbers
+* numbers
 
 Example: Scroll text
 ^^^^^^^^^^^^^^^^^^^^
