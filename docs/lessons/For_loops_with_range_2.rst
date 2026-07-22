@@ -1,126 +1,114 @@
 ====================================================
-EXT: nested for-loops using the range function
+Changing the Numbers
 ====================================================
 
-Set pixels
-----------------
-
-| Turning on and off pixels is explained at `<https://pc-microbit-micropython.readthedocs.io/en/latest/images/setting_pixels.html>`_
-| Read the above examples before reading further to see how they illustrate nested loops.
+You can change each number before you show it.
 
 ----
 
-Using pixels in nested for-loops
------------------------------------
-
-| In the code below, the outer loop iterates over x values from 0 to 4.
-| For each x value, the inner loop iterates over y values from 0 to 4.
-| So when x is 0, y goes from 0 to 4, turning on each pixel in the first column.
-| This repeats for the other columns.
-
-.. code-block:: python
-
-    from microbit import *
-
-    for x in range(5):
-        for y in range(5):
-            display.set_pixel(x, y, 9)
-            sleep(100)
-
-----
-
-.. admonition:: Tasks
-
-    #. Write code that turns on the pixels one row at a time from the top.
-    #. Write code that turns on the pixels one row at a time from the bottom.
-
-    .. dropdown::
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. tab-set::
-
-            .. tab-item:: Q1
-
-                Write code that turns on the pixels one row at a time from the top.
-
-                .. code-block:: python
-
-                    from microbit import *
-
-                    for y in range(5):
-                        for x in range(5):
-                            display.set_pixel(x, y, 9)
-                            sleep(100)
-
-            .. tab-item:: Q2
-
-                Write code that turns on the pixels one row at a time from the bottom.
-
-                .. code-block:: python
-
-                    from microbit import *
-
-                    for y in range(4,-1,-1):
-                        for x in range(5):
-                            display.set_pixel(x, y, 9)
-                            sleep(100)
-
-----
-
-Advanced: nested for-loops with range function
--------------------------------------------------
-
-| What does this code do?
-| What are the values of start_num in the nested loop?
+Count from 1
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        for start_num in range(4):
-            for n in range(start_num, start_num + 5, 2):
-                display.scroll(n, delay=40)
+        for number in range(5):
+            display.show(number + 1)
+            sleep(500)
+
+This shows:
+
+1
+
+2
+
+3
+
+4
+
+5
 
 ----
 
-.. admonition:: Tasks
+Count in twos
 
-    #. Write code using nested range functions to scroll 0, 3, 6, 9, 1, 4, 7, 10.
-    #. Write code using nested range functions to scroll 0, 5, 1, 6, 2, 7, 3, 8.
+.. code-block:: python
 
-    .. dropdown::
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
+    from microbit import *
 
-        .. tab-set::
+    while True:
+        for number in range(5):
+            display.show(number * 2)
+            sleep(500)
 
-            .. tab-item:: Q1
+This shows:
 
-                Write code using nested range functions to scroll 0, 3, 6, 9, 1, 4, 7, 10.
+0
 
-                .. code-block:: python
+2
 
-                    from microbit import *
+4
 
-                    while True:
-                        for start_num in range(2):
-                            for n in range(start_num, start_num + 10, 3):
-                                display.scroll(n, delay=40)
+6
 
-            .. tab-item:: Q2
+8
 
-                Write code using nested range functions to scroll 0, 5, 1, 6, 2, 7, 3, 8.
+----
 
-                .. code-block:: python
+Try it!
 
-                    from microbit import *
+#. Show **1 to 3**.
+#. Show **0, 3, 6, 9**.
+#. Show **5, 6, 7, 8**.
 
-                    while True:
-                        for start_num in range(5):
-                            for n in range(start_num, start_num + 6, 5):
-                                display.scroll(n, delay=40)
+.. dropdown::
+    :icon: codescan
+    :color: primary
+    :class-container: sd-dropdown-container
 
+    .. tab-set::
+
+        .. tab-item:: Question 1
+
+            .. code-block:: python
+
+                from microbit import *
+
+                while True:
+                    for number in range(3):
+                        display.show(number + 1)
+                        sleep(500)
+
+        .. tab-item:: Question 2
+
+            .. code-block:: python
+
+                from microbit import *
+
+                while True:
+                    for number in range(4):
+                        display.show(number * 3)
+                        sleep(500)
+
+        .. tab-item:: Question 3
+
+            .. code-block:: python
+
+                from microbit import *
+
+                while True:
+                    for number in range(4):
+                        display.show(number + 5)
+                        sleep(500)
+
+----
+
+Challenge
+---------
+
+Can you make these number patterns?
+
+* 10 11 12 13
+* 0 5 10 15
+* 2 4 6 8

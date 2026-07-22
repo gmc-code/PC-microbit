@@ -5,21 +5,26 @@ Microbit library
 Import the microbit library
 ----------------------------------------
 
-| The microbit requires a library or module for it to work.
-| To use that library, always start the microbit code with:
+Every micro:bit program starts the same way.
+
+The first line tells Python to use the micro:bit library.
+
+Always begin your program with:
 
 .. code-block:: python
 
     from microbit import *
 
+This gives your program access to the micro:bit's buttons, display, sensors and other features.
+
 ----
 
-.. admonition:: Questions
+.. admonition:: Try it
 
-    Describe the error in attempting to import the microbit library.
+    Which line is written correctly?
 
+    #. ``from microbit import *``
     #. ``from microbit import``
-    #. ``from microbit import*``
     #. ``from microbot import *``
     #. ``from microbit *``
 
@@ -32,62 +37,71 @@ Import the microbit library
 
             .. tab-item:: Q1
 
-                ``from microbit import`` error
+                ✔ Correct!
 
                 .. code-block:: python
 
-                    # missing * at end
                     from microbit import *
 
             .. tab-item:: Q2
 
-                ``from microbit import*`` error
+                Missing the ``*``.
 
                 .. code-block:: python
 
-                    # missing space before *
                     from microbit import *
 
             .. tab-item:: Q3
 
-                ``from microbot import *`` error
+                ``microbit`` is spelt incorrectly.
 
                 .. code-block:: python
 
-                    # microbit misspelt
                     from microbit import *
 
             .. tab-item:: Q4
 
-                ``from microbit *`` error
+                Missing the word ``import``.
 
                 .. code-block:: python
 
-                    # missing import before *
                     from microbit import *
 
 ----
 
-Blank Lines
-------------------------------------------
+Blank lines
+----------------------------------------
 
-| All microbit libraries or modules are imported at the top of the file.
-| Place **1 blank line** following the the importing of libraries to separate those lines from the rest of the code.
-| The PEP8 guide states that there should be 1 blank line after the library imports. In more advanced code, classes or definitions should have 2 blank lines before and after them. So 2 blank lines after importing is used when followed by a class or definition.
-| For advanced users, see full PEP 8 guide at: `<https://www.python.org/dev/peps/pep-0008/>`_
+A blank line makes your code easier to read.
 
-.. Note::
+Leave **one blank line** after the import line.
 
-    | Surround top-level function and class definitions with two blank lines.
-    | Method definitions inside a class are surrounded by a single blank line.
-    | Extra blank lines may be used (sparingly) to separate groups of related functions.
-    | Use blank lines in functions, sparingly, to indicate logical sections.
+Good example:
+
+.. code-block:: python
+
+    from microbit import *
+
+    while True:
+        display.show("Hi")
+
+Another good example:
+
+.. code-block:: python
+
+    from microbit import *
+
+    age = 11
+
+    while True:
+        display.show(age)
 
 ----
 
-.. admonition:: Questions
+.. admonition:: Try it
 
-    1.  How could the layout of the code be improved?
+    #. Find the extra blank line.
+    #. Find the missing blank line.
 
     .. code-block:: python
 
@@ -95,17 +109,15 @@ Blank Lines
 
 
         while True:
-            display.scroll(char, delay=80)
-
-    1.  How could the layout of the code be improved?
+            display.show("Hi")
 
     .. code-block:: python
 
         from microbit import *
-        num = 12
-        while True:
-            display.scroll(num, delay=80)
+        number = 7
 
+        while True:
+            display.show(number)
 
     .. dropdown::
         :icon: codescan
@@ -116,58 +128,82 @@ Blank Lines
 
             .. tab-item:: Q1
 
-                How could the layout of the code be improved?
-                Remove the extra blank line after the library import.
+                Remove the extra blank line.
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.scroll(char, delay=80)
+                        display.show("Hi")
 
             .. tab-item:: Q2
 
-                How could the layout of the code be improved?
-                Add a blank line after the library import.
-
+                Add one blank line after the import.
 
                 .. code-block:: python
 
                     from microbit import *
 
-                    num = 12
+                    number = 7
+
                     while True:
-                        display.scroll(num, delay=80)
+                        display.show(number)
 
 ----
 
-| For other forms of importing libraries see:
-| `<https://www.w3schools.com/python/python_modules.asp>`_
+Why do we use ``from microbit import *``?
+----------------------------------------
 
+There are different ways to import a library.
 
-| Importing using ``from module_name import *`` is not recommended for general python use.
-| It is used here to keep the microbit syntax shorter.
+For beginners we use:
 
-| On other websites, references to the microbit library syntax may have ``microbit.`` before the function or method.
-| e.g ``microbit.display.scroll("Hi")``
-| This is because it assumes that the microbit library has been imported using ``import microbit``.
-| When importing the microbit library using: ``from microbit import *``, the ``microbit.`` prefix is omitted.
-| e.g This allows the shorter form, ``display.scroll("Hi")``, instead of the longer form, ``microbit.display.scroll("Hi")``.
+.. code-block:: python
+
+    from microbit import *
+
+This lets us write short code like:
+
+.. code-block:: python
+
+    display.show("Hi")
+
+Instead of:
+
+.. code-block:: python
+
+    microbit.display.show("Hi")
+
+The shorter version is easier to read and type.
 
 ----
 
-Micropython API
-------------------------------------------
+Remember
+----------------------------------------
 
-| The main reference for using micropython with the microbit is at:
-| `<https://microbit-micropython.readthedocs.io/en/v1.0.1/index.html>`_
-| For new microbits (v2) from 2022 see:
-| `<https://microbit-micropython.readthedocs.io/en/stable/index.html>`_
+Every micro:bit program should:
 
-| For a list of what is available in the microbit library see:
-| `<https://microbit-micropython.readthedocs.io/en/v1.0.1/microbit_micropython_api.html>`_
-| For new microbits (v2) from 2022 see:
-| `<https://microbit-micropython.readthedocs.io/en/stable/microbit_micropython_api.html>`_
+1. Start with ``from microbit import *``.
+2. Leave one blank line.
+3. Then write the rest of your code.
 
+Example:
 
+.. code-block:: python
+
+    from microbit import *
+
+    while True:
+        display.show("Hello")
+
+----
+
+Challenge
+----------------------------------------
+
+Can you write a program that:
+
+1. Starts with the correct import line.
+2. Leaves one blank line.
+3. Shows your name on the micro:bit screen.

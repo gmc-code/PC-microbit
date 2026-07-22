@@ -2,49 +2,59 @@
 Sleep
 ====================================================
 
+The ``sleep()`` command pauses your program for a short time.
 
-| The microbit can be paused using ``sleep``.
+Sleep
+-----
 
-Sleep in milliseconds
-----------------------
+.. py:function:: sleep(time)
 
-.. py:function:: sleep(n)
+    Pause the program for a number of milliseconds.
 
-    | Wait for n milliseconds. 
-    | n can be an integer or a decimal (floating point number). 
-    | 1000 milliseconds is one second.
+Remember:
 
-| Use: ``sleep(1000)`` will pause the program for one second. 
+* ``1000`` milliseconds = **1 second**
+* ``500`` milliseconds = **half a second**
+* ``250`` milliseconds = **quarter of a second**
+
+Example:
 
 .. code-block:: python
 
     from microbit import *
 
+    display.show(Image.HAPPY)
     sleep(1000)
+    display.show(Image.SAD)
 
-| Sleeps are often used after displaying text and images to have a pause before other actions.
-| A 1000ms sleep has been placed after each scrolled text below.
+The happy face stays on the screen for **1 second** before changing.
+
+----
+
+Another example
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        display.scroll('I like', delay=60)
+        display.scroll("Hello")
         sleep(1000)
-        display.scroll('school', delay=120)
+        display.scroll("World")
         sleep(1000)
-      
+
+The program waits for **1 second** after each word.
+
 ----
 
-.. admonition:: Questions
+.. admonition:: Try it!
 
-    Use the example code above for the questions below.
+    Change the program above.
 
-    #. Make the first sleep half a second.
-    #. Make the second sleep a quarter of a second.
-    #. Make the first sleep 2 seconds and the second sleep 200ms.
-    
+    #. Change the **first** sleep to **500** milliseconds (half a second).
+    #. Change the **second** sleep to **250** milliseconds (quarter of a second).
+    #. Change **both** sleeps to **2000** milliseconds (2 seconds).
+
     .. dropdown::
         :icon: codescan
         :color: primary
@@ -52,45 +62,38 @@ Sleep in milliseconds
 
         .. tab-set::
 
-            .. tab-item:: Q1
-
-                Make the first sleep half a second.
+            .. tab-item:: Question 1
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.scroll('I like', delay=60)
+                        display.scroll("Hello")
                         sleep(500)
-                        display.scroll('school', delay=120)
+                        display.scroll("World")
                         sleep(1000)
 
-
-            .. tab-item:: Q2
-
-                Make the second sleep a quarter of a second.
+            .. tab-item:: Question 2
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.scroll('I like', delay=60)
+                        display.scroll("Hello")
                         sleep(1000)
-                        display.scroll('school', delay=120)
+                        display.scroll("World")
                         sleep(250)
 
-            .. tab-item:: Q3
-
-                Make the first sleep 2 seconds and the second sleep 200ms.
+            .. tab-item:: Question 3
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.scroll('I like', delay=60)
+                        display.scroll("Hello")
                         sleep(2000)
-                        display.scroll('school', delay=120)
-                        sleep(200)
+                        display.scroll("World")
+                        sleep(2000)

@@ -1,40 +1,50 @@
 ====================================================
-while True loops
+while True Loops
 ====================================================
 
-| See: `<https://www.w3schools.com/python/python_while_loops.asp>`_
-| While loops run a set of statements as long as a test condition is true.
+A ``while True:`` loop repeats the same code **again and again**.
 
+It only stops when the micro:bit is turned off or the program is stopped.
 
-While true
-----------------------------------------
-
-.. image:: images/while_True.png
-    :scale: 75 %
-    :align: center
-
-| ``while True:`` loops run forever.
-| Instead of using a condition that returns True or False, ``True`` is used in place of the condition to make the condition always True. As a result, the while-loop runs forever.
-
-| The statements within the loop are indented with the tab key (which is equivalent to 4 spaces) to make those lines part of the while-loop.
-
-| The ``while True`` loop below scrolls the text ``I never stop`` across the LED display, over and over again.
+Example
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        display.scroll('I never stop')
+        display.scroll("Hello")
 
+The word **Hello** scrolls across the screen over and over.
 
-When testing code on the microbit, it can be useful to do it within a ``while True`` loop so the results can be seen over and over again.
+Remember
+
+* ``while`` starts with a **lower case** ``w``.
+* ``True`` starts with a **capital** ``T``.
+* The line must end with a **colon** ``:``.
+* The code inside the loop is **indented** (moved in).
 
 ----
 
-.. admonition:: Questions
+Another example
 
-    Find the error in the first line of these while loops.
+.. code-block:: python
+
+    from microbit import *
+
+    while True:
+        display.show(Image.HAPPY)
+        sleep(1000)
+        display.show(Image.SAD)
+        sleep(1000)
+
+The micro:bit keeps changing between a happy face and a sad face.
+
+----
+
+.. admonition:: Try it!
+
+    Find and fix the mistake in each loop.
 
     #. ``while true:``
     #. ``While True:``
@@ -47,29 +57,26 @@ When testing code on the microbit, it can be useful to do it within a ``while Tr
 
         .. tab-set::
 
-            .. tab-item:: Q1
+            .. tab-item:: Question 1
 
-                ``while true:`` error
+                ``True`` needs a capital **T**.
 
                 .. code-block:: python
 
-                    # must have upper case T
                     while True:
 
-            .. tab-item:: Q2
+            .. tab-item:: Question 2
 
-                ``While True:`` error
+                ``while`` needs a lower case **w**.
 
                 .. code-block:: python
 
-                    # must have lower case w
                     while True:
 
-            .. tab-item:: Q3
+            .. tab-item:: Question 3
 
-                ``while True`` error
+                Add the missing colon ``:``.
 
                 .. code-block:: python
 
-                    # must have colon at end
                     while True:

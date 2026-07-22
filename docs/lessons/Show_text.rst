@@ -2,51 +2,59 @@
 Show text
 ====================================================
 
-display.show simple version
+What is ``display.show()``?
 ----------------------------------------
 
-.. py:function:: show(value)
+``display.show()`` shows letters or numbers on the micro:bit screen.
 
-    | Display letters/digits of a string, float or integer, in sequence.
-    | Each letter, character or digit is shown with 400 milliseconds between them.
+Unlike ``display.scroll()``, the letters do **not** move across the screen.
 
+Each letter or number is shown one at a time.
 
-To show the string, '``Hi``', one character at a time on the display, use ``display.show('Hi')``:
+You can show:
 
-.. code-block:: python
+* text (words)
+* whole numbers
+* decimal numbers
 
-    from microbit import *
-
-    while True:
-        display.show('Hi')
-
-
-To show the integer, ``16``, one digit at a time on the display, use ``display.show(16)``:
+Example: Show text
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        display.show(16)
+        display.show("Hi")
 
-
-To show the float, ``3.14``, one digit at a time on the display, use ``display.show(3.14)``:
+Example: Show a number
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        display.show(3.14)
+        display.show(12)
+
+Example: Show a decimal number
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    from microbit import *
+
+    while True:
+        display.show(3.5)
 
 ----
 
-.. admonition:: Tasks
+.. admonition:: Try it
 
-    #. Write code to show your school house color.
-    #. Write code to show your height in cm.
-    #. Write code to show the chances of getting a 6 on a die throw.
+    #. Change the text to your name.
+    #. Change the number to your age.
+    #. Show the word "Hello".
+    #. Show your favourite number.
 
     .. dropdown::
         :icon: codescan
@@ -55,81 +63,71 @@ To show the float, ``3.14``, one digit at a time on the display, use ``display.s
 
         .. tab-set::
 
-            .. tab-item:: Q1
-
-                Write code to show your school house color.
+            .. tab-item:: Name
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.show("Hughes")
+                        display.show("Sam")
 
-            .. tab-item:: Q2
-
-                Write code to show your height in cm.
+            .. tab-item:: Age
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.show(182)
+                        display.show(11)
 
-            .. tab-item:: Q3
-
-                Write code to show the chances of getting a 6 on a die throw.
+            .. tab-item:: Hello
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.show(0.16)
+                        display.show("Hello")
+
+            .. tab-item:: Favourite number
+
+                .. code-block:: python
+
+                    from microbit import *
+
+                    while True:
+                        display.show(8)
 
 ----
 
-Display.clear
+Clear the screen
 ----------------------------------------
 
-.. py:function:: clear()
+The last letter or number stays on the screen.
 
-    | Clear the display.
+Use ``display.clear()`` to make the screen blank.
 
-
-| After ``display.show`` is used, the last digit or character will be left displayed.
-| Use ``display.clear()`` to remove the last digit or character from the display.
-| Use a sleep after the clear so that the display remains blank for a short time.
-
-| Compare the 2 following examples to see the effect of clear.
-| The first sample code leaves a "4" showing.
-
-.. code-block:: python
-
-    from microbit import *
-
-
-    display.show(3.14)
-
-| The second sample code clears the "4" and pauses for 2 seconds before repeating the show.
+Example:
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        display.show(3.14)
+        display.show("Hi")
         display.clear()
-        sleep(2000)
+        sleep(1000)
+
+The ``sleep(1000)`` keeps the screen blank for 1 second.
 
 ----
 
-.. admonition:: Tasks
+.. admonition:: Try it
 
-    #. Write code to show 123, then clear the screen for 1 sec.
-    #. Write code to show "ABC", then clear the screen for half a sec.
-
+    #. Show "ABC", then clear the screen.
+    #. Show your age, then clear the screen.
+    #. Show your favourite number, then clear the screen.
 
     .. dropdown::
         :icon: codescan
@@ -138,22 +136,7 @@ Display.clear
 
         .. tab-set::
 
-            .. tab-item:: Q1
-
-                Write code to show 123, then clear the screen for 1 sec.
-
-                .. code-block:: python
-
-                    from microbit import *
-
-                    while True:
-                        display.show(123)
-                        display.clear()
-                        sleep(1000)
-
-            .. tab-item:: Q2
-
-                Write code to show "ABC", then clear the screen for half a sec.
+            .. tab-item:: ABC
 
                 .. code-block:: python
 
@@ -162,41 +145,95 @@ Display.clear
                     while True:
                         display.show("ABC")
                         display.clear()
-                        sleep(500)
+                        sleep(1000)
+
+            .. tab-item:: Age
+
+                .. code-block:: python
+
+                    from microbit import *
+
+                    while True:
+                        display.show(11)
+                        display.clear()
+                        sleep(1000)
 
 ----
 
-
-display.show with clear
+Using ``clear=True``
 ----------------------------------------
 
-.. py:function:: show(value, clear=False)
-    :no-index:
+Instead of writing ``display.clear()``, you can use ``clear=True``.
 
-    | Display letters/digits of a string, float, in sequence.
-    | If ``clear`` is ``True``, the display will be cleared after it has finished. Its default value is False, in which case, the last character is left displayed.
+The micro:bit clears the screen automatically after showing the text.
 
-
-| After ``display.show`` is used, the last digit or character will be left displayed.
-| Use ``clear=True`` to remove the last digit or character from the display.
-| Use a sleep afterwards so that the display remains blank for a short time.
-| e.g. ``display.show('Hi', clear=True)``
+Example:
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        display.show(3.14, clear=True)
-        sleep(500)
+        display.show("Hi", clear=True)
+        sleep(1000)
+
+Another example:
+
+.. code-block:: python
+
+    from microbit import *
+
+    while True:
+        display.show(123, clear=True)
+        sleep(1000)
 
 ----
 
-.. admonition:: Tasks
+.. admonition:: Try it
 
-    #. Write code to show 123, with the last character being removed, then sleep for 1 sec.
-    #. Write code to show "ABC", with the last character being removed, then sleep for half a sec.
+    #. Show your name using ``clear=True``.
+    #. Show your age using ``clear=True``.
+    #. Change the sleep time to 2 seconds.
 
+----
+
+Show faster or slower
+----------------------------------------
+
+You can change how long each letter stays on the screen.
+
+A **small** delay number is **faster**.
+
+A **large** delay number is **slower**.
+
+Fast example
+
+.. code-block:: python
+
+    from microbit import *
+
+    while True:
+        display.show("Hello", delay=150, clear=True)
+        sleep(1000)
+
+Slow example
+
+.. code-block:: python
+
+    from microbit import *
+
+    while True:
+        display.show("Hello", delay=500, clear=True)
+        sleep(1000)
+
+----
+
+.. admonition:: Try it
+
+    #. Make your name show quickly.
+    #. Make your name show slowly.
+    #. Try a delay of 200.
+    #. Try a delay of 600.
 
     .. dropdown::
         :icon: codescan
@@ -205,72 +242,127 @@ display.show with clear
 
         .. tab-set::
 
-            .. tab-item:: Q1
-
-                Write code to show 123, with the last character being removed, then sleep for 1 sec.
+            .. tab-item:: Fast
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.show(123, clear=True)
+                        display.show("Sam", delay=150, clear=True)
                         sleep(1000)
 
-            .. tab-item:: Q2
-
-                Write code to show "ABC", with the last character being removed, then sleep for half a sec.
+            .. tab-item:: Slow
 
                 .. code-block:: python
 
                     from microbit import *
 
                     while True:
-                        display.show("ABC", clear=True)
-                        sleep(500)
+                        display.show("Sam", delay=500, clear=True)
+                        sleep(1000)
 
 ----
 
-display.show with delay
+Show two messages
 ----------------------------------------
 
-.. py:function:: show(value, delay=400)
-    :no-index:
+You can show more than one message.
 
-    | Display letters, characters, and digits of a string, float or integer, in sequence.
-    | Each letter, character or digit is shown with ``delay`` milliseconds between them.
-    | The default delay is 400ms. When no delay is specified the default of 400ms is used.
-    | The delay can be specified with the parameter name as in ``display.show('Hi', delay=400)``, or just as a number as in ``display.show('Hi', 400)``.
-
-To show the string, '``Hi``', with a short delay of 200ms, use ``display.show('Hi', 200)``:
+The first message finishes before the next one starts.
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        display.show('Hi', 200)
+        display.show("My name is")
+        display.show("Sam")
         display.clear()
-        sleep(2000)
+        sleep(1000)
 
-To show the float, ``3.14159``, across the display slowly use a medium delay of 300ms via ``display.show(3.14159, delay=300)``:
+Another example:
 
 .. code-block:: python
 
     from microbit import *
 
     while True:
-        display.show(3.14159, delay=300)
+        display.show("I like")
+        display.show("Pizza")
         display.clear()
-        sleep(2000)
+        sleep(1000)
 
 ----
 
-.. admonition:: Tasks
+.. admonition:: Try it
 
-    #. Write code, using a short delay of 200ms, to show 99.94, then clear the screen for 1 sec.
-    #. Write code, using a short delay of 150ms, to show 5.64, then clear the screen for half a sec.
+    #. Show "My name is" and then your name.
+    #. Show "I like" and then your favourite food.
+    #. Show "I am" and then your age.
 
+----
+
+Using variables
+----------------------------------------
+
+A **variable** stores information.
+
+Instead of writing the same value many times, you can save it in a variable.
+
+Example:
+
+.. code-block:: python
+
+    from microbit import *
+
+    name = "Sam"
+
+    while True:
+        display.show(name)
+        display.clear()
+        sleep(1000)
+
+Numbers can also be stored in variables.
+
+.. code-block:: python
+
+    from microbit import *
+
+    age = 11
+
+    while True:
+        display.show(age)
+        display.clear()
+        sleep(1000)
+
+You can use more than one variable.
+
+.. code-block:: python
+
+    from microbit import *
+
+    name = "Sam"
+    age = 11
+
+    while True:
+        display.show("Name")
+        display.show(name)
+
+        display.show("Age")
+        display.show(age)
+
+        display.clear()
+        sleep(1000)
+
+----
+
+.. admonition:: Try it
+
+    #. Change the name variable to your own name.
+    #. Change the age variable to your age.
+    #. Add a variable called ``colour``.
+    #. Display your favourite colour.
 
     .. dropdown::
         :icon: codescan
@@ -279,166 +371,38 @@ To show the float, ``3.14159``, across the display slowly use a medium delay of 
 
         .. tab-set::
 
-            .. tab-item:: Q1
-
-                Write code, using a short delay of 200ms, to show 99.94, then clear the screen for 1 sec.
+            .. tab-item:: Solution
 
                 .. code-block:: python
 
                     from microbit import *
 
+                    name = "Sam"
+                    age = 11
+                    colour = "Blue"
+
                     while True:
-                        display.show(99.94, delay=200)
+                        display.show("Name")
+                        display.show(name)
+
+                        display.show("Age")
+                        display.show(age)
+
+                        display.show("Colour")
+                        display.show(colour)
+
                         display.clear()
                         sleep(1000)
 
-            .. tab-item:: Q2
-
-                Write code, using a short delay of 150ms, to show 5.64, then clear the screen for half a sec.
-
-                .. code-block:: python
-
-                    from microbit import *
-
-                    while True:
-                        display.show(5.64, delay=150)
-                        display.clear()
-                        sleep(500)
-
-
 ----
 
-Show at different speeds
+Challenge
 ----------------------------------------
 
-| The code below uses a shorter delay for the initial text then a longer delay for the main information.
+Can you make your micro:bit show:
 
-.. code-block:: python
+1. Your name
+2. Your age
+3. Your favourite colour
 
-    from microbit import *
-
-    while True:
-        display.show('I like the ', delay=200)
-        display.show('NBA', delay=400)
-        display.clear()
-        sleep(2000)
-
-----
-
-.. admonition:: Tasks
-
-    1. Modify the code below to display your favourite activity.
-
-    .. code-block:: python
-
-        from microbit import *
-
-        while True:
-            display.show('I like to', delay=200)
-            display.show('ride my bike', delay=400)
-            display.clear()
-            sleep(2000)
-
-    2. Modify the code below to display your name and age in years.
-
-    .. code-block:: python
-
-        from microbit import *
-
-        while True:
-            display.show('My name is', 200)
-            display.show('?????', 400)
-            display.show('I am', 200)
-            display.show('??', 400)
-            display.clear()
-            sleep(2000)
-
-----
-
-display.show using variables
-----------------------------------------
-
-| In the code below, 3 variables are used to hold a string, integer and float.
-| These variables are then showed repeatedly in the ``while True:`` loop.
-| This makes it easy to see and edit the values of the variables being used in the code.
-
-.. code-block:: python
-
-    from microbit import *
-
-    player = 'Dunstall'
-    goals = 1254
-    goals_per_game = 4.66
-
-    while True:
-        display.show('Player', 200)
-        display.show(player, 400)
-        display.show('Goals', 200)
-        display.show(goals, 500)
-        display.show('Goals per game', 200)
-        display.show(goals_per_game, 600)
-        display.clear()
-        sleep(2000)
-
-----
-
-.. admonition:: Tasks
-
-    1. Modify the value of the variables below to display info for another great goal kicker.
-
-        .. code-block:: python
-
-            from microbit import *
-
-            player = 'Romario'
-            goals = 780
-            goals_per_game = 0.78
-
-            while True:
-                display.show('Player=', 200)
-                display.show(player, 300)
-                display.show('Goals=', 200)
-                display.show(goals, 400)
-                display.show('Goals per game=', 200)
-                display.show(goals_per_game, 500)
-                display.clear()
-                sleep(2000)
-
-    2. Modify the code below to display info for another great bowler.
-
-        .. code-block:: python
-
-            from microbit import *
-
-            bowler = 'Muralitharan'
-            wickets = 800
-            ave = 22.7
-
-            while True:
-                display.show('Bowler=', 200)
-                display.show(bowler, 300)
-                display.show('Wickets=', 200)
-                display.show(wickets, 400)
-                display.show('Ave=', 200)
-                display.show(ave, 500)
-                display.clear()
-                sleep(2000)
-
-    3. Modify the code below to display info for another prolific NBA scorer.
-
-        .. code-block:: python
-
-            from microbit import *
-
-            player = 'Kareem Abdul-Jabbar'
-            points = 38387
-            ave = 24.6
-
-            while True:
-                display.show('player=', 200)
-                display.show(player, 300)
-                display.show('Points=', 200)
-                display.show(points, 400)
-                display.show('Ave=', 200)
-                display.show(ave, 500)
-
+Can you make one message show quickly and another show slowly?
