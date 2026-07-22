@@ -2,17 +2,19 @@
 Introduction
 ====================================================
 
-PC-Microbit
-----------------------------------------
+Welcome to the micro:bit Python course!
 
-| These docs will help you code your microbit using micropython.
-| Micropython is a version of python for running on small devices like the microbit.
+You will learn how to make the micro:bit:
+
+* show words
+* show pictures
+* use the buttons
+* repeat actions
+* make simple games
+
+Open the micro:bit Python editor:
+
+https://python.microbit.org/v/3
 
 .. image:: images/microbit_happy.png
     :scale: 50 %
-
-Micropython simulator:
-----------------------------------------
-
-| `<https://python.microbit.org/v/3>`_ uses the latest micropython for the latest version of the microbit.
-
