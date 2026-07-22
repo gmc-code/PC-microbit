@@ -153,7 +153,7 @@ Another good example:
 ----
 
 Why do we use ``from microbit import *``?
-----------------------------------------
+-----------------------------------------------
 
 There are different ways to import a library.
 
