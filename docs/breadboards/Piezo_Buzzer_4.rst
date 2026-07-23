@@ -267,7 +267,7 @@ Create your own tune.
 Rules:
 
 * At least 6 notes.
-* Use two different note lengths.
+* Use three different note lengths.
 * Play it with Button A.
 
 .. dropdown:: Mini Project 1 Solution
