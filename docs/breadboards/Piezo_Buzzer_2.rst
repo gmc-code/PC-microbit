@@ -19,9 +19,7 @@ Built-in tunes
 
 The ``music`` library already contains lots of tunes.
 
-Instead of writing your own notes,
-
-you can play a built-in tune.
+Instead of writing your own notes, you can play a built-in tune.
 
 For example:
 
@@ -48,9 +46,7 @@ Press:
     speaker.off()
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(music.NYAN)
 
         sleep(200)
@@ -93,13 +89,10 @@ Press:
     speaker.off()
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(music.NYAN)
 
         elif button_b.is_pressed():
-
             music.play(music.BIRTHDAY)
 
         sleep(200)
@@ -121,13 +114,10 @@ Can you see what changed?
     speaker.off()
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(music.ODE)
 
         elif button_b.is_pressed():
-
             music.play(music.WEDDING)
 
         sleep(200)
@@ -155,11 +145,8 @@ Then we can play them one after another.
     ]
 
     while True:
-
         if button_a.is_pressed():
-
             for tune in tunes:
-
                 music.play(tune)
 
         sleep(200)
@@ -188,9 +175,7 @@ This program plays four tunes.
     while True:
 
         if button_a.is_pressed():
-
             for tune in tunes:
-
                 music.play(tune)
 
         sleep(200)
@@ -206,6 +191,30 @@ Change the program to play:
 
 * Birthday
 * Wedding
+
+.. dropdown:: Solution
+    :icon: codescan
+    :color: primary
+    :class-container: sd-dropdown-container
+
+    .. code-block:: python
+
+        from microbit import *
+        import music
+
+        speaker.off()
+
+        tunes = [
+            music.BIRTHDAY,
+            music.WEDDING
+        ]
+
+        while True:
+            if button_a.is_pressed():
+                for tune in tunes:
+                    music.play(tune)
+
+            sleep(200)
 
 ----
 
@@ -243,73 +252,39 @@ and Button B play:
 * Ode
 * Wedding
 
-----
 
-.. dropdown:: Challenge Solutions
+.. dropdown:: Solution
     :icon: codescan
     :color: primary
     :class-container: sd-dropdown-container
 
-    .. tab-set::
+    .. code-block:: python
 
-        .. tab-item:: Example 1
+        from microbit import *
+        import music
 
-            .. code-block:: python
+        speaker.off()
 
-                from microbit import *
-                import music
+        tunes_a = [
+            music.NYAN,
+            music.BIRTHDAY
+        ]
 
-                speaker.off()
+        tunes_b = [
+            music.ODE,
+            music.WEDDING
+        ]
 
-                tunes = [
-                    music.BIRTHDAY,
-                    music.WEDDING
-                ]
+        while True:
+            if button_a.is_pressed():
+                for tune in tunes_a:
+                    music.play(tune)
 
-                while True:
+            elif button_b.is_pressed():
+                for tune in tunes_b:
+                    music.play(tune)
 
-                    if button_a.is_pressed():
-
-                        for tune in tunes:
-
-                            music.play(tune)
-
-                    sleep(200)
-
-        .. tab-item:: Example 5
-
-            .. code-block:: python
-
-                from microbit import *
-                import music
-
-                speaker.off()
-
-                tunes_a = [
-                    music.NYAN,
-                    music.BIRTHDAY
-                ]
-
-                tunes_b = [
-                    music.ODE,
-                    music.WEDDING
-                ]
-
-                while True:
-
-                    if button_a.is_pressed():
-
-                        for tune in tunes_a:
-
-                            music.play(tune)
-
-                    elif button_b.is_pressed():
-
-                        for tune in tunes_b:
-
-                            music.play(tune)
-
-                    sleep(200)
+            sleep(200)
 
 ----
 

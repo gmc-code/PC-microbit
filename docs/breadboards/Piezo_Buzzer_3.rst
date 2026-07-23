@@ -3,7 +3,7 @@ Piezo_Buzzer_3
 ==========================
 
 Changing the Speed of Music
-==========================
+==============================
 
 In this lesson you will learn how to:
 
@@ -55,13 +55,10 @@ This program plays a tune slowly.
     import music
 
     speaker.off()
-
     music.set_tempo(bpm=60)
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(music.NYAN)
 
         sleep(200)
@@ -83,13 +80,10 @@ Only the speed changes.
     import music
 
     speaker.off()
-
     music.set_tempo(bpm=180)
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(music.NYAN)
 
         sleep(200)
@@ -128,17 +122,12 @@ Press:
     speaker.off()
 
     while True:
-
         if button_a.is_pressed():
-
             music.set_tempo(bpm=60)
-
             music.play(music.BIRTHDAY)
 
         elif button_b.is_pressed():
-
             music.set_tempo(bpm=180)
-
             music.play(music.BIRTHDAY)
 
         sleep(200)
@@ -162,17 +151,12 @@ The same tune is played each time.
     import music
 
     speaker.off()
-
     tempos = [60, 120, 180]
 
     while True:
-
         if button_a.is_pressed():
-
             for speed in tempos:
-
                 music.set_tempo(bpm=speed)
-
                 music.play(music.NYAN)
 
         sleep(200)
@@ -294,17 +278,12 @@ Which speed sounds best?
                 speaker.off()
 
                 while True:
-
                     if button_a.is_pressed():
-
                         music.set_tempo(bpm=70)
-
                         music.play(music.WEDDING)
 
                     elif button_b.is_pressed():
-
                         music.set_tempo(bpm=190)
-
                         music.play(music.WEDDING)
 
                     sleep(200)
@@ -317,17 +296,12 @@ Which speed sounds best?
                 import music
 
                 speaker.off()
-
                 tempos = [60, 120, 180]
 
                 while True:
-
                     if button_a.is_pressed():
-
                         for speed in tempos:
-
                             music.set_tempo(bpm=speed)
-
                             music.play(music.BIRTHDAY)
 
                     sleep(200)

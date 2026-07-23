@@ -43,7 +43,6 @@ This program plays some short and long notes.
     import music
 
     speaker.off()
-
     notes = [
         "c:1",
         "d:1",
@@ -52,9 +51,7 @@ This program plays some short and long notes.
     ]
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(notes)
 
         sleep(200)
@@ -100,7 +97,6 @@ Playing high and low notes
     import music
 
     speaker.off()
-
     notes = [
         "c4",
         "c5",
@@ -110,9 +106,7 @@ Playing high and low notes
     ]
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(notes)
 
         sleep(200)
@@ -134,7 +128,6 @@ then comes back down.
     import music
 
     speaker.off()
-
     notes = [
         "c4",
         "d4",
@@ -146,9 +139,7 @@ then comes back down.
     ]
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(notes)
 
         sleep(200)
@@ -202,9 +193,7 @@ What changes?
 Playing a sound effect
 ----------------------------------------
 
-Instead of music,
-
-you can play a sound.
+Instead of music, you can play a sound.
 
 For example:
 
@@ -216,9 +205,7 @@ For example:
     speaker.off()
 
     while True:
-
         if button_a.is_pressed():
-
             music.pitch(440, 1000)
 
         sleep(200)
@@ -262,14 +249,11 @@ Press:
     speaker.off()
 
     while True:
-
         if button_a.is_pressed():
-
-            music.pitch(220,1000)
+            music.pitch(220, 1000)
 
         elif button_b.is_pressed():
-
-            music.pitch(880,1000)
+            music.pitch(880, 1000)
 
         sleep(200)
 
@@ -285,6 +269,33 @@ Rules:
 * At least 6 notes.
 * Use two different note lengths.
 * Play it with Button A.
+
+.. dropdown:: Mini Project 1 Solution
+    :icon: codescan
+    :color: primary
+    :class-container: sd-dropdown-container
+
+    .. code-block:: python
+
+        from microbit import *
+        import music
+
+        speaker.off()
+
+        tune = [
+            "c:1",
+            "d:1",
+            "e:2",
+            "g:2",
+            "e:1",
+            "c:4"
+        ]
+
+        while True:
+            if button_a.is_pressed():
+                music.play(tune)
+
+            sleep(200)
 
 ----
 
@@ -304,6 +315,27 @@ Button B:
 Ask a friend:
 
 "Which note is higher?"
+
+.. dropdown:: Mini Project 2 Solution
+    :icon: codescan
+    :color: primary
+    :class-container: sd-dropdown-container
+
+    .. code-block:: python
+
+        from microbit import *
+        import music
+
+        speaker.off()
+
+        while True:
+            if button_a.is_pressed():
+                music.pitch(220,1000)
+
+            elif button_b.is_pressed():
+                music.pitch(880,1000)
+
+            sleep(200)
 
 ----
 
@@ -326,62 +358,6 @@ Try using:
 * C5
 
 Experiment until you like the sound.
-
-----
-
-.. dropdown::
-    :icon: codescan
-    :color: primary
-    :class-container: sd-dropdown-container
-
-    .. tab-set::
-
-        .. tab-item:: Mini Project 1 Example
-
-            .. code-block:: python
-
-                from microbit import *
-                import music
-
-                speaker.off()
-
-                tune = [
-                    "c:1",
-                    "d:1",
-                    "e:2",
-                    "g:2",
-                    "e:1",
-                    "c:4"
-                ]
-
-                while True:
-
-                    if button_a.is_pressed():
-
-                        music.play(tune)
-
-                    sleep(200)
-
-        .. tab-item:: Mini Project 2 Example
-
-            .. code-block:: python
-
-                from microbit import *
-                import music
-
-                speaker.off()
-
-                while True:
-
-                    if button_a.is_pressed():
-
-                        music.pitch(220,1000)
-
-                    elif button_b.is_pressed():
-
-                        music.pitch(880,1000)
-
-                    sleep(200)
 
 ----
 

@@ -1,9 +1,9 @@
-==========================
+====================================
 Piezo_Buzzer_1
-==========================
+====================================
 
 Making Sounds with a Piezo Buzzer
-=================================
+====================================
 
 In this lesson you will learn how to:
 
@@ -37,14 +37,6 @@ If you are using:
 **A buzzer on a breadboard**
 
 Turn the built-in speaker **OFF**.
-
-If you are using:
-
-**A V2 micro:bit speaker**
-
-Turn the built-in speaker **ON**.
-
-This lesson uses a **breadboard buzzer**, so we will use:
 
 ``speaker.off()``
 
@@ -97,7 +89,6 @@ The note is:
     import music
 
     speaker.off()
-
     music.play("c")
 
 ----
@@ -135,9 +126,7 @@ This program plays five notes.
     import music
 
     speaker.off()
-
     notes = ["c", "d", "e", "f", "g"]
-
     music.play(notes)
 
 ----
@@ -155,9 +144,7 @@ then back down again.
     import music
 
     speaker.off()
-
     notes = ["c", "d", "e", "d", "c"]
-
     music.play(notes)
 
 ----
@@ -175,13 +162,10 @@ Press:
     import music
 
     speaker.off()
-
     notes = ["c", "d", "e", "d", "c"]
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(notes)
 
         sleep(200)
@@ -201,13 +185,10 @@ Can you see the pattern?
     import music
 
     speaker.off()
-
     notes = ["c", "g", "c", "g", "c"]
 
     while True:
-
         if button_a.is_pressed():
-
             music.play(notes)
 
         sleep(200)
@@ -225,7 +206,28 @@ Change the program to play:
 * E
 * G
 
-before pressing Button A.
+by pressing Button A.
+
+
+.. dropdown:: Solution
+    :icon: codescan
+    :color: primary
+    :class-container: sd-dropdown-container
+
+    .. code-block:: python
+
+        from microbit import *
+        import music
+
+        speaker.off()
+        notes = ["c", "e", "g"]
+
+        while True:
+            if button_a.is_pressed():
+                music.play(notes)
+
+            sleep(200)
+
 
 ----
 
@@ -238,6 +240,26 @@ Change the program to play:
 * E
 * D
 * C
+
+
+.. dropdown:: Solution
+    :icon: codescan
+    :color: primary
+    :class-container: sd-dropdown-container
+
+    .. code-block:: python
+
+        from microbit import *
+        import music
+
+        speaker.off()
+        notes = ["g", "f", "e", "d", "c"]
+
+        while True:
+            if button_a.is_pressed():
+                music.play(notes)
+
+            sleep(200)
 
 ----
 
@@ -262,53 +284,6 @@ Make your own tune using:
 * G
 
 Use six notes.
-
-----
-
-.. dropdown:: Challenge Solutions
-    :icon: codescan
-    :color: primary
-    :class-container: sd-dropdown-container
-
-    .. tab-set::
-
-        .. tab-item:: Example 1
-
-            .. code-block:: python
-
-                from microbit import *
-                import music
-
-                speaker.off()
-
-                notes = ["c", "e", "g"]
-
-                while True:
-
-                    if button_a.is_pressed():
-
-                        music.play(notes)
-
-                    sleep(200)
-
-        .. tab-item:: Example 2
-
-            .. code-block:: python
-
-                from microbit import *
-                import music
-
-                speaker.off()
-
-                notes = ["g", "f", "e", "d", "c"]
-
-                while True:
-
-                    if button_a.is_pressed():
-
-                        music.play(notes)
-
-                    sleep(200)
 
 ----
 
@@ -349,3 +324,4 @@ Before moving to the next lesson, check that you can do these things.
     ☐ Change a tune by editing the notes in the list.
 
     ☐ Use Button A to play a tune.
+
