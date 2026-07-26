@@ -71,5 +71,11 @@ Index:
     breadboards/Piezo_Buzzer_3.rst
     breadboards/Piezo_Buzzer_4.rst
 
+.. toctree::
+    :maxdepth: 2
+    :caption: Lesson Quizzes
+    :numbered:
+
+    quizzes/images_quiz.rst
 
 
