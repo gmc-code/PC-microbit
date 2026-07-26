@@ -1,5 +1,5 @@
 ====================================================
-Built-in Images Quiz
+micro:bit Built-in Images Quiz
 ====================================================
 
 Section 1: Multiple Choice
@@ -65,11 +65,87 @@ Question 5
 
 ----
 
-Section 2: Code Ordering
-========================
+Section 2: Cloze (Dropdown Selection)
+=====================================
 
 Question 6
-----------
+-----------
+
+| Complete the code to import the micro:bit library and display a built-in duck picture.
+
+.. cloze::
+
+    from microbit @@ import | include | get @@ *
+
+    display.@@ show | scroll | write @@(Image.DUCK)
+
+----
+
+Question 7
+-----------
+
+| Complete the code to show a built-in arrow image pointing North.
+
+.. cloze::
+
+    from microbit import *
+
+    display.show(Image.@@ ARROW_N | arrow_n | "ARROW_N" @@)
+
+----
+
+Question 8
+-----------
+
+| Complete the code to animate a pre-made list of built-in clock images with a delay of 200 milliseconds.
+
+.. cloze::
+
+    from microbit *
+
+    while True:
+        display.show(Image.@@ ALL_CLOCKS | ALL_ARROWS | CLOCK @@, delay=@@ 200 | "200" | 200ms @@)
+
+----
+
+Question 9
+-----------
+
+| Complete the code to clear the screen after displaying a giraffe image.
+
+.. cloze::
+
+    from microbit import *
+
+    display.show(Image.GIRAFFE)
+    @@ sleep | wait | pause @@(1000)
+    display.@@ clear | wipe | reset @@()
+
+----
+
+Question 10
+-----------
+
+| Complete the selection logic to show a happy face when Button A is pressed.
+
+.. cloze::
+
+    from microbit import *
+
+    while True:
+        if button_a.@@ is_pressed | was_pressed | press @@():
+            display.show(Image.@@ HAPPY | happy | "HAPPY" @@)
+
+
+
+
+----
+
+Section 3: Code Ordering
+========================
+
+Question 11
+------------
 
 | Put the lines of code in order to show a built-in HAPPY face on the micro:bit screen.
 
@@ -82,8 +158,8 @@ Question 6
 
 ----
 
-Question 7
-----------
+Question 12
+------------
 
 | Order the lines below to make a heart picture flash on and off every half second (500ms).
 
@@ -100,8 +176,8 @@ Question 7
 
 ----
 
-Question 8
-----------
+Question 13
+------------
 
 | Put the lines of code in order to save a list of three faces in a variable and animate them.
 
@@ -116,87 +192,35 @@ Question 8
 
 ----
 
-Section 3: Cloze (Dropdown Selection)
-=====================================
+Question 14
+------------
 
-Question 9
-----------
+| Order the code segments to cycle between an arrow pointing North and an arrow pointing South with a pause in between.
 
-| Complete the code to import the micro:bit library and display a built-in duck picture.
-
-.. cloze::
-
-    from microbit @@ import | include | get @@ *
-
-    display.@@ show | scroll | write @@(Image.DUCK)
-
-----
-
-Question 10
------------
-
-| Complete the code to show a built-in arrow image pointing North.
-
-.. cloze::
-
-    from microbit import *
-
-    display.show(Image.@@ ARROW_N | arrow_n | "ARROW_N" @@)
-
-----
-
-Question 11
------------
-
-| Complete the code to animate a pre-made list of built-in clock images with a delay of 200 milliseconds.
-
-.. cloze::
+.. ordering::
+    :theme: light
 
     from microbit import *
 
     while True:
-        display.show(Image.@@ ALL_CLOCKS | ALL_ARROWS | CLOCK @@, delay=@@ 200 | "200" | 200ms @@)
+        display.show(Image.ARROW_N)
+        sleep(200)
+        display.show(Image.ARROW_S)
+        sleep(200)
 
 ----
 
-Section 4: Fill in Gaps (Text Entry)
-=====================================
+Question 15
+-------------
 
-Question 12
------------
+| Put the lines in order to display the built-in ALL_CLOCKS list continuously with a fast 100ms delay.
 
-| Fill in the gaps to import all tools from the micro:bit library and show a happy face.
+.. ordering::
+    :theme: light
 
-.. gapfill::
+    from microbit import *
 
-    from microbit import @@* | ALL@@
+    while True:
+        display.show(Image.ALL_CLOCKS, delay=100)
 
-    display.@@show | scroll@@(Image.HAPPY)
-
-----
-
-Question 13
------------
-
-| Complete the code to clear the micro:bit display screen after waiting 1000 milliseconds.
-
-.. gapfill::
-
-    display.show(Image.GIRAFFE)
-    @@sleep | wait@@(1000)
-    display.@@clear() | reset()@@
-
-----
-
-Question 14
------------
-
-| Fill in the missing code to loop through a custom list variable of animal images with a 400ms delay.
-
-.. gapfill::
-
-    animal_list = [Image.RABBIT, Image.COW, Image.GIRAFFE]
-
-    @@while | for@@ True:
-        display.show(@@animal_list | Image.ALL_ANIMALS@@, delay=400)
 

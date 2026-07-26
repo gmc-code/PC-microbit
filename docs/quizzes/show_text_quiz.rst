@@ -1,17 +1,19 @@
 ====================================================
-Show Text Quiz
+micro:bit Text, Screen & Library Quiz
 ====================================================
+
+Section 1: Multiple Choice
+==========================
 
 Question 1
 ----------
 
 .. multichoice::
 
-    What is the default delay time between characters when using the ``display.show()`` function without specifying a custom delay?
-    [ ] 150 milliseconds | Incorrect. 150ms is the default delay for the text scrolling function, not the show function.
-    [ ] 200 milliseconds | Incorrect. 200ms is a custom short delay option mentioned in the tasks.
-    [x] 400 milliseconds | Correct. The documentation specifies that each character or digit is shown with a default of 400ms between them.
-    [ ] 500 milliseconds | Incorrect. 500ms is used for pauses or custom slower displays.
+    Which line must be placed at the very top of every micro:bit program?
+    [x] from microbit import * | Correct! This gives your program access to display, buttons, and sensors.
+    [ ] import microbit | Incorrect. While valid Python, this forces you to write microbit.display.show() instead.
+    [ ] from microbot import * | Incorrect. "microbit" is spelled wrong in this line.
 
 ----
 
@@ -20,11 +22,10 @@ Question 2
 
 .. multichoice::
 
-    What happens to the micro:bit LED display after executing a basic ``display.show(3.14)`` statement without any additional clearing commands?
-    [ ] The display goes completely blank immediately. | Incorrect. The function does not clear itself automatically by default.
-    [ ] The text will continuously flash on and off. | Incorrect. Flashing requires a loop with explicit clear and sleep states.
-    [x] The final digit or character ('4') remains visible on the display. | Correct. After using display.show, the last digit or character is left displayed on the screen.
-    [ ] The micro:bit restarts to reset the screen. | Incorrect. Hardware resets do not occur from a standard display call.
+    What happens to text when you display it using display.show()?
+    [ ] The text slides across the screen horizontally. | Incorrect. Text displayed with show() stays still instead of moving.
+    [x] The text does not move and letters appear one at a time. | Correct! display.show() displays stationary characters one by one.
+    [ ] The letters flash on the screen all at the exact same time. | Incorrect. Each letter is shown sequentially, one after another.
 
 ----
 
@@ -33,11 +34,10 @@ Question 3
 
 .. multichoice::
 
-    Which function should be called to completely wipe or remove the last left-over character from the micro:bit screen?
-    [ ] display.reset() | Incorrect. There is no reset function in the display module for this purpose.
-    [x] display.clear() | Correct. The display.clear() function is explicitly used to remove the last character from the display.
-    [ ] display.sleep() | Incorrect. Sleep is a global function used to pause program execution time, not clear the screen.
-    [ ] display.show(None) | Incorrect. Passing None is invalid syntax for removing text characters.
+    How long will sleep(1000) pause a micro:bit program?
+    [ ] Half a second | Incorrect. Half a second is written as sleep(500).
+    [x] 1 full second | Correct! 1000 milliseconds equals 1 full second.
+    [ ] 10 seconds | Incorrect. 10 seconds would be written as sleep(10000).
 
 ----
 
@@ -46,27 +46,10 @@ Question 4
 
 .. multichoice::
 
-    What is the primary difference between the behavior of these two code examples?
-
-    **Example A:**
-
-    .. code-block:: python
-
-        display.show(3.14)
-
-    **Example B:**
-
-    .. code-block:: python
-
-        while True:
-            display.show(3.14)
-            display.clear()
-            sleep(2000)
-
-    [ ] Example A repeats infinitely while Example B runs only once. | Incorrect. It is the opposite; Example B contains an infinite loop block.
-    [x] Example A leaves the digit "4" static on the screen, while Example B clears it and creates a 2-second blank pause before repeating. | Correct. Example A leaves the final character up, whereas Example B deliberately blanks the display periodically.
-    [ ] Example B throws a syntax error because of the sleep statement. | Incorrect. Sleep is completely valid and keeps the screen blank for a short time.
-    [ ] They display characters at completely different speeds. | Incorrect. Both use the default character delay speed.
+    What does display.clear() do to the micro:bit LED screen?
+    [ ] It scrolls the screen backward. | Incorrect. Scrolling is done with display.scroll().
+    [x] It wipes the screen to make it completely blank. | Correct! display.clear() turns off all LEDs to blank the screen.
+    [ ] It resets the micro:bit program back to line 1. | Incorrect. It only clears the screen lights, not the program state.
 
 ----
 
@@ -75,101 +58,165 @@ Question 5
 
 .. multichoice::
 
-    If a developer sets the parameter ``clear=True`` inside ``display.show('Hi', clear=True)``, what action is performed automatically?
-    [ ] The entire script terminates immediately after showing 'Hi'. | Incorrect. It does not stop execution of the script.
-    [ ] The string is displayed in reverse character order. | Incorrect. Character order remains sequentially normal.
-    [x] The screen clears the final character automatically once the sequence finishes. | Correct. If clear is True, the display will be cleared after it has finished showing the sequence.
-    [ ] The character delay drops down to 0ms automatically. | Incorrect. The character-to-character delay parameter is independent of clearing.
+    Which setting makes text display faster when using display.show("Hi", delay=...)?
+    [x] A smaller delay number (like 150) | Correct! A smaller delay time speeds up letter transitions.
+    [ ] A larger delay number (like 2000) | Incorrect. Larger delay numbers make letter transitions slower.
+    [ ] Setting delay=0 | Incorrect. Setting delay to 0 causes letters to flash by instantly without being readable.
 
 ----
+
+Section 2: Cloze (Dropdown Selection)
+=====================================
 
 Question 6
 ----------
 
-.. multichoice::
+| Complete the standard import line used to start micro:bit Python programs.
 
-    Which of the following lines correctly sets a custom delay of 150ms between sequence characters using keyword arguments?
-    [x] display.show(5.64, delay=150) | Correct. This properly specifies the value and uses the named parameter syntax.
-    [ ] display.show(5.64, 150ms) | Incorrect. Appending 'ms' to a number is invalid syntax in Python.
-    [ ] display.show(delay=150) | Incorrect. The sequence value to display is entirely missing from this function call.
-    [ ] display.show("5.64" + 150) | Incorrect. This attempts to perform an invalid addition between a string and an integer.
+.. cloze::
+
+    from @@ microbit | microbot | display @@ import @@ * | all | display @@
 
 ----
 
 Question 7
 ----------
 
-.. multichoice::
+| Complete the code to show the text "Hello" on the screen continuously.
 
-    Look closely at the following code structure:
+.. cloze::
 
-    .. code-block:: python
+    from microbit import *
 
-        from microbit import *
-
-        while True:
-            display.show('I like the ', delay=200)
-            display.show('NBA', delay=400)
-            display.clear()
-            sleep(2000)
-
-    What is the core design purpose of modifying the delay parameters in this specific way?
-    [ ] To conserve the physical battery life of the micro:bit device. | Incorrect. Adjusting screen delays does not materially alter device power modes.
-    [x] To use a shorter delay for initial text context, and a longer, more readable delay for the main info. | Correct. Varying speeds allows secondary structural text to pass quickly and core content slowly.
-    [ ] To make the text 'NBA' scroll across the display horizontally. | Incorrect. The show function sequences elements statically one character at a time; it does not scroll.
-    [ ] To ensure the loop finishes running after 2000 iterations. | Incorrect. A while True condition loops indefinitely regardless of internal delays.
+    while @@ True | true | 1 @@:
+        display.@@ show | print | write @@("Hello")
 
 ----
 
 Question 8
 ----------
 
-.. multichoice::
+| Complete the code to show a number quickly with a custom speed of 150ms.
 
-    What data types can be successfully passed as the first argument into the ``display.show()`` function sequence?
-    [ ] Only text strings wrapped in quotation marks. | Incorrect. It can process numerical digits directly too.
-    [ ] Integers only. | Incorrect. Strings and decimals can be shown just as easily.
-    [x] Strings, floats, and integers. | Correct. The function sequentially displays letters or digits from strings, floating-point decimals, or whole integers.
-    [ ] Strictly lists or boolean objects. | Incorrect. These are not supported data sequences for standard sequential text display.
+.. cloze::
+
+    from microbit import *
+
+    while True:
+        display.show(@@ 7 | "7" | seven @@, delay=@@ 150 | "150" | 150ms @@)
 
 ----
 
 Question 9
 ----------
 
-.. multichoice::
+| Complete the code to pause for 1 second and then blank out the display grid.
 
-    A student wants to display the word "ABC" such that the final character 'C' is removed right away, followed by a brief half-second pause. Which option is correct?
-    [ ] .. code-block:: python
+.. cloze::
 
-            display.show("ABC")
-            sleep(500)
-        | Incorrect. This does not use clear parameters or clear commands, leaving 'C' stuck on screen.
-    [x] .. code-block:: python
+    from microbit import *
 
-            display.show("ABC", clear=True)
-            sleep(500)
-        | Correct. It automatically removes the last character via clear=True and pauses for 500ms (half a second).
-    [ ] .. code-block:: python
-
-            display.show("ABC", clear=False)
-            sleep(50)
-        | Incorrect. This explicitly stops the character from being cleared, and pauses for only 50ms.
-    [ ] .. code-block:: python
-
-            display.show("ABC", delay=500)
-        | Incorrect. This merely slows the timing between characters to 500ms instead of creating a final blank screen pause.
+    display.show("Hi")
+    @@ sleep | pause | wait @@(1000)
+    display.@@ clear | wipe | blank @@()
 
 ----
 
 Question 10
 -----------
 
-.. multichoice::
+| Complete the shortcut parameter that automatically clears the display after showing "Hello".
 
-    Why are variables useful when passing statistics (like player names or scores) to a series of ``display.show()`` instructions?
-    [ ] They are mandatory because the function cannot display raw values. | Incorrect. Raw values can easily be passed directly to the function parameters.
-    [x] They make it easy to see, organize, and edit data values at the top of the program without messing up the logic. | Correct. Isolating variables keeps the core display loop clean and easy to modify.
-    [ ] They automatically convert standard text into a scrolling animation. | Incorrect. Variables hold data but do not change the core behavior of the show function.
-    [ ] They clear the memory blocks of the micro:bit hardware automatically. | Incorrect. Variables occupy space in execution memory and do not perform cleanup tasks.
+.. cloze::
+
+    from microbit import *
+
+    while True:
+        display.show("Hello", @@ clear=True | clear=False | erase=True @@)
+        sleep(1000)
+
+----
+
+Section 3: Code Ordering
+========================
+
+Question 11
+-----------
+
+| Put the lines of code in order to start a program properly and display the name "Sam".
+
+.. ordering::
+    :theme: light
+
+    from microbit import *
+
+    while True:
+        display.show("Sam")
+
+----
+
+Question 12
+-----------
+
+| Order the lines below to show the number 11 continuously with a slow delay of 500ms.
+
+.. ordering::
+    :theme: light
+
+    from microbit import *
+
+    while True:
+        display.show(11, delay=500)
+
+----
+
+Question 13
+-----------
+
+| Put the instructions in order to show "Hi", wait 1 second, clear the screen, and wait 1 second before repeating.
+
+.. ordering::
+    :theme: light
+
+    from microbit import *
+
+    while True:
+        display.show("Hi")
+        sleep(1000)
+        display.clear()
+        sleep(1000)
+
+----
+
+Question 14
+-----------
+
+| Order the lines to show "I like" for 1 second, then show "Pizza" for 1 second continuously.
+
+.. ordering::
+    :theme: light
+
+    from microbit import *
+
+    while True:
+        display.show("I like")
+        sleep(1000)
+        display.show("Pizza")
+        sleep(1000)
+
+----
+
+Question 15
+-----------
+
+| Order the code segments to show a message and automatically clear the screen using clear=True.
+
+.. ordering::
+    :theme: light
+
+    from microbit import *
+
+    while True:
+        display.show("Hello", clear=True)
+        sleep(1000)
 

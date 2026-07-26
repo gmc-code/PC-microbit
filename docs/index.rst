@@ -76,6 +76,7 @@ Index:
     :caption: Lesson Quizzes
     :numbered:
 
+    quizzes/show_text_quiz.rst
     quizzes/images_quiz.rst
 
 
