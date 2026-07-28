@@ -186,7 +186,7 @@ Making an LED dimmer
             for i in brightness_list:
                 pin0.write_analog(i)
                 sleep(sleep_time)
-                sleep(500)
+        sleep(500)
 
 
 ----
