@@ -5,7 +5,7 @@ LEDs_blink
 | In this lesson you will use the previous model with **three LEDs**.
 | You will learn how to make LEDs blink **ON** and **OFF** using code.
 
----
+----
 
 Blinking LEDs
 ----------------------------------------
