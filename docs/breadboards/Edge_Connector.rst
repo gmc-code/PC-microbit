@@ -35,13 +35,3 @@ The micro:bit faces upwards.
 .. image:: images/main_pins.jpg
     :scale: 50 %
 
-Most circuits use:
-
-* pin0
-* pin1
-* pin2
-* 0V
-
-The electricity leaves through pin0, pin1 or pin2.
-
-It returns through **0V (ground).**

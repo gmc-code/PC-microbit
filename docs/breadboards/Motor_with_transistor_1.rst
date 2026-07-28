@@ -138,82 +138,58 @@ Follow these steps:
 Controlling the motor
 ----------------------------------------
 
-We use:
+| Use the ``write_digital(1)`` command to turn the Motor ON.
+| Use the ``write_digital(0)`` command to turn the Motor OFF.
 
-``write_digital()``
+| For example:
+| Turn on the Motor connected to pin0:
+| ``pin0.write_digital(1)``
 
-
-This gives the motor two choices:
-
-
-``1``
-
-Motor ON
-
-
-``0``
-
-Motor OFF
-
+| Turn off the Motor connected to pin0:
+| ``pin0.write_digital(0)``
 
 ----
 
-write_digital
+Control the Motor with Buttons
 ----------------------------------------
 
-.. py:function:: pinx.write_digital(value)
-    :no-index:
+Fix the indenting in the code below to do this:
 
-    | ``pinx`` is the pin connected to the motor.
-    |
-    | Examples:
-    |
-    | * ``pin0``
-    | * ``pin1``
-    | * ``pin2``
-    |
-    | ``value`` can be:
-    |
-    | * ``1`` = ON
-    | * ``0`` = OFF
+* Press **Button A** → the Motor turns **ON**
+* No press → the Motor turns **OFF**
 
-
-To turn the motor on:
-
-``pin0.write_digital(1)``
-
-
-To turn the motor off:
-
-``pin0.write_digital(0)``
-
-
-----
-
-Using the buttons
-----------------------------------------
-
-Try this program.
-
-
-Press:
-
-* Button A → motor ON
-* Button B → motor OFF
-
-
-.. code-block:: python
+.. ordering::
+    :no-padding:
+    :no-reorder:
+    :show-code:
 
     from microbit import *
 
     while True:
         if button_a.is_pressed():
             pin0.write_digital(1)
-
-        elif button_b.is_pressed():
+        else:
             pin0.write_digital(0)
-
         sleep(500)
+
+
+Fix the indenting in the code below to do this:
+
+* Press **Button A** → the Motor turns **ON**
+* Press **Button B** → the Motor turns **OFF**
+
+.. ordering::
+    :no-padding:
+    :no-reorder:
+    :show-code:
+
+    from microbit import *
+
+    while True:
+        if button_a.is_pressed():
+            pin0.write_digital(1)
+        elif button_b.is_pressed():
+            pin0.writ
 
 
 ----

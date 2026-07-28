@@ -14,8 +14,8 @@ You need:
 
 * A micro:bit
 * A breadboard
-* Three LEDs
-* Three 47 ohm resistors
+* Three LEDs (red, yellow, green)
+* Three 47 ohm resistors (bands of: yellow, violet, black, gold)
 * Jumper wires
 
 
@@ -24,47 +24,24 @@ Each LED needs a **47 ohm resistor**.
 .. image:: images/47ohm.png
     :scale: 50 %
 
-The resistor stops too much electricity going into the LED.
-
-Without the resistor, the LED could be damaged.
-
-The 47 ohm resistor has these colour bands:
-
-* Yellow
-* Violet
-* Black
-* Gold
-
-
-The LEDs connect to these micro:bit pins:
-
-* Red LED → pin0
-* Yellow LED → pin1
-* Green LED → pin2
-
-Every LED must also connect to **0V (Ground)**.
-
-
+| The resistor stops too much electricity going into the LED.
+| Without the resistor, the LED could be damaged.
 
 ----
 
 Making the resistor ready
 --------------------------
 
-Bend each resistor into a **U shape**.
-
-Hold the resistor near the middle when bending.
-
-This stops the legs from breaking.
+| Bend each resistor into a **U shape**.
+| Hold the resistor near the middle when bending.
+| This stops the legs from breaking.
 
 .. image:: images/resistor_shape.png
     :scale: 50 %
 
-Push the resistor legs into the breadboard.
-
-Push them in about **5 mm**.
-
-The resistor should sit above the breadboard.
+| Push the resistor legs into the breadboard.
+| Push them in about **5 mm**.
+| The resistor should sit above the breadboard.
 
 .. image:: images/resistor_on_breadboard_low.png
     :scale: 50 %
@@ -83,11 +60,6 @@ Follow these steps:
 #. In this model, the long leg is on the **left side**.
 #. Add the jumper wires.
 
-Check your LEDs:
-
-* Red LED → pin0
-* Yellow LED → pin1
-* Green LED → pin2
 
 
 .. image:: images/3LEDS_1_bb.png
@@ -99,6 +71,13 @@ Check your LEDs:
 .. image:: images/3LEDS_3_bb.png
     :scale: 50 %
 
+
+Check your LEDs:
+
+* Red LED → pin0
+* Yellow LED → pin1
+* Green LED → pin2
+
 .. image:: images/LEDS.jpg
     :scale: 30 %
 
@@ -107,77 +86,86 @@ Check your LEDs:
 Turning an LED ON and OFF
 ----------------------------------------
 
-The command:
+| Use the ``write_digital(1)`` command to turn an LED ON.
+| Use the ``write_digital(0)`` command to turn an LED OFF.
 
-``write_digital()``
+| For example:
+| Turn on the LED connected to pin0:
+| ``pin0.write_digital(1)``
 
-lets the micro:bit control an LED.
+| Turn off the LED connected to pin0:
+| ``pin0.write_digital(0)``
 
-The command has two choices:
+| Can you work out how to turn on an LED on one of the other pins?
 
-``1`` means:
+.. cloze::
 
-**Turn the LED ON**
-
-``0`` means:
-
-**Turn the LED OFF**
-
-
-For example:
-
-Turn on the LED connected to pin0:
-
-``pin0.write_digital(1)``
-
-
-Turn off the LED connected to pin0:
-
-``pin0.write_digital(0)``
-
-
-To control another LED, change:
-
-* ``pin0`` to ``pin1``
-* ``pin0`` to ``pin2``
-
+    Turn on the LED connected to pin1:
+    @@pin1 | pin2@@.write_digital(1)
+    Turn on the LED connected to pin2:
+    @@pin2 | pin1@@.write_digital(1)
 
 ----
 
 Control one LED
 ----------------------------------------
 
-Try this:
+| The code below turns the LED connected to pin0 **ON** for 1 second, and then **OFF** for 1 second.
 
-* Press **Button A** → Red LED turns **ON**
-* Press **Button B** → Red LED turns **OFF**
-
-
-.. code-block:: python
+.. cloze::
+    :show-code:
 
     from microbit import *
 
+    while True:
+        pin0.write_digital(@@ 1 | 0 @@)
+        sleep(1000)
+        pin0.write_digital(@@ 0 | 1 @@)
+        sleep(1000)
+
+----
+
+Control one LED with buttons
+----------------------------------------
+
+Fix the indenting in the code below to do this:
+
+* Press **Button A** → Red LED turns **ON**
+* No press → Red LED turns **OFF**
+
+.. ordering::
+    :no-padding:
+    :no-reorder:
+    :show-code:
+
+    from microbit import *
 
     while True:
         if button_a.is_pressed():
             pin0.write_digital(1)
-
-        elif button_b.is_pressed():
+        else:
             pin0.write_digital(0)
-
         sleep(500)
 
 
-Think about it:
+Fix the indenting in the code below to do this:
 
-What does:
+* Press **Button A** → Red LED turns **ON**
+* Press **Button B** → Red LED turns **OFF**
 
-``1`` do?
+.. ordering::
+    :no-padding:
+    :no-reorder:
+    :show-code:
 
-What does:
+    from microbit import *
 
-``0`` do?
-
+    while True:
+        if button_a.is_pressed():
+            pin0.write_digital(1)
+        elif button_b.is_pressed():
+            pin0.write_digital(0)
+        sleep(500)
 
 ----
 
@@ -194,18 +182,15 @@ Try this:
 
     from microbit import *
 
-
     while True:
         if button_a.is_pressed():
             pin0.write_digital(1)
             pin1.write_digital(1)
             pin2.write_digital(1)
-
         elif button_b.is_pressed():
             pin0.write_digital(0)
             pin1.write_digital(0)
             pin2.write_digital(0)
-
         sleep(500)
 
 
@@ -214,219 +199,60 @@ Try this:
 Try These Challenges
 ----------------------------------------
 
-Remember:
-
-* Red LED → pin0
-* Yellow LED → pin1
-* Green LED → pin2
-
-
 **Challenge 1**
 
-Press **A**:
+| Press **A**:
+| * Turn on the **red LED only** on pin0.
+|
+| Press **B**:
+| * Turn on the **yellow and green LEDs only** on pin1 and pin2 respectively.
 
-* Turn on the **red LED only**.
+.. cloze::
+    :show-code:
 
+    from microbit import *
 
-Press **B**:
+    while True:
+        if button_a.is_pressed():
+            pin0.write_digital(@@1@@)
+            pin1.write_digital(@@0@@)
+            pin2.write_digital(@@0@@)
+        elif button_b.is_pressed():
+            pin0.write_digital(@@0@@)
+            pin1.write_digital(@@1@@)
+            pin2.write_digital(@@1@@)
+        sleep(500)
 
-* Turn on the **yellow and green LEDs only**.
-
+----
 
 **Challenge 2**
 
-Press **A**:
+| Press **A**:
+| * Turn on the **green LED only** on pin2.
+|
+| Press **B**:
+| * Turn on the **red and yellow LEDs only** on pin0 and pin1 respectively.
 
-* Turn on the **green LED only**.
-
-
-Press **B**:
-
-* Turn on the **red and yellow LEDs only**.
-
-
-.. dropdown:: Challenge Solutions
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. tab-set::
-
-            .. tab-item:: Challenge 1 Solution
-
-                .. code-block:: python
-
-                    from microbit import *
-
-
-                    while True:
-                        if button_a.is_pressed():
-                            pin0.write_digital(1)
-                            pin1.write_digital(0)
-                            pin2.write_digital(0)
-
-                        elif button_b.is_pressed():
-                            pin0.write_digital(0)
-                            pin1.write_digital(1)
-                            pin2.write_digital(1)
-
-                        sleep(500)
-
-
-            .. tab-item:: Challenge 2 Solution
-
-                .. code-block:: python
-
-                    from microbit import *
-
-
-                    while True:
-                        if button_a.is_pressed():
-                            pin0.write_digital(0)
-                            pin1.write_digital(0)
-                            pin2.write_digital(1)
-
-                        elif button_b.is_pressed():
-                            pin0.write_digital(1)
-                            pin1.write_digital(1)
-                            pin2.write_digital(0)
-
-                        sleep(500)
-
-
-----
-
-Blinking LEDs
-----------------------------------------
-
-Blinking means:
-
-**ON → OFF → ON → OFF**
-
-Try this:
-
-* Button A → LEDs blink one at a time.
-* Button B → All LEDs blink together.
-
-
-Watch carefully.
-
-Which one looks different?
-
-
-.. code-block:: python
+.. cloze::
+    :show-code:
 
     from microbit import *
 
-
     while True:
-
         if button_a.is_pressed():
-
-            pin0.write_digital(1)
-            sleep(500)
-            pin0.write_digital(0)
-
-            pin1.write_digital(1)
-            sleep(500)
-            pin1.write_digital(0)
-
-            pin2.write_digital(1)
-            sleep(500)
-            pin2.write_digital(0)
-
-
+            pin0.write_digital(@@0@@)
+            pin1.write_digital(@@0@@)
+            pin2.write_digital(@@1@@)
         elif button_b.is_pressed():
-
-            pin0.write_digital(1)
-            pin1.write_digital(1)
-            pin2.write_digital(1)
-
-            sleep(750)
-
-            pin0.write_digital(0)
-            pin1.write_digital(0)
-            pin2.write_digital(0)
-
-            sleep(750)
-
+            pin0.write_digital(@@1@@)
+            pin1.write_digital(@@1@@)
+            pin2.write_digital(@@0@@)
+        sleep(500)
 
 ----
 
-Using a for-loop
-----------------------------------------
+**Challenge 3**
 
-A **for-loop** repeats instructions.
+| Make up your own combination of LEDs and buttons.
 
-Instead of writing the same code many times, we can tell Python:
-
-"Repeat this."
-
-
-This program makes the red LED blink **3 times**.
-
-
-.. code-block:: python
-
-    from microbit import *
-
-    while True:
-        for i in range(3):
-            pin0.write_digital(1)
-            sleep(1000)
-
-            pin0.write_digital(0)
-            sleep(1000)
-
-        sleep(3000)
-
-
-.. tip::
-
-   Try changing:
-
-   ``range(3)``
-
-
-   What happens with:
-
-   * ``range(2)``
-   * ``range(5)``
-   * ``range(10)``
-
-
-How many times does the LED blink?
-
-----
-
-Lesson Review
-----------------------------------------
-
-Before moving to the next lesson, check that you can do these things.
-
-.. admonition:: ✔ Lesson Checklist
-
-    Can you:
-
-    ☐ Build a circuit with three LEDs and three resistors.
-
-    ☐ Identify a 47 ohm resistor by its colour bands.
-
-    ☐ Connect the LEDs to:
-
-       * Red LED → pin0
-       * Yellow LED → pin1
-       * Green LED → pin2
-
-    ☐ Explain why every LED needs a resistor.
-
-    ☐ Explain what the long leg of an LED is used for.
-
-    ☐ Use ``write_digital(1)`` to turn an LED ON.
-
-    ☐ Use ``write_digital(0)`` to turn an LED OFF.
-
-    ☐ Control LEDs using the A and B buttons.
-
-    ☐ Change ``range(3)`` to make an LED blink more or fewer times.
 

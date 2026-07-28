@@ -1,17 +1,20 @@
 import html
 import random
-import re
 from pathlib import Path
 
 from docutils import nodes
 from docutils.parsers.rst import directives
+from sphinx.directives.code import CodeBlock
 from sphinx.util.docutils import SphinxDirective
+
 
 class ordering_node(nodes.General, nodes.Element):
     pass
 
+
 def visit_ordering_html(self, node):
     pass
+
 
 def depart_ordering_html(self, node):
     pass
@@ -19,42 +22,38 @@ def depart_ordering_html(self, node):
 
 class OrderingDirective(SphinxDirective):
     has_content = True
+    optional_arguments = 1  # Optional language parameter, e.g., .. ordering:: python
 
     option_spec = {
         'theme': directives.unchanged,
-        'no-solution': directives.flag,  # Registers the boolean flag option
-        'no-padding':
-        directives.flag,  # New flag definition to toggle vertical padding
-        'no-reorder':
-        directives.flag,  # Keeps the original order but strips indentation
+        'no-solution': directives.flag,
+        'no-padding': directives.flag,
+        'no-reorder': directives.flag,
+        'show-code': directives.flag,
     }
 
     def run(self):
-        node = ordering_node()
-        # Keep ALL lines, including blank ones (do not filter out empty strings)
         raw_lines = list(self.content)
 
         if not raw_lines:
             return []
 
+        language = self.arguments[0] if self.arguments else "python"
         chosen_theme = self.options.get('theme', 'light').strip().lower()
         if chosen_theme not in ['light', 'dark']:
             chosen_theme = 'light'
 
-        # Check if flags were provided in rST
         hide_solution = 'no-solution' in self.options
         use_no_padding = 'no-padding' in self.options
         no_reorder = 'no-reorder' in self.options
+        show_code = 'show-code' in self.options
 
-        # FIXED: Safe inline style variable that keeps JS happy but hides the button visually
         solution_btn_style = 'style="display: none !important;"' if hide_solution else ''
         padding_class = ' ordering-no-padding' if use_no_padding else ''
 
         line_items = []
         for index, line in enumerate(raw_lines):
-            # If the line is purely whitespace, treat it as a structural empty line
             is_blank = not line.strip()
-
             leading_spaces = len(line) - len(line.lstrip())
             indent_level = 0 if is_blank else (leading_spaces // 4)
 
@@ -65,22 +64,26 @@ class OrderingDirective(SphinxDirective):
                 'is_blank': is_blank
             })
 
-        # Keep original order if :no-reorder: flag is passed, otherwise shuffle
         processed_items = line_items.copy()
         if not no_reorder:
             random.shuffle(processed_items)
 
-        html_output = f'<div class="ordering-block{padding_class}">'
+        # Container wrapper holding everything for this directive instance
+        main_block_node = nodes.container(
+            classes=[f'ordering-block{padding_class}'.strip()])
 
-        # Adjust prompt instruction text based on whether shuffling is active
         if no_reorder:
-            instructions = 'Click to adjust indentation into the correct structural hierarchy:'
+            base_instruction = 'Click to adjust indentation:'
         else:
-            instructions = 'Drag and drop lines into the correct order and click to adjust indentation:'
+            base_instruction = 'Drag and drop lines into the correct order and click to adjust indentation:'
 
-        html_output += f'<div class="ordering-instructions">{instructions}</div>'
+        if show_code:
+            instructions = f'{base_instruction} Get 100% to reveal the code for copying.'
+        else:
+            instructions = base_instruction
 
-        # --- UPDATE THIS LINE TO PASS THE FLAG TO JS ---
+        html_output = f'<div class="ordering-instructions">{instructions}</div>'
+
         no_reorder_attr = ' data-no-reorder="true"' if no_reorder else ''
         html_output += f'<div class="ordering-container theme-{chosen_theme}"{no_reorder_attr}>'
 
@@ -92,8 +95,6 @@ class OrderingDirective(SphinxDirective):
                 display_text = html.escape(item['text'])
                 extra_class = ""
 
-            # If no-reorder is active, we can optionally make draggable false,
-            # but leaving it handles standard drag/drop UI safely without disrupting layouts.
             is_draggable = "false" if no_reorder else "true"
 
             html_output += f'''
@@ -113,7 +114,6 @@ class OrderingDirective(SphinxDirective):
             '''
         html_output += '</div>'
 
-        # Control panel containing the safely hidden inline solution button and continue button
         html_output += f'''
         <div class="ordering-controls">
             <button type="button" class="ordering-btn-score">Check Order</button>
@@ -123,10 +123,38 @@ class OrderingDirective(SphinxDirective):
             <span class="ordering-feedback-badge"></span>
         </div>
         '''
-        html_output += '</div>'  # Closes the ordering-block container div cleanly
 
-        node += nodes.raw("", html_output, format="html")
-        return [node]
+        raw_interactive_node = nodes.raw("", html_output, format="html")
+        main_block_node += raw_interactive_node
+
+        # Generate hidden native Sphinx CodeBlock node if :show-code: flag is set
+        if show_code:
+            code_block_dir = CodeBlock(name='code-block',
+                                       arguments=[language],
+                                       options={},
+                                       content=raw_lines,
+                                       lineno=self.lineno,
+                                       content_offset=self.content_offset,
+                                       block_text=self.block_text,
+                                       state=self.state,
+                                       state_machine=self.state_machine)
+
+            code_nodes = code_block_dir.run()
+
+            completed_container = nodes.container(
+                classes=['ordering-completed-code'])
+            completed_container['style'] = 'display: none;'
+
+            heading = nodes.rubric(text="Complete code for copying",
+                                   classes=['ordering-code-heading'])
+            completed_container += heading
+            completed_container.extend(code_nodes)
+
+            # Add directly inside main_block_node
+            main_block_node += completed_container
+
+        return [main_block_node]
+
 
 
 def setup(app):
@@ -134,7 +162,6 @@ def setup(app):
                  html=(visit_ordering_html, depart_ordering_html))
     app.add_directive("ordering", OrderingDirective)
 
-    # 1. Dynamically locate this extension's local static directory
     static_path = Path(__file__).parent / "_static"
     if str(static_path) not in app.config.html_static_path:
         app.config.html_static_path.append(str(static_path))

@@ -2,7 +2,7 @@
 Breadboard connections
 ==========================
 
-.. image:: images/breadboard_landscape.png
+.. image:: images/breadboard.png
     :scale: 100 %
 
 A breadboard lets you build electrical circuits.
