@@ -1,5 +1,5 @@
 ==========================
-Changing LED brightness
+LEDs brightness
 ==========================
 
 In the last lesson we used:

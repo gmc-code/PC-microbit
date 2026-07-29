@@ -1,5 +1,5 @@
 ==========================
-LEDs_digital
+LEDs digital
 ==========================
 
 | In this lesson you will connect **three LEDs** to a micro:bit.

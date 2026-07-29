@@ -1,5 +1,5 @@
 ==========================
-LEDs_blink
+LEDs blink
 ==========================
 
 | In this lesson you will use the previous model with **three LEDs**.
