@@ -24,6 +24,11 @@ We use:
 
 * A **transistor** to control the motor.
 * A **resistor** to protect the transistor.
+* A **2.2 k ohm resistor** with colour bands: Red, Red, Red, Gold
+
+
+.. image:: images/2.2kohm.png
+    :scale: 50 %
 
 The transistor acts like a switch.
 
@@ -31,33 +36,6 @@ The micro:bit tells the transistor:
 
 * Turn ON → motor runs.
 * Turn OFF → motor stops.
-
-
-----
-
-Connections
-----------------------------------------
-
-The motor needs a:
-
-**2.2 k ohm resistor**
-
-The resistor has these colour bands:
-
-* Red
-* Red
-* Red
-* Gold
-
-
-.. image:: images/2.2kohm.png
-    :scale: 50 %
-
-
-The resistor connects to the transistor.
-
-The transistor then controls the motor.
-
 
 ----
 
@@ -150,7 +128,7 @@ Controlling the motor
 
 ----
 
-Control the Motor with Buttons
+Control the Motor with Button A
 ----------------------------------------
 
 Fix the indenting in the code below to do this:
@@ -172,6 +150,10 @@ Fix the indenting in the code below to do this:
             pin0.write_digital(0)
         sleep(500)
 
+----
+
+Control the Motor with Buttons A and B
+----------------------------------------
 
 Fix the indenting in the code below to do this:
 
@@ -189,25 +171,8 @@ Fix the indenting in the code below to do this:
         if button_a.is_pressed():
             pin0.write_digital(1)
         elif button_b.is_pressed():
-            pin0.writ
-
-
-----
-
-Think about it
-----------------------------------------
-
-Answer these questions:
-
-1. Which button starts the motor?
-
-2. Which button stops the motor?
-
-3. What number turns the motor ON?
-
-4. What number turns the motor OFF?
-
-
+            pin0.write_digital(0)
+        sleep(500)
 ----
 
 Motor timing challenges
@@ -227,31 +192,16 @@ Make the motor:
 * Turn OFF for 2 seconds.
 * Repeat forever.
 
+.. cloze::
+    :show-code:
 
-Hint:
+    from microbit import *
 
-Use:
-
-``sleep(6000)``
-
-for 6 seconds.
-
-
-.. dropdown:: Challenge 1 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. code-block:: python
-
-            from microbit import *
-
-            while True:
-                pin0.write_digital(1)
-                sleep(6000)
-
-                pin0.write_digital(0)
-                sleep(2000)
+    while True:
+        pin0.write_digital(1)
+        sleep(@@6000@@)
+        pin0.write_digital(0)
+        sleep(@@2000@@)
 
 
 ----
@@ -266,36 +216,29 @@ Button A:
 * ON for 6 seconds.
 * OFF for 2 seconds.
 
-
 Button B:
 
 * ON for 2 seconds.
 * OFF for 6 seconds.
 
+.. cloze::
+    :show-code:
 
-.. dropdown:: Challenge 2 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
+    from microbit import *
 
-        .. code-block:: python
 
-            from microbit import *
+    while True:
+        if button_a.is_pressed():
+            pin0.write_digital(@@1@@)
+            sleep(@@6000@@)
+            pin0.write_digital(@@0@@)
+            sleep(@@2000@@)
 
-            while True:
-                if button_a.is_pressed():
-                    pin0.write_digital(1)
-                    sleep(6000)
-
-                    pin0.write_digital(0)
-                    sleep(2000)
-
-                elif button_b.is_pressed():
-                    pin0.write_digital(1)
-                    sleep(2000)
-
-                    pin0.write_digital(0)
-                    sleep(6000)
+        elif button_b.is_pressed():
+            pin0.write_digital(1)
+            sleep(@@2000@@)
+            pin0.write_digital(0)
+            sleep(@@6000@@)
 
 
 ----
@@ -310,74 +253,37 @@ Button A:
 * ON for 6 seconds.
 * OFF for 2 seconds.
 
-
 Button B:
 
 * ON for 2 seconds.
 * OFF for 6 seconds.
-
 
 Nothing pressed:
 
 * ON for 4 seconds.
 * OFF for 4 seconds.
 
+.. cloze::
+    :show-code:
 
-.. dropdown:: Challenge 3 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. code-block:: python
-
-            from microbit import *
-
-            while True:
-                if button_a.is_pressed():
-                    pin0.write_digital(1)
-                    sleep(6000)
-
-                    pin0.write_digital(0)
-                    sleep(2000)
-
-                elif button_b.is_pressed():
-                    pin0.write_digital(1)
-                    sleep(2000)
-
-                    pin0.write_digital(0)
-                    sleep(6000)
-
-                else:
-                    pin0.write_digital(1)
-                    sleep(4000)
-
-                    pin0.write_digital(0)
-                    sleep(4000)
+    from microbit import *
 
 
-----
+    while True:
+        if button_a.is_pressed():
+            pin0.write_digital(@@1@@)
+            sleep(@@6000@@)
+            pin0.write_digital(@@0@@)
+            sleep(@@2000@@)
 
-Lesson Review
-----------------------------------------
+        elif button_b.is_pressed():
+            pin0.write_digital(1)
+            sleep(@@2000@@)
+            pin0.write_digital(0)
+            sleep(@@6000@@)
 
-Before moving to the next lesson, check that you can do these things.
-
-.. admonition:: ✔ Lesson Checklist
-
-    Can you:
-
-    ☐ Explain why a transistor is needed to control a motor.
-
-    ☐ Explain why the transistor needs a resistor.
-
-    ☐ Build the motor circuit correctly.
-
-    ☐ Use ``write_digital(1)`` to start the motor.
-
-    ☐ Use ``write_digital(0)`` to stop the motor.
-
-    ☐ Use the A and B buttons to control the motor.
-
-    ☐ Use ``sleep()`` to control how long the motor runs.
-
-    ☐ Change a program so the motor runs for different amounts of time.
+        else:
+            pin0.write_digital(@@1@@)
+            sleep(@@4000@@)
+            pin0.write_digital(@@0@@)
+            sleep(@@4000@@)

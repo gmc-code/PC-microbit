@@ -2,80 +2,39 @@
 Motor_with_transistor_2
 ==========================
 
-Changing Motor Speed
-==========================
+In the last lesson we used:
 
-In the last lesson you learned how to:
-
-* Turn a motor ON.
-* Turn a motor OFF.
-* Use buttons to control a motor.
-
-In this lesson you will learn how to:
-
-* Change the speed of a motor.
-* Use ``write_analog()``.
-* Use lists and loops to control speed.
+| ``write_digital(1)`` command to turn the motor ON.
+| ``write_digital(0)`` command to turn the motor OFF.
 
 
-----
-
-Digital and analog control
-----------------------------------------
-
-With ``write_digital()`` the motor has only two choices:
-
-``1``
-
-Motor ON
-
-
-``0``
-
-Motor OFF
-
-
-Now we will use:
-
-``write_analog()``
-
-
-This lets us choose different motor speeds.
-
+Now we will use: ``write_analog()`` to control the **speed** of the motor.
 
 ----
 
 Write analog
 ----------------------------------------
 
-.. py:function:: pinx.write_analog(value)
-    :no-index:
+| Use the ``write_analog(1023)`` command to turn the motor ON.
+| Use the ``write_analog(0)`` command to turn the motor OFF.
 
-    | ``pinx`` is the motor pin.
-    |
-    | Examples:
-    |
-    | * ``pin0``
-    | * ``pin1``
-    | * ``pin2``
-    |
-    | ``value`` controls the motor speed.
-    |
-    | The value can be from **0 to 1023**.
+| The value in ``write_analog()`` can be from **0 to 1023**.
+| The bigger the number: **the faster the motor turns**
+
+| For example:
+| Turn on the motor connected to pin0:
+| ``pin0.write_analog(1023)``
+
+| Turn off the motor connected to pin0:
+| ``pin0.write_analog(0)``
 
 
-The number controls the motor speed:
+Speed examples:
 
-
-* ``0`` → Motor OFF
-* ``250`` → Slow speed
-* ``350`` → Medium speed
-* ``1023`` → Full speed
-
-
-Remember:
-
-**Bigger number = faster motor**
+* ``pin0.write_analog(0)`` → the motor is OFF
+* ``pin0.write_analog(250)`` → slow
+* ``pin0.write_analog(350)`` → faster
+* ``pin0.write_analog(1023)`` → full speed
 
 
 ----
@@ -96,14 +55,46 @@ The motor will:
 3. Move faster.
 4. Move at full speed.
 
+Fix the indenting in the code below:
 
-.. code-block:: python
+.. ordering::
+    :no-padding:
+    :no-reorder:
+    :show-code:
 
     from microbit import *
 
-
     power_levels = [0, 250, 350, 1023]
 
+    while True:
+        if button_a.is_pressed():
+            for power in power_levels:
+                pin0.write_analog(power)
+                sleep(1000)
+
+        sleep(500)
+
+----
+
+Challenge 1
+----------------------------------------
+
+| Fix the indenting in the code below to do this:
+| Change the program so it has only three speeds:
+
+* Stop → ``0``
+* Medium speed → ``350``
+* Full speed → ``1023``
+
+
+.. ordering::
+    :no-padding:
+    :no-reorder:
+    :show-code:
+
+    from microbit import *
+
+    power_levels = [0, 350, 1023]
 
     while True:
         if button_a.is_pressed():
@@ -116,264 +107,18 @@ The motor will:
 
 ----
 
-Understanding the list
+Creating motor speed patterns
 ----------------------------------------
 
-The program uses this list:
+| A motor does not have to stay at one speed.
+| We can create patterns by changing the speed.
+| A list can store the speed pattern.
 
+Example:
 
-``power_levels = [0, 250, 350, 1023]``
+``power_levels = [150, 250, 350, 1023, 350, 250]``
 
+Try out different patterns of power levels.
 
-The motor follows these steps:
+Try using diffferent motor speed patterns for button A and button B.
 
-* ``0`` → Stop
-* ``250`` → Slow
-* ``350`` → Medium
-* ``1023`` → Full speed
-
-
-A **list** stores many values together.
-
-
-A **for-loop** moves through each value in the list.
-
-
-----
-
-Challenge 1
-----------------------------------------
-
-Change the program so it has only three speeds:
-
-* Stop → ``0``
-* Medium speed → ``350``
-* Full speed → ``1023``
-
-
-.. dropdown:: Challenge 1 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. code-block:: python
-
-            from microbit import *
-
-
-            power_levels = [0, 350, 1023]
-
-            while True:
-                if button_a.is_pressed():
-                    for power in power_levels:
-                        pin0.write_analog(power)
-                        sleep(1000)
-
-                sleep(500)
-
-
-----
-
-Challenge 2
-----------------------------------------
-
-Change the program so it has three speeds:
-
-* Slow → ``250``
-* Medium → ``350``
-* Fast → ``1023``
-
-
-After each speed:
-
-* Stop the motor for 500 milliseconds.
-
-
-.. dropdown:: Challenge 2 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. code-block:: python
-
-            from microbit import *
-
-            power_levels = [250, 350, 1023]
-
-            while True:
-                if button_a.is_pressed():
-                    for power in power_levels:
-                        pin0.write_analog(power)
-                        sleep(1000)
-
-                        pin0.write_analog(0)
-                        sleep(500)
-
-                sleep(500)
-
-
-----
-
-Using numbers to change speed
-----------------------------------------
-
-We can also change motor speed using:
-
-``range()``
-
-
-A **for-loop** repeats instructions.
-
-
-This program:
-
-* Starts at speed 100.
-* Adds 20 each time.
-* Repeats 10 times.
-
-
-.. code-block:: python
-
-    from microbit import *
-
-
-    sleep_time = 500
-    start_val = 100
-
-    while True:
-        if button_a.is_pressed():
-            for i in range(10):
-                pin0.write_analog(start_val + 20 * i)
-                sleep(sleep_time)
-
-        pin0.write_analog(0)
-        sleep(1000)
-
-
-----
-
-Understanding range()
-----------------------------------------
-
-``range(10)`` means:
-
-Repeat 10 times.
-
-
-The variable ``i`` counts:
-
-* 0
-* 1
-* 2
-* 3
-* 4
-* and so on
-
-
-The speed changes because we use:
-
-
-``start_val + 20 * i``
-
-
-Each time the loop repeats:
-
-The motor speed increases by 20.
-
-
-----
-
-Challenge 3
-----------------------------------------
-
-Change the program so:
-
-* The motor starts at speed 150.
-* The speed increases by 50.
-* The program uses 5 speed steps.
-
-
-.. dropdown:: Challenge 3 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. code-block:: python
-
-            from microbit import *
-
-
-            sleep_time = 500
-            start_val = 150
-
-            while True:
-                if button_a.is_pressed():
-                    for i in range(6):
-                        pin0.write_analog(start_val + 50 * i)
-                        sleep(sleep_time)
-
-                pin0.write_analog(0)
-                sleep(1000)
-
-
-----
-
-Challenge 4
-----------------------------------------
-
-Change the program so:
-
-* The motor starts at speed 320.
-* The speed decreases by 80.
-* The program uses 4 steps.
-
-
-.. dropdown:: Challenge 4 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. code-block:: python
-
-            from microbit import *
-
-
-            sleep_time = 500
-            start_val = 320
-
-            while True:
-                if button_a.is_pressed():
-                    for i in range(5):
-                        pin0.write_analog(start_val - 80 * i)
-                        sleep(sleep_time)
-
-                pin0.write_analog(0)
-                sleep(1000)
-
-
-----
-
-Lesson Review
-----------------------------------------
-
-Before moving to the next lesson, check that you can do these things.
-
-.. admonition:: ✔ Lesson Checklist
-
-    Can you:
-
-    ☐ Explain what ``write_analog()`` does.
-
-    ☐ Use ``write_analog()`` to change the speed of a motor.
-
-    ☐ Explain that motor speed values can be from ``0`` to ``1023``.
-
-    ☐ Predict what happens when you use a larger or smaller value.
-
-    ☐ Use a list to store motor speed values.
-
-    ☐ Use a ``for`` loop to repeat instructions.
-
-    ☐ Change ``range()`` to make a program repeat more or fewer times.
-
-    ☐ Change a program to make the motor speed up or slow down.

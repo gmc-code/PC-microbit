@@ -60,7 +60,6 @@ Index:
 
     breadboards/Motor_with_transistor_1.rst
     breadboards/Motor_with_transistor_2.rst
-    breadboards/Motor_with_transistor_3.rst
 
     breadboards/Potentiometer.rst
     breadboards/Potentiometer_with_LED.rst

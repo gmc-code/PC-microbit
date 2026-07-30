@@ -149,7 +149,7 @@ Fix the indenting in the code below to do this:
 
 ----
 
-Control one LED with button A and B
+Control one LED with buttons A and B
 ----------------------------------------
 
 Fix the indenting in the code below to do this:
