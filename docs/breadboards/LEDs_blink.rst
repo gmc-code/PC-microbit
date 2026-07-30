@@ -7,16 +7,36 @@ LEDs blink
 
 ----
 
-Blinking LEDs
+Blinking an LED
 ----------------------------------------
 
 Blinking means:
 
 **ON → OFF → ON → OFF**
 
+| The code below turns the LED connected to pin0 **ON** for 0.25 second, and then **OFF** for 0.25 second, then repeats.
+
+.. cloze::
+    :show-code:
+
+    from microbit import *
+
+    while True:
+        pin0.write_digital(@@ 1 | 0 @@)
+        sleep(250)
+        pin0.write_digital(@@ 0 | 1 @@)
+        sleep(250)
+
+----
+
+Blinking LEDs: one at a time
+----------------------------------------
+
 Try this:
 
 * Button A → LEDs blink one at a time.
+* First Red is turned ON then OFF, then the yellow LED and then the green LED.
+* Hold down the A button to keep blinking the LEDs.
 
 .. cloze::
     :show-code:
@@ -41,9 +61,14 @@ Try this:
 
 ----
 
+Blinking LEDs: all together
+----------------------------------------
+
 Try this:
 
 * Button B → All LEDs blink together.
+* All LEDs are turned ON then OFF.
+* Hold down the B button to keep blinking the LEDs.
 
 .. cloze::
     :show-code:
@@ -80,7 +105,7 @@ Using a for-loop
 | Instead of writing the same code many times, we can tell Python: "Repeat this."
 
 Fix the indenting in the code below to do this:
-Makes the red LED blink **3 times** every 6 seconds.
+Makes the red LED blink **3 times** in 3 seconds followed by a 3 second pause.
 
 
 .. ordering::
@@ -103,11 +128,11 @@ Makes the red LED blink **3 times** every 6 seconds.
 
 Try this:
 
-* Blink the red LED **5 times** every 6 seconds.
+* Blink the red LED **5 times** in 5 seconds followed by a 1 second pause.
 
 ----
 
 Try this:
 
-* All LEDs blink together **3 times** every 6 seconds.
+* All LEDs blink together **3 times** in 3 seconds followed by a 3 second pause.
 

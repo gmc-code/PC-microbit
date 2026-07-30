@@ -107,10 +107,10 @@ Turning an LED ON and OFF
 
 ----
 
-Control one LED
+Turn on and off one LED
 ----------------------------------------
 
-| The code below turns the LED connected to pin0 **ON** for 1 second, and then **OFF** for 1 second.
+| The code below turns the LED connected to pin0 **ON** for 1 second, and then **OFF** for 1 second, then repeats.
 
 .. cloze::
     :show-code:
@@ -125,7 +125,7 @@ Control one LED
 
 ----
 
-Control one LED with buttons
+Control one LED with button A
 ----------------------------------------
 
 Fix the indenting in the code below to do this:
@@ -147,6 +147,10 @@ Fix the indenting in the code below to do this:
             pin0.write_digital(0)
         sleep(500)
 
+----
+
+Control one LED with button A and B
+----------------------------------------
 
 Fix the indenting in the code below to do this:
 

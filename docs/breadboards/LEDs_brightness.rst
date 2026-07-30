@@ -1,5 +1,5 @@
 ==========================
-LEDs brightness
+LED brightness
 ==========================
 
 In the last lesson we used:
@@ -92,8 +92,7 @@ Remember:
 
 Press **A**:
 
-* Turn all three LEDs on.
-* Set them to half brightness.
+* Turn all three LEDs on at half brightness.
 
 
 Press **B**:
@@ -133,9 +132,9 @@ This list stores five brightness levels:
 
 * 0 → Off
 * 256 → Dim
-* 512 → Half bright
-* 768 → Three-quarter bright
-* 1023 → Full bright
+* 512 → Half brightness
+* 768 → Three-quarter brightness
+* 1023 → Full brightness
 
 | A **for-loop** can go through each value in the list.
 | Fix the indenting in the code below to do this:
