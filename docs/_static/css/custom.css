@@ -71,18 +71,22 @@ div.admonition-questions p.admonition-title{
     background-color: gold!important;
 }
 
-div.admonition-task,
-div.admonition-tasks {
+div.task,
+div.tasks,
+div.task.admonition,
+div.tasks.admonition {
     color: blue;
     border: 2px solid gold;
-    background-color: lightyellow!important;
+    background-color: lightyellow !important;
 }
 
-div.admonition-task p.admonition-title,
-div.admonition-tasks p.admonition-title {
+div.task p.admonition-title,
+div.tasks p.admonition-title,
+div.task.admonition p.admonition-title,
+div.tasks.admonition p.admonition-title {
     text-transform: capitalize;
-    color: black!important;
-    background-color: gold!important;
+    color: black !important;
+    background-color: gold !important;
 }
 
 div.admonition-exercise,

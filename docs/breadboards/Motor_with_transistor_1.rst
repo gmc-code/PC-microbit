@@ -12,6 +12,7 @@ In this lesson you will:
 * Turn a motor ON and OFF using Python.
 * Use the micro:bit buttons to control the motor.
 
+For alternate motor positions, see :doc:`Motor_with_transistor_alt`.
 
 ----
 
@@ -59,57 +60,6 @@ Follow these steps:
 
 .. image:: images/motor.jpg
     :scale: 30 %
-
-
-----
-
-Alternative motor connection
-----------------------------------------
-
-Sometimes the motor is moved to the side.
-
-This makes it easier to connect the terminal block.
-
-
-Follow these steps:
-
-#. Place the resistor.
-#. Place the transistor.
-#. Make sure the flat side faces forwards.
-#. Connect the motor wires.
-#. Connect the jumper wires.
-
-
-.. image:: images/motor_1c_bb.png
-    :scale: 50 %
-
-.. image:: images/motor_2c_bb.png
-    :scale: 50 %
-
-
-----
-
-Motor without terminal block
-----------------------------------------
-
-Some motors connect using wires directly.
-
-
-Follow these steps:
-
-#. Place the resistor.
-#. Place the transistor.
-#. Make sure the flat side faces forwards.
-#. Connect the motor wires.
-#. Connect the jumper wires.
-
-
-.. image:: images/motor_1d_bb.png
-    :scale: 50 %
-
-.. image:: images/motor_2d_bb.png
-    :scale: 50 %
-
 
 ----
 
@@ -173,6 +123,7 @@ Fix the indenting in the code below to do this:
         elif button_b.is_pressed():
             pin0.write_digital(0)
         sleep(500)
+
 ----
 
 Motor timing challenges

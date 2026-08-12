@@ -90,10 +90,11 @@ Try this:
 
 ----
 
-Try this:
+.. admonition:: Try it yourself
+    :class: task
 
-* Button A → LEDs blink one at a time.
-* Button B → All LEDs blink together.
+    * Button A → LEDs blink one at a time.
+    * Button B → All LEDs blink together.
 
 
 ----
@@ -126,13 +127,9 @@ Makes the red LED blink **3 times** in 3 seconds followed by a 3 second pause.
 
 ----
 
-Try this:
+.. admonition:: Try it yourself
+    :class: task
 
-* Blink the red LED **5 times** in 5 seconds followed by a 1 second pause.
-
-----
-
-Try this:
-
-* All LEDs blink together **3 times** in 3 seconds followed by a 3 second pause.
+    * Blink the red LED **5 times** in 5 seconds followed by a 1 second pause.
+    * All LEDs blink together **3 times** in 3 seconds followed by a 3 second pause.
 

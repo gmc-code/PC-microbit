@@ -44,11 +44,7 @@ Changing motor speed
 
 This program changes the motor speed.
 
-Press:
-
-**Button A**
-
-The motor will:
+Press **Button A** so that the motor will, in order:
 
 1. Stop.
 2. Move slowly.
@@ -118,7 +114,12 @@ Example:
 
 ``power_levels = [150, 250, 350, 1023, 350, 250]``
 
-Try out different patterns of power levels.
 
-Try using diffferent motor speed patterns for button A and button B.
+----
+
+.. admonition:: Try it yourself
+    :class: task
+
+    * Try out different patterns of power levels.
+    * Try using diffferent motor speed patterns for button A and button B.
 

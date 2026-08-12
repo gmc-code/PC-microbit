@@ -52,22 +52,23 @@ Changing red LED brightness
 4. Turn off.
 
 
-.. code-block:: python
+.. cloze::
+    :show-code:
 
     from microbit import *
 
     while True:
         if button_a.is_pressed():
-            pin0.write_analog(256)
+            pin0.write_analog(@@256@@)
             sleep(500)
 
-            pin0.write_analog(512)
+            pin0.write_analog(@@512@@)
             sleep(500)
 
-            pin0.write_analog(768)
+            pin0.write_analog(@@768@@)
             sleep(500)
 
-            pin0.write_analog(1023)
+            pin0.write_analog(@@1023@@)
             sleep(500)
 
             pin0.write_analog(0)
@@ -87,34 +88,26 @@ Remember:
 * Yellow LED → pin1
 * Green LED → pin2
 
+.. admonition:: Try it yourself
+    :class: task
 
-**Challenge 1**
+    **Challenge 1**
 
-Press **A**:
+    | Press **A**: Turn all three LEDs on at half brightness.
+    | Press **B**: Turn all LEDs off.
 
-* Turn all three LEDs on at half brightness.
+.. admonition:: Try it yourself
+    :class: task
 
+    **Challenge 2**
 
-Press **B**:
+    | Press **A**: Set the LEDs to:
 
-* Turn all LEDs off.
+        * Red → half brightness
+        * Yellow → three-quarter brightness
+        * Green → full brightness
 
-----
-
-**Challenge 2**
-
-Press **A**:
-
-Set the LEDs to:
-
-* Red → half brightness
-* Yellow → three-quarter brightness
-* Green → full brightness
-
-
-Press **B**:
-
-* Turn all LEDs off.
+    | Press **B**: Turn all LEDs off.
 
 ----
 
@@ -190,20 +183,9 @@ Making an LED dimmer
 
 ----
 
-Try These
-----------------------------------------
+.. admonition:: Try it yourself
+    :class: task
 
-**Challenge 1**
-
-Change the program so:
-
-* All three LEDs get brighter together.
-
-----
-
-**Challenge 2**
-
-Change the program so:
-
-* All three LEDs get dimmer together.
+    * Change the program so: All three LEDs get brighter together.
+    * Change the program so: All three LEDs get dimmer together.
 

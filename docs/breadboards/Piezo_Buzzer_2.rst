@@ -296,28 +296,3 @@ Create your own concert!
 Choose four built-in tunes.
 
 Play them one after another when you press **Button A**.
-
-----
-
-Lesson Review
-----------------------------------------
-
-Before moving to the next lesson, check that you can do these things.
-
-.. admonition:: ✔ Lesson Checklist
-
-    Can you:
-
-    ☐ Use a built-in tune such as ``music.NYAN``.
-
-    ☐ Change one built-in tune to another.
-
-    ☐ Use Button A to play a tune.
-
-    ☐ Use both A and B buttons to play different tunes.
-
-    ☐ Store tunes in a list.
-
-    ☐ Use a ``for`` loop to play several tunes.
-
-    ☐ Change a program to play your favourite tunes.

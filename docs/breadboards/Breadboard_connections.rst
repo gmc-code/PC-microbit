@@ -13,6 +13,8 @@ You can connect:
 * resistors
 * buzzers
 * motors
+* transistors
+* potentiometers
 
 The micro:bit controls these parts.
 

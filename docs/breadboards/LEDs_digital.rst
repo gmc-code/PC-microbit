@@ -255,8 +255,11 @@ Try These Challenges
 
 ----
 
-**Challenge 3**
+.. admonition:: Try it yourself
+    :class: task
 
-| Make up your own combination of LEDs and buttons.
+    * Make up your own combination of LEDs and buttons.
+    * Write the code to make it work.
+
 
 

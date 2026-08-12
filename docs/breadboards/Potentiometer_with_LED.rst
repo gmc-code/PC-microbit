@@ -17,28 +17,9 @@ In this lesson you will learn how to:
 Building the circuit
 ----------------------------------------
 
-The LED must be connected with a **47 ohm resistor**.
-
-The resistor protects the LED.
-
-The 47 ohm resistor has these colour bands:
-
-* Yellow
-* Violet
-* Black
-* Gold
-
-.. image:: images/47ohm.png
-    :scale: 50 %
-
-----
-
-Build the circuit
-----------------------------------------
-
 Follow these steps:
 
-#. Place the resistor.
+#. Place the 47 ohm resistor (bands of: yellow, violet, black, gold).
 #. Place the LED.
 #. Make sure the **long leg** of the LED is closest to the micro:bit pins.
 #. Place the potentiometer.
@@ -55,36 +36,20 @@ Follow these steps:
 
 ----
 
-Reading and writing analog values
-----------------------------------------
-
-The potentiometer gives a value between:
-
-* ``0``
-* ``1023``
-
-We can use this value to control the LED brightness.
-
-As you turn the potentiometer:
-
-* Small number → dim LED.
-* Large number → bright LED.
-
-----
-
 Controlling LED brightness
 ----------------------------------------
 
 This program:
 
-* Reads the potentiometer.
-* Uses the reading to control the LED brightness.
+* Reads the potentiometer using ``pin2.read_analog()``
+* Uses the reading to control the LED brightness using ``pin0.write_analog()``
+* Small number → dim LED.
+* Large number → bright LED.
 
-Turn the potentiometer slowly.
+Turn the potentiometer slowly. Watch what happens to the LED.
 
-Watch what happens to the LED.
-
-.. code-block:: python
+.. ordering::
+    :show-code:
 
     from microbit import *
 
@@ -109,85 +74,64 @@ Can you answer these questions?
 Challenge 1
 ----------------------------------------
 
-Add a second LED.
-
-Remember:
-
+* Add a second LED. Connect it to **pin1**.
 * The second LED also needs a **47 ohm resistor**.
-* Connect it to **pin1**.
+* Use the potentiometer to control **both LEDs**.
 
-Use the potentiometer to control **both LEDs**.
+.. cloze::
+    :show-code:
 
-.. dropdown:: Challenge 1 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
+    from microbit import *
 
-        .. code-block:: python
-
-            from microbit import *
-
-            while True:
-                pot_val = pin2.read_analog()
-                pin0.write_analog(pot_val)
-                pin1.write_analog(pot_val)
-                sleep(40)
+    while True:
+        pot_val = pin2.@@read_analog@@()
+        pin0.@@write_analog@@(pot_val)
+        pin1.@@write_analog@@(pot_val)
+        sleep(40)
 
 ----
 
 Challenge 2
 ----------------------------------------
 
-Make the LEDs have **opposite brightness**.
+| Make the LEDs have **opposite brightness**.
+| When one LED is bright: the other LED should be dim.
+| When one LED is dim: the other LED should be bright.
+| Hint: use ``1023 - pot_val``
 
-When one LED is bright:
+.. cloze::
+    :show-code:
 
-* The other LED should be dim.
+    from microbit import *
 
-When one LED is dim:
-
-* The other LED should be bright.
-
-Hint:
-
-``1023 - pot_val``
-
-.. dropdown:: Challenge 2 Solution
-        :icon: codescan
-        :color: primary
-        :class-container: sd-dropdown-container
-
-        .. code-block:: python
-
-            from microbit import *
-
-            while True:
-                pot_val = pin2.read_analog()
-                pin0.write_analog(pot_val)
-                pin1.write_analog(1023 - pot_val)
-                sleep(40)
+    while True:
+        @@pot_val@@ = pin2.@@read_analog@@()
+        pin0.@@write_analog@@(pot_val)
+        pin1.write_analog(@@1023 - pot_val@@)
+        sleep(40)
 
 ----
 
-Using if statements
+Challenge 3
 ----------------------------------------
 
-We can use an **if statement** to make decisions.
+| We can use an **if statement** to make decisions.
+| This program checks the potentiometer value.
+| Fix the indenting in the code below to do this:
+| If the value is: **500 or more**
 
-This program checks the potentiometer value.
-
-If the value is:
-
-* **500 or more**
     * Yellow LED turns ON.
     * Red LED turns OFF.
 
-Otherwise:
+| Otherwise:
 
-* Red LED turns ON.
-* Yellow LED turns OFF.
+    * Red LED turns ON.
+    * Yellow LED turns OFF.
 
-.. code-block:: python
+.. ordering::
+    :no-padding:
+    :no-reorder:
+    :show-code:
 
     from microbit import *
 
@@ -204,92 +148,40 @@ Otherwise:
 
         sleep(40)
 
-----
-
-Challenge 3
-----------------------------------------
-
-Run the program.
-
-Turn the potentiometer.
-
-Can you find the point where the LEDs swap?
-
-What value makes this happen?
+| Run the program.
+| Turn the potentiometer.
+| Can you find the point where the LEDs swap?
+| What value makes this happen?
 
 ----
 
-Challenge 4
+Try these challenges
 ----------------------------------------
 
-Add pictures to the micro:bit display.
+.. admonition:: Try it yourself
+    :class: task
 
-When the:
-
-* Yellow LED is ON → show ``Image.YES``
-
-When the:
-
-* Red LED is ON → show ``Image.NO``
-
-Hint:
-
-Use:
-
-* ``display.show(Image.YES)``
-* ``display.show(Image.NO)``
-
-----
-
-Extension Challenge
-----------------------------------------
-
-Add a third LED.
-
-Connect it to:
-
-* pin8
-
-or
-
-* pin12
+    | Add pictures to the micro:bit display.
+    | When the Yellow LED is ON → show ``Image.YES``
+    | When the Red LED is ON → show ``Image.NO``
 
 
-Use:
+.. admonition:: Try it yourself
+    :class: task
 
-* ``if``
-* ``elif``
-* ``else``
+    | Add a third LED.
+    | Connect it to pin8
+    | To divide the potentiometer into three ranges, use:
 
-to divide the potentiometer into three ranges.
+        * ``if``
+        * ``elif``
+        * ``else``
 
-Example:
+    Example:
 
-* 0-300 → Red LED
-* 301-700 → Yellow LED
-* 701-1023 → Green LED
+    * 0-300 → Red LED
+    * 301-700 → Yellow LED
+    * 701-1023 → Green LED
 
-Only one LED should be ON at a time.
+    Only one LED should be ON at a time.
 
-----
-
-Lesson Review
-----------------------------------------
-
-Before moving to the next lesson, check that you can do these things.
-
-.. admonition:: ✔ Lesson Checklist
-
-    Can you:
-
-    ☐ Use ``read_analog()`` to read the potentiometer.
-
-    ☐ Use ``write_analog()`` to change an LED's brightness.
-
-    ☐ Explain how turning the potentiometer changes the LED brightness.
-
-    ☐ Control two LEDs with one potentiometer.
-
-    ☐ Make two LEDs have opposite brightness using ``1023 - value``.
-
-    ☐ Use an ``if`` statement to control LEDs based on the potentiometer value.

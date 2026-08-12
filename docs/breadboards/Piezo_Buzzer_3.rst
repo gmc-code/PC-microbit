@@ -2,52 +2,40 @@
 Piezo_Buzzer_3
 ==========================
 
-Changing the Speed of Music
-==============================
+Make Your Own Music
+==========================
 
 In this lesson you will learn how to:
 
-* Make music play faster.
-* Make music play slower.
-* Use ``music.set_tempo()``.
-* Experiment with different speeds.
+* Make your own tunes.
+* Play notes for different lengths of time.
+* Play high and low notes.
+* Create your own music project.
 
 ----
 
-What is tempo?
+Long and short notes
 ----------------------------------------
 
-**Tempo** means:
+A note can be:
 
-**How fast the music plays.**
+* Short
+* Long
 
-A slow tempo plays the notes slowly.
+Add a number after the note.
 
-A fast tempo plays the notes quickly.
+For example:
+
+* ``C:1`` = short
+* ``C:2`` = longer
+* ``C:4`` = very long
 
 ----
 
-Setting the tempo
+Playing notes with different lengths
 ----------------------------------------
 
-To change the speed, use:
-
-``music.set_tempo()``
-
-The number is called **beats per minute (BPM)**.
-
-Some examples are:
-
-* ``60`` = Slow
-* ``120`` = Normal
-* ``180`` = Fast
-
-----
-
-Playing a tune slowly
-----------------------------------------
-
-This program plays a tune slowly.
+This program plays some short and long notes.
 
 .. code-block:: python
 
@@ -55,109 +43,16 @@ This program plays a tune slowly.
     import music
 
     speaker.off()
-    music.set_tempo(bpm=60)
+    notes = [
+        "c:1",
+        "d:1",
+        "e:2",
+        "g:4"
+    ]
 
     while True:
         if button_a.is_pressed():
-            music.play(music.NYAN)
-
-        sleep(200)
-
-----
-
-Playing the same tune faster
-----------------------------------------
-
-Now change the tempo.
-
-The tune is exactly the same.
-
-Only the speed changes.
-
-.. code-block:: python
-
-    from microbit import *
-    import music
-
-    speaker.off()
-    music.set_tempo(bpm=180)
-
-    while True:
-        if button_a.is_pressed():
-            music.play(music.NYAN)
-
-        sleep(200)
-
-----
-
-Think About It
-----------------------------------------
-
-Play both programs.
-
-Can you hear the difference?
-
-Which one is:
-
-* Slow?
-* Fast?
-
-Which one do you like best?
-
-----
-
-Using both buttons
-----------------------------------------
-
-Press:
-
-* **Button A** → Slow tune.
-* **Button B** → Fast tune.
-
-.. code-block:: python
-
-    from microbit import *
-    import music
-
-    speaker.off()
-
-    while True:
-        if button_a.is_pressed():
-            music.set_tempo(bpm=60)
-            music.play(music.BIRTHDAY)
-
-        elif button_b.is_pressed():
-            music.set_tempo(bpm=180)
-            music.play(music.BIRTHDAY)
-
-        sleep(200)
-
-----
-
-Worked Example
-----------------------------------------
-
-This program has three speeds.
-
-* Slow
-* Medium
-* Fast
-
-The same tune is played each time.
-
-.. code-block:: python
-
-    from microbit import *
-    import music
-
-    speaker.off()
-    tempos = [60, 120, 180]
-
-    while True:
-        if button_a.is_pressed():
-            for speed in tempos:
-                music.set_tempo(bpm=speed)
-                music.play(music.NYAN)
+            music.play(notes)
 
         sleep(200)
 
@@ -166,169 +61,186 @@ The same tune is played each time.
 Try These
 ----------------------------------------
 
-**Example 1**
-
-Change:
-
-``60``
-
-to
-
-``80``
-
-Does it sound faster?
-
-----
-
-**Example 2**
-
-Change:
-
-``180``
-
-to
-
-``200``
-
-Can you hear the difference?
-
-----
-
-**Example 3**
-
-Make a list with:
-
-* 80
-* 120
-* 160
-
-Run the program.
-
-----
-
-**Example 4**
-
-Make a list with:
-
-* 50
-* 100
-* 150
-* 200
-
-Which speed do you like best?
-
-----
-
-**Example 5**
-
-Change the built-in tune.
+Change the note lengths.
 
 Try:
 
-* ``music.WEDDING``
-* ``music.ODE``
-* ``music.ENTERTAINER``
+* ``c:2``
+* ``c:4``
+* ``g:2``
 
-Which tune changes the most when the tempo changes?
+Which notes last the longest?
 
 ----
 
-Challenge 1
+High and low notes
 ----------------------------------------
 
-Press:
+You can also change the pitch.
 
-* **Button A** → Play the tune slowly.
+A higher number gives a higher note.
 
-* **Button B** → Play the tune quickly.
+Examples:
 
-Use your favourite built-in tune.
+* ``C4`` = lower note
+* ``C5`` = middle note
+* ``C6`` = higher note
 
 ----
 
-Challenge 2
+Playing high and low notes
 ----------------------------------------
 
-Create a speed test.
+.. code-block:: python
 
-Play the same tune at:
+    from microbit import *
+    import music
 
-* Slow
-* Medium
-* Fast
+    speaker.off()
+    notes = [
+        "c4",
+        "c5",
+        "c6",
+        "c5",
+        "c4"
+    ]
 
-Which speed sounds best?
+    while True:
+        if button_a.is_pressed():
+            music.play(notes)
+
+        sleep(200)
 
 ----
 
-.. dropdown::
+Worked Example
+----------------------------------------
+
+This tune starts low,
+
+moves higher,
+
+then comes back down.
+
+.. code-block:: python
+
+    from microbit import *
+    import music
+
+    speaker.off()
+    notes = [
+        "c4",
+        "d4",
+        "e5",
+        "g5",
+        "e5",
+        "d4",
+        "c4"
+    ]
+
+    while True:
+        if button_a.is_pressed():
+            music.play(notes)
+
+        sleep(200)
+
+----
+
+Practice 1
+----------------------------------------
+
+Change the program.
+
+Make it play:
+
+* C4
+* E4
+* G4
+* C5
+
+----
+
+Practice 2
+----------------------------------------
+
+Create a tune using:
+
+* C4
+* D4
+* E4
+* F4
+* G4
+
+Use at least six notes.
+
+----
+
+Practice 3
+----------------------------------------
+
+Use some short notes and some long notes.
+
+For example:
+
+* ``c:1``
+* ``d:2``
+* ``e:4``
+
+What changes?
+
+----
+
+Mini Project 1
+----------------------------------------
+
+Create your own tune.
+
+Rules:
+
+* At least 6 notes.
+* Use three different note lengths.
+* Play it with Button A.
+
+.. dropdown:: Mini Project 1 Solution
     :icon: codescan
     :color: primary
     :class-container: sd-dropdown-container
 
-    .. tab-set::
+    .. code-block:: python
 
-        .. tab-item:: Challenge 1 Solution
+        from microbit import *
+        import music
 
-            .. code-block:: python
+        speaker.off()
 
-                from microbit import *
-                import music
+        tune = [
+            "c:1",
+            "d:1",
+            "e:2",
+            "g:2",
+            "e:1",
+            "c:4"
+        ]
 
-                speaker.off()
+        while True:
+            if button_a.is_pressed():
+                music.play(tune)
 
-                while True:
-                    if button_a.is_pressed():
-                        music.set_tempo(bpm=70)
-                        music.play(music.WEDDING)
-
-                    elif button_b.is_pressed():
-                        music.set_tempo(bpm=190)
-                        music.play(music.WEDDING)
-
-                    sleep(200)
-
-        .. tab-item:: Challenge 2 Solution
-
-            .. code-block:: python
-
-                from microbit import *
-                import music
-
-                speaker.off()
-                tempos = [60, 120, 180]
-
-                while True:
-                    if button_a.is_pressed():
-                        for speed in tempos:
-                            music.set_tempo(bpm=speed)
-                            music.play(music.BIRTHDAY)
-
-                    sleep(200)
+            sleep(200)
 
 ----
 
-Lesson Review
+Extension Challenge
 ----------------------------------------
 
-Before moving to the next lesson, check that you can do these things.
+Can you make a tune that:
 
-.. admonition:: ✔ Lesson Checklist
+happy = [
+    "c4:1","c4:1","d4:2","c4:2",
+    "f4:2","e4:4",
 
-    Can you:
+    "c4:1","c4:1","d4:2","c4:2",
+    "g4:2","f4:4"
+    ]
 
-    ☐ Explain what **tempo** means.
 
-    ☐ Use ``music.set_tempo()`` to change the speed of music.
-
-    ☐ Make music play slower.
-
-    ☐ Make music play faster.
-
-    ☐ Change the BPM value.
-
-    ☐ Use a list to store different tempos.
-
-    ☐ Use a ``for`` loop to play the same tune at different speeds.
-
-    ☐ Choose the best tempo for your favourite tune.

@@ -60,6 +60,7 @@ Index:
 
     breadboards/Motor_with_transistor_1.rst
     breadboards/Motor_with_transistor_2.rst
+    breadboards/Motor_with_transistor_alt.rst
 
     breadboards/Potentiometer.rst
     breadboards/Potentiometer_with_LED.rst
@@ -67,7 +68,20 @@ Index:
     breadboards/Piezo_Buzzer_1.rst
     breadboards/Piezo_Buzzer_2.rst
     breadboards/Piezo_Buzzer_3.rst
-    breadboards/Piezo_Buzzer_4.rst
+
+
+
+.. toctree::
+    :maxdepth: 2
+    :caption: BreadBoard_quizzes
+    :numbered:
+
+    breadboard_quizzes/LED_ordering.rst
+    breadboard_quizzes/Motor_ordering.rst
+    breadboard_quizzes/Potentiometer_ordering.rst
+    breadboard_quizzes/Buzzer_ordering.rst
+
+
 
 .. toctree::
     :maxdepth: 2
