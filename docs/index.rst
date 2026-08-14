@@ -49,6 +49,18 @@ Index:
 
 .. toctree::
     :maxdepth: 2
+    :caption: Lesson Quizzes
+    :numbered:
+
+    quizzes/text_quiz.rst
+    quizzes/images_quiz.rst
+    quizzes/selection_quiz.rst
+    quizzes/loops_quiz.rst
+
+
+
+.. toctree::
+    :maxdepth: 2
     :caption: BreadBoards
     :numbered:
 
@@ -76,19 +88,11 @@ Index:
     :caption: BreadBoard_quizzes
     :numbered:
 
+    breadboard_quizzes/LEDs_quiz.rst
     breadboard_quizzes/LED_ordering.rst
     breadboard_quizzes/Motor_ordering.rst
     breadboard_quizzes/Potentiometer_ordering.rst
     breadboard_quizzes/Buzzer_ordering.rst
 
-
-
-.. toctree::
-    :maxdepth: 2
-    :caption: Lesson Quizzes
-    :numbered:
-
-    quizzes/show_text_quiz.rst
-    quizzes/images_quiz.rst
 
 

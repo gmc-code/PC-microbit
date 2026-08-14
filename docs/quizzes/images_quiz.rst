@@ -65,7 +65,7 @@ Question 5
 
 ----
 
-Section 2: Cloze (Dropdown Selection)
+Section 2: Cloze
 =====================================
 
 Question 6
