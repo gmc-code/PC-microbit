@@ -2,7 +2,7 @@
 Clearing the Screen
 ====================================================
 
-WHne using show, the last letter stays on the screen.
+When using show, the last letter stays on the screen.
 
 You can clear the screen to make it blank.
 
