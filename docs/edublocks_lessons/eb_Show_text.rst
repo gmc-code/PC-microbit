@@ -8,14 +8,17 @@ Show Text
 .. image:: images/eb_show_hello.png
     :scale: 25 %
 
+----
 
 .. image:: images/eb_show_name.png
     :scale: 25 %
 
+----
 
 .. image:: images/eb_show_TG.png
     :scale: 25 %
 
+----
 
 .. image:: images/eb_show_age.png
     :scale: 25 %
