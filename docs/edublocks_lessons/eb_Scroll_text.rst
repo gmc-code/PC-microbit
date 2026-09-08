@@ -6,10 +6,10 @@ Scroll Text
 | Try them on the simulator first and then on your micro:bit.
 
 .. image:: images/eb_scroll_helloworld.png
-    :scale: 100 %
+    :scale: 50 %
 
 .. image:: images/eb_scroll_name.png
-    :scale: 100 %
+    :scale: 50 %
 
 .. image:: images/eb_scroll_year.png
-    :scale: 100 %
+    :scale: 50 %
