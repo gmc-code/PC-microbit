@@ -16,12 +16,21 @@ Index:
     introduction/introduction.rst
 
 
+.. toctree::
+    :maxdepth: 2
+    :caption: edublocks Lessons
+    :numbered:
+
+    edublocks_lessons/eb_Introduction.rst
+    edublocks_lessons/eb_Show_text.rst
+    edublocks_lessons/eb_Scroll_text.rst
+
+
 
 .. toctree::
     :maxdepth: 2
     :caption: Lessons
     :numbered:
-
 
     lessons/Microbit_library.rst
     lessons/Show_text.rst
