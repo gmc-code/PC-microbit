@@ -149,7 +149,7 @@ You can show more than one message.
     from microbit import *
 
     while True:
-        display.show("My name")
+        display.show("My name is")
         sleep(1000)
         display.show("Sam")
         sleep(1000)
@@ -174,7 +174,7 @@ Another example
 
 .. admonition:: Try it
 
-    #. Show "My name" then your name.
+    #. Show "My name is" then your name.
     #. Show "I like" then your favourite food.
     #. Show "I am" then your age.
 
