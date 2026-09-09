@@ -27,9 +27,9 @@ Index:
     edublocks_lessons/eb_variables.rst
     edublocks_lessons/eb_Show_images.rst
     edublocks_lessons/eb_Show_image_lists.rst
+
     edublocks_lessons/eb_Buttons.rst
     edublocks_lessons/eb_Making_Choices.rst
-
 
 
 .. toctree::
