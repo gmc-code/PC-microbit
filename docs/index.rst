@@ -26,7 +26,7 @@ Index:
     edublocks_lessons/eb_Scroll_text.rst
     edublocks_lessons/eb_variables.rst
     edublocks_lessons/eb_Show_images.rst
-    edublocks_lessons/eb_Show_images_list.rst
+    edublocks_lessons/eb_Show_image_list.rst
 
 
 
