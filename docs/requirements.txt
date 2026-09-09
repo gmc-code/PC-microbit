@@ -4,3 +4,4 @@ sphinx-copybutton
 sphinx-design
 sphinx-togglebutton
 sphinx-new-tab-link
+sphinx-simplepdf
