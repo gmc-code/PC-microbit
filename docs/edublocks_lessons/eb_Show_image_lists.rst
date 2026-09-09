@@ -1,5 +1,5 @@
 ====================================================
-Show Images List
+Show Image Lists
 ====================================================
 
 | Make the following programs in edublocks.

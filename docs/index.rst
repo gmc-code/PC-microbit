@@ -29,9 +29,6 @@ Index:
     edublocks_lessons/eb_Show_image_list.rst
 
 
-
-
-
 .. toctree::
     :maxdepth: 2
     :caption: Lessons
