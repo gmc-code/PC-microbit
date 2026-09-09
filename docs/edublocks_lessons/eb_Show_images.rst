@@ -5,7 +5,7 @@ Show Images
 | Make the following programs in edublocks.
 | Try them on the simulator first and then on your micro:bit.
 
-Show Faces list
+Show HEART
 ------------------
 
 .. image:: images/eb_show_HEART.png
