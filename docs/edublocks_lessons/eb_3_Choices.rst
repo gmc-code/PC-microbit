@@ -1,35 +1,35 @@
 ====================================================
-Making Choices
+Three Choices: if elif else
 ====================================================
 
 | Make the following programs in edublocks.
 | Try them on the simulator first and then on your micro:bit.
 
-If else faces
+If elif else faces
 -----------------------------
 
-.. image:: images/eb_if_else_HAPPY_SAD.png
+.. image:: images/eb_if_elif_else_HAPPY_SAD.png
     :scale: 25 %
 
 ----
 
-If else animals
+If elif else animals
 -----------------------------
 
-.. image:: images/eb_if_else_DUCK_SNAKE.png
+.. image:: images/eb_if_elif_else_DUCK_SNAKE.png
     :scale: 25 %
 ----
 
-If elif squares
+If elif else squares
 -----------------------------
 
-.. image:: images/eb_if_elif_SQUARES.png
+.. image:: images/eb_if_elif_else_SQUARES.png
     :scale: 25 %
 
 ----
 
-If elif AB
+If elif else ABC
 -----------------------------
 
-.. image:: images/eb_if_elif_A_B.png
+.. image:: images/eb_if_elif_else_A_B_C.png
     :scale: 25 %

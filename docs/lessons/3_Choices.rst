@@ -1,5 +1,5 @@
 ====================================================
-Using Both Buttons
+Three Choices: if elif else
 ====================================================
 
 Your program can check **both** buttons.

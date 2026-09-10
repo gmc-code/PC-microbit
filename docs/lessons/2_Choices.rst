@@ -1,5 +1,5 @@
 ====================================================
-Making Choices
+Two Choices: if else; if elif
 ====================================================
 
 Your program can make different choices.

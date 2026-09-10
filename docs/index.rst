@@ -27,8 +27,9 @@ Index:
     edublocks_lessons/eb_variables.rst
     edublocks_lessons/eb_Show_images.rst
     edublocks_lessons/eb_Show_image_lists.rst
-    edublocks_lessons/eb_Buttons.rst
-    edublocks_lessons/eb_Making_Choices.rst
+    edublocks_lessons/eb_1_Choice.rst
+    edublocks_lessons/eb_2_Choices.rst
+    edublocks_lessons/eb_3_Choices.rst
 
 
 
@@ -48,9 +49,9 @@ Index:
     lessons/Built_in_images.rst
     lessons/Built_in_images_2.rst
 
-    lessons/Buttons.rst
-    lessons/Making_Choices.rst
-    lessons/Using_both_buttons.rst
+    lessons/1_Choice.rst
+    lessons/2_Choices.rst
+    lessons/3_Choices.rst
 
     lessons/Changing_Numbers_with_Buttons.rst
 
