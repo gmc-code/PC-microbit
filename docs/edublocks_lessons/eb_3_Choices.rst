@@ -8,7 +8,7 @@ Three Choices: if elif else
 If elif else faces
 -----------------------------
 
-.. image:: images/eb_if_elif_else_HAPPY_SAD.png
+.. image:: images/eb_if_elif_else_faces.png
     :scale: 25 %
 
 ----
@@ -16,20 +16,12 @@ If elif else faces
 If elif else animals
 -----------------------------
 
-.. image:: images/eb_if_elif_else_DUCK_SNAKE.png
+.. image:: images/eb_if_elif_else_animals.png
     :scale: 25 %
-----
-
-If elif else squares
------------------------------
-
-.. image:: images/eb_if_elif_else_SQUARES.png
-    :scale: 25 %
-
-----
+---
 
 If elif else ABC
 -----------------------------
 
-.. image:: images/eb_if_elif_else_A_B_C.png
+.. image:: images/eb_if_elif_else_ABC.png
     :scale: 25 %
