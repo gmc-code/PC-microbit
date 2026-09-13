@@ -1,5 +1,5 @@
 ====================================================
-For Loops with words
+For loops with words
 ====================================================
 
 A **for loop** repeats some code.

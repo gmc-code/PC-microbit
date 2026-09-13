@@ -1,5 +1,5 @@
 ====================================================
-For Loops with range()
+For loops with range
 ====================================================
 
 The ``range()`` function repeats code a set number of times.

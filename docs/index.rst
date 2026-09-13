@@ -47,7 +47,7 @@ Index:
     lessons/Using_variables.rst
 
     lessons/Built_in_images.rst
-    lessons/Built_in_images_2.rst
+    lessons/Image_lists.rst
 
     lessons/1_Choice.rst
     lessons/2_Choices.rst

@@ -1,5 +1,5 @@
 ====================================================
-Changing the Scroll Speed
+Changing the scroll speed
 ====================================================
 
 You can change how fast the message moves.

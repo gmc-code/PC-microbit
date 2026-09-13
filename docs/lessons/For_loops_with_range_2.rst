@@ -1,5 +1,5 @@
 ====================================================
-Changing the Numbers
+Changing the numbers
 ====================================================
 
 You can change each number before you show it.

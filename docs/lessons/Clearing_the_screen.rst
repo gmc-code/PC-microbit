@@ -1,5 +1,5 @@
 ====================================================
-Clearing the Screen
+Clearing the screen
 ====================================================
 
 When using show, the last letter stays on the screen.

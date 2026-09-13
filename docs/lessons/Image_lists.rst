@@ -1,5 +1,5 @@
 ====================================================
-Image Lists
+Image lists
 ====================================================
 
 Sometimes you want to use the same list of images more than once.

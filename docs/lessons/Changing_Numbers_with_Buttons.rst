@@ -1,5 +1,5 @@
 ====================================================
-Changing Numbers with Buttons
+Changing numbers with buttons
 ====================================================
 
 The buttons can change the value of a variable.

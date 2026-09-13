@@ -1,5 +1,5 @@
 ====================================================
-For Loops with Lists
+For loops with lists
 ====================================================
 
 A **list** can also be used in a for loop.
