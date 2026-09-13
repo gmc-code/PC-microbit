@@ -5,6 +5,8 @@ Three Choices: if elif else
 | Make the following programs in edublocks.
 | Try them on the simulator first and then on your micro:bit.
 
+----
+
 If elif else faces
 ----------------------------
 

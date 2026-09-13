@@ -1,13 +1,13 @@
 ====================================================
-Changing Numbers with Buttons
+Changing numbers with buttons
 ====================================================
 
 | Make the following programs in edublocks.
 | Try them on the simulator first and then on your micro:bit.
 
-The buttons can be used to change the value of a variable.
-
 ----
+
+The buttons can be used to change the value of a variable.
 
 Increase a number
 -----------------------------
