@@ -87,6 +87,35 @@ Try it!
 
 ----
 
+
+Increase and reset a number
+------------------------------
+
+You can use **both** buttons.
+
+.. code-block:: python
+
+    from microbit import *
+
+    number = 5
+
+    while True:
+
+        if button_a.was_pressed():
+            number = number + 1
+
+        elif button_b.was_pressed():
+            number = 5
+
+        display.show(number)
+
+
+Press **A** to count up.
+
+Press **B** to reset the number back to **5**.
+
+----
+
 Increase and decrease
 ----------------------
 
