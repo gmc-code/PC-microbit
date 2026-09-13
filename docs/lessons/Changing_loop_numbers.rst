@@ -2,7 +2,7 @@
 Changing loop numbers
 ====================================================
 
-You can change each number before you show it.
+| You can change each number in a loop before you show it.
 
 ----
 

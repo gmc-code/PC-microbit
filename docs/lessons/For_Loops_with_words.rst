@@ -2,7 +2,7 @@
 For loops with words
 ====================================================
 
-A **for loop** repeats some code.
+| A **for loop** repeats some code.
 
 It works through one letter at a time.
 
