@@ -47,16 +47,15 @@ Index:
     lessons/Built_in_images.rst
     lessons/Image_lists.rst
 
-    lessons/For_loops_with_words.rst
-    lessons/For_loops_with_lists.rst
-    lessons/For_loops_with_range.rst
-    lessons/Changing_loop_numbers.rst
-
     lessons/1_Choice.rst
     lessons/2_Choices.rst
     lessons/3_Choices.rst
     lessons/Changing_numbers_with_buttons.rst
 
+    lessons/For_loops_with_words.rst
+    lessons/For_loops_with_lists.rst
+    lessons/For_loops_with_range.rst
+    lessons/Changing_loop_numbers.rst
 
 
 .. toctree::
