@@ -59,7 +59,8 @@ Index:
     lessons/For_loops_with_lists.rst
 
     lessons/For_loops_with_range.rst
-    lessons/For_loops_with_range_2.rst
+    lessons/Changing_loop_numbers.rst
+
 
 
 .. toctree::
