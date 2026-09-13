@@ -26,7 +26,7 @@ Increase and reset a number
 ----
 
 Increase and decrease a number
------------------------------
+---------------------------------
 
 .. image:: images/eb_increase_and_decrease_number.png
     :scale: 25 %

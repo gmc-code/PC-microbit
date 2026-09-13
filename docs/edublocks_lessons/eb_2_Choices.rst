@@ -18,6 +18,7 @@ If else animals
 
 .. image:: images/eb_if_else_DUCK_SNAKE.png
     :scale: 25 %
+
 ----
 
 If elif squares

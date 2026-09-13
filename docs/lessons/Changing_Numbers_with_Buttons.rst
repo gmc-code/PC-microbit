@@ -117,7 +117,7 @@ Press **B** to reset the number back to **5**.
 ----
 
 Increase and decrease
-----------------------
+--------------------------
 
 You can use **both** buttons.
 
