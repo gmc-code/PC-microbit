@@ -57,7 +57,7 @@ Index:
     lessons/For_loops_with_range.rst
     lessons/Changing_loop_numbers.rst
 
- lessons/Microbit_library.rst
+    lessons/Microbit_library.rst
     lessons/Show_text.rst
     lessons/Clearing_the_screen.rst
     lessons/Scrolling_text.rst
