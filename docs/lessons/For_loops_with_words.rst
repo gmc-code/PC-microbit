@@ -3,8 +3,7 @@ For loops with words
 ====================================================
 
 | A **for loop** repeats some code.
-
-It works through one letter at a time.
+| It works through one letter at a time.
 
 ----
 
@@ -21,19 +20,13 @@ Loop through a word
         for letter in word:
             display.scroll(letter)
 
-The loop scrolls one letter at a time.
-
-It scrolls:
-
-H
-
-E
-
-L
-
-L
-
-O
+| The loop scrolls one letter at a time.
+| It scrolls:
+| H
+| E
+| L
+| L
+| O
 
 ----
 

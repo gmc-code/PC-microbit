@@ -3,8 +3,7 @@ For loops with lists
 ====================================================
 
 | A **list** can also be used in a for loop.
-
-The loop works through one item at a time.
+| The loop works through one item at a time.
 
 ----
 

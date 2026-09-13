@@ -17,29 +17,18 @@ Example
             display.show(number)
             sleep(500)
 
-This shows:
-
-0
-
-1
-
-2
-
-The loop stops before **3**.
+| The loop stops before **3**.
+| The loop shows:
+| 0
+| 1
+| 2
 
 ----
 
-Remember
-
-``range(3)`` means:
-
-0, 1, 2
-
-``range(5)`` means:
-
-0, 1, 2, 3, 4
-
-It always stops **before** the number.
+| Remember
+| ``range(3)`` means: 0, 1, 2
+| ``range(5)`` means: 0, 1, 2, 3, 4
+| It always stops **before** the number.
 
 ----
 

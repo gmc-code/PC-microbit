@@ -17,17 +17,12 @@ Count from 1
             display.show(number + 1)
             sleep(500)
 
-This shows:
-
-1
-
-2
-
-3
-
-4
-
-5
+| This shows:
+| 1
+| 2
+| 3
+| 4
+| 5
 
 ----
 
@@ -42,17 +37,12 @@ Count in twos
             display.show(number * 2)
             sleep(500)
 
-This shows:
-
-0
-
-2
-
-4
-
-6
-
-8
+| This shows:
+| 0
+| 2
+| 4
+| 6
+| 8
 
 ----
 
