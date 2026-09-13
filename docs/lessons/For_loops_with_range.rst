@@ -4,8 +4,6 @@ For loops with range
 
 The ``range()`` function repeats code a set number of times.
 
-It counts from **0**.
-
 Example
 
 .. code-block:: python
@@ -17,6 +15,7 @@ Example
             display.show(number)
             sleep(500)
 
+| It counts from **0**.
 | The loop stops before **3**.
 | The loop shows:
 | 0
