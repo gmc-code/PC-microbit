@@ -192,5 +192,5 @@ Can you make a simple counter?
 * Press **A** to count up.
 * Press **B** to count down.
 
-Try to count from **0** to **9**.
+Try to count from **0** to **9** and back down to **0**.
 

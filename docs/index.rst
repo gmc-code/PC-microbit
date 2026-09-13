@@ -30,7 +30,7 @@ Index:
     edublocks_lessons/eb_1_Choice.rst
     edublocks_lessons/eb_2_Choices.rst
     edublocks_lessons/eb_3_Choices.rst
-
+    edublocks_lessons/eb_Changing_numbers_with_buttons
 
 
 .. toctree::
@@ -43,8 +43,8 @@ Index:
     lessons/Clearing_the_screen.rst
 
     lessons/Scrolling_text.rst
-    lessons/Changing_the_Scroll_Speed.rst
-    lessons/Using_Variables.rst
+    lessons/Changing_the_scroll_speed.rst
+    lessons/Using_variables.rst
 
     lessons/Built_in_images.rst
     lessons/Built_in_images_2.rst
@@ -53,10 +53,10 @@ Index:
     lessons/2_Choices.rst
     lessons/3_Choices.rst
 
-    lessons/Changing_Numbers_with_Buttons.rst
+    lessons/Changing_numbers_with_buttons.rst
 
-    lessons/For_Loops_with_words.rst
-    lessons/For_Loops_with_lists.rst
+    lessons/For_loops_with_words.rst
+    lessons/For_loops_with_lists.rst
 
     lessons/For_loops_with_range.rst
     lessons/For_loops_with_range_2.rst
