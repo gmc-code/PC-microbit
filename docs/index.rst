@@ -32,6 +32,13 @@ Index:
     edublocks_lessons/eb_3_Choices.rst
     edublocks_lessons/eb_Changing_numbers_with_buttons
 
+    edublocks_lessons/eb_For_loops_with_words.rst
+    edublocks_lessons/eb_For_loops_with_lists.rst
+    edublocks_lessons/eb_For_loops_with_range.rst
+
+
+
+
 
 .. toctree::
     :maxdepth: 2
