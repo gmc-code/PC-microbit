@@ -5,63 +5,66 @@ LEDs Quiz
 Section 1: Multiple Choice
 ==========================
 
-Question 1
-----------
+.. mcqgroup::
+    :show_instant_feedback:
 
-.. multichoice::
+    Question 1
+    ----------
 
-    Why is a 47 ohm resistor required for each LED in the circuit?
-    [ ] To make the LED shine at maximum brightness | Incorrect. Resistors reduce current flow rather than increasing brightness.
-    [x] To limit current and prevent damage to the LED | Correct! The resistor prevents too much electricity from damaging the LED.
-    [ ] To change the color of the light emitted by the LED | Incorrect. Resistors control current flow, not light color.
+    .. multichoice::
 
-----
+        Why is a 47 ohm resistor required for each LED in the circuit?
+        [ ] To make the LED shine at maximum brightness | Incorrect. Resistors reduce current flow rather than increasing brightness.
+        [x] To limit current and prevent damage to the LED | Correct! The resistor prevents too much electricity from damaging the LED.
+        [ ] To change the color of the light emitted by the LED | Incorrect. Resistors control current flow, not light color.
 
-Question 2
-----------
+    ----
 
-.. multichoice::
+    Question 2
+    ----------
 
-    Which command turns an LED completely ON using digital control?
-    [x] write_digital(1) | Correct! Passing 1 turns the digital output HIGH (ON).
-    [ ] write_digital(0) | Incorrect. `write_digital(0)` turns the LED OFF.
-    [ ] write_digital(1023) | Incorrect. `1023` is used with `write_analog()`, not `write_digital()`.
+    .. multichoice::
 
-----
+        Which command turns an LED completely ON using digital control?
+        [x] write_digital(1) | Correct! Passing 1 turns the digital output HIGH (ON).
+        [ ] write_digital(0) | Incorrect. `write_digital(0)` turns the LED OFF.
+        [ ] write_digital(1023) | Incorrect. `1023` is used with `write_analog()`, not `write_digital()`.
 
-Question 3
-----------
+    ----
 
-.. multichoice::
+    Question 3
+    ----------
 
-    Which command turns an LED completely OFF using digital control?
-    [] write_digital(1) | Incorrect! Passing 1 turns the digital output HIGH (ON).
-    [x] write_digital(0) | Correct. `write_digital(0)` turns the LED OFF.
-    [ ] write_digital(1023) | Incorrect. `1023` is used with `write_analog()`, not `write_digital()`.
+    .. multichoice::
 
-----
+        Which command turns an LED completely OFF using digital control?
+        [] write_digital(1) | Incorrect! Passing 1 turns the digital output HIGH (ON).
+        [x] write_digital(0) | Correct. `write_digital(0)` turns the LED OFF.
+        [ ] write_digital(1023) | Incorrect. `1023` is used with `write_analog()`, not `write_digital()`.
 
-Question 4
-----------
+    ----
 
-.. multichoice::
+    Question 4
+    ----------
 
-    What brightness level does `pin0.write_analog(512)` set on the LED?
-    [ ] Very dim | Incorrect. `256` represents a very dim setting.
-    [x] Half brightness | Correct! `512` is half of the maximum analog value (`1023`).
-    [ ] Full brightness | Incorrect. `1023` represents full brightness.
+    .. multichoice::
 
-----
+        What brightness level does `pin0.write_analog(512)` set on the LED?
+        [ ] Very dim | Incorrect. `256` represents a very dim setting.
+        [x] Half brightness | Correct! `512` is half of the maximum analog value (`1023`).
+        [ ] Full brightness | Incorrect. `1023` represents full brightness.
 
-Question 5
-----------
+    ----
 
-.. multichoice::
+    Question 5
+    ----------
 
-    When connecting an LED to the breadboard, which way should the long leg point?
-    [x] Towards the micro:bit pins | Correct! The long leg (anode) connects towards the micro:bit control pin.
-    [ ] Towards the ground rail | Incorrect. The long leg connects towards the micro:bit control pin.
-    [ ] Orientation does not matter for LEDs | Incorrect. LEDs are diodes and only allow current to flow in one direction.
+    .. multichoice::
+
+        When connecting an LED to the breadboard, which way should the long leg point?
+        [x] Towards the micro:bit pins | Correct! The long leg (anode) connects towards the micro:bit control pin.
+        [ ] Towards the ground rail | Incorrect. The long leg connects towards the micro:bit control pin.
+        [ ] Orientation does not matter for LEDs | Incorrect. LEDs are diodes and only allow current to flow in one direction.
 
 ----
 

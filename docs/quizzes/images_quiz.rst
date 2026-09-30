@@ -5,63 +5,66 @@ micro:bit Built-in Images Quiz
 Section 1: Multiple Choice
 ==========================
 
-Question 1
-----------
+.. mcqgroup::
+    :show_instant_feedback:
 
-.. multichoice::
+    Question 1
+    ----------
 
-    Which line of code correctly displays a built-in heart image on the micro:bit?
-    [x] display.show(Image.HEART) | Correct! "Image" starts with a capital I and HEART is in ALL CAPS.
-    [ ] display.show(image.HEART) | Incorrect. The word "Image" must start with a capital "I".
-    [ ] display.show(Image.heart) | Incorrect. Built-in image names like HEART must be in ALL CAPS.
+    .. multichoice::
 
-----
+        Which line of code correctly displays a built-in heart image on the micro:bit?
+        [x] display.show(Image.HEART) | Correct! "Image" starts with a capital I and HEART is in ALL CAPS.
+        [ ] display.show(image.HEART) | Incorrect. The word "Image" must start with a capital "I".
+        [ ] display.show(Image.heart) | Incorrect. Built-in image names like HEART must be in ALL CAPS.
 
-Question 2
-----------
+    ----
 
-.. multichoice::
+    Question 2
+    ----------
 
-    How must all built-in image names be written in your Python code?
-    [ ] In lower case letters | Incorrect. Built-in image names do not use lower case.
-    [x] In ALL CAPS letters | Correct! All built-in image names must be written in ALL CAPS.
-    [ ] Inside quotation marks | Incorrect. You do not put quotation marks around image names.
+    .. multichoice::
 
-----
+        How must all built-in image names be written in your Python code?
+        [ ] In lower case letters | Incorrect. Built-in image names do not use lower case.
+        [x] In ALL CAPS letters | Correct! All built-in image names must be written in ALL CAPS.
+        [ ] Inside quotation marks | Incorrect. You do not put quotation marks around image names.
 
-Question 3
-----------
+    ----
 
-.. multichoice::
+    Question 3
+    ----------
 
-    Which function is used to show a single built-in image on the micro:bit screen?
-    [ ] display.scroll() | Incorrect. scroll() is used for text words and messages.
-    [x] display.show() | Correct! show() is used to display images on the screen.
-    [ ] display.draw() | Incorrect. There is no draw() function in the microbit library.
+    .. multichoice::
 
-----
+        Which function is used to show a single built-in image on the micro:bit screen?
+        [ ] display.scroll() | Incorrect. scroll() is used for text words and messages.
+        [x] display.show() | Correct! show() is used to display images on the screen.
+        [ ] display.draw() | Incorrect. There is no draw() function in the microbit library.
 
-Question 4
-----------
+    ----
 
-.. multichoice::
+    Question 4
+    ----------
 
-    What happens when you type "Image." (with the dot) in the micro:bit Python editor?
-    [ ] The micro:bit immediately turns on. | Incorrect. Code only runs when you download it.
-    [x] A drop-down menu pops up showing available images. | Correct! The editor shows a list of images you can pick from.
-    [ ] An error message appears on the screen. | Incorrect. Typing "Image." is correct syntax and will not trigger an error.
+    .. multichoice::
 
-----
+        What happens when you type "Image." (with the dot) in the micro:bit Python editor?
+        [ ] The micro:bit immediately turns on. | Incorrect. Code only runs when you download it.
+        [x] A drop-down menu pops up showing available images. | Correct! The editor shows a list of images you can pick from.
+        [ ] An error message appears on the screen. | Incorrect. Typing "Image." is correct syntax and will not trigger an error.
 
-Question 5
-----------
+    ----
 
-.. multichoice::
+    Question 5
+    ----------
 
-    When using "display.show(image_list, delay=500)", what does the delay number control?
-    [x] How many milliseconds each image stays on the screen. | Correct! The delay sets the pause time between images in milliseconds.
-    [ ] How many total images are in your list. | Incorrect. The list size depends on how many images you add to it.
-    [ ] The brightness of the micro:bit LED lights. | Incorrect. Delay controls time, not screen brightness.
+    .. multichoice::
+
+        When using "display.show(image_list, delay=500)", what does the delay number control?
+        [x] How many milliseconds each image stays on the screen. | Correct! The delay sets the pause time between images in milliseconds.
+        [ ] How many total images are in your list. | Incorrect. The list size depends on how many images you add to it.
+        [ ] The brightness of the micro:bit LED lights. | Incorrect. Delay controls time, not screen brightness.
 
 ----
 

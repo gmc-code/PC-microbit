@@ -5,63 +5,66 @@ micro:bit Text, Screen & Library Quiz
 Section 1: Multiple Choice
 ==========================
 
-Question 1
-----------
+.. mcqgroup::
+    :show_instant_feedback:
 
-.. multichoice::
+    Question 1
+    ----------
 
-    Which line must be placed at the very top of every micro:bit program?
-    [x] from microbit import * | Correct! This gives your program access to display, buttons, and sensors.
-    [ ] import microbit | Incorrect. While valid Python, this forces you to write microbit.display.show() instead.
-    [ ] from microbot import * | Incorrect. "microbit" is spelled wrong in this line.
+    .. multichoice::
 
-----
+        Which line must be placed at the very top of every micro:bit program?
+        [x] from microbit import * | Correct! This gives your program access to display, buttons, and sensors.
+        [ ] import microbit | Incorrect. While valid Python, this forces you to write microbit.display.show() instead.
+        [ ] from microbot import * | Incorrect. "microbit" is spelled wrong in this line.
 
-Question 2
-----------
+    ----
 
-.. multichoice::
+    Question 2
+    ----------
 
-    What happens to text when you display it using display.show()?
-    [ ] The text slides across the screen horizontally. | Incorrect. Text displayed with show() stays still instead of moving.
-    [x] The text does not move and letters appear one at a time. | Correct! display.show() displays stationary characters one by one.
-    [ ] The letters flash on the screen all at the exact same time. | Incorrect. Each letter is shown sequentially, one after another.
+    .. multichoice::
 
-----
+        What happens to text when you display it using display.show()?
+        [ ] The text slides across the screen horizontally. | Incorrect. Text displayed with show() stays still instead of moving.
+        [x] The text does not move and letters appear one at a time. | Correct! display.show() displays stationary characters one by one.
+        [ ] The letters flash on the screen all at the exact same time. | Incorrect. Each letter is shown sequentially, one after another.
 
-Question 3
-----------
+    ----
 
-.. multichoice::
+    Question 3
+    ----------
 
-    How long will sleep(1000) pause a micro:bit program?
-    [ ] Half a second | Incorrect. Half a second is written as sleep(500).
-    [x] 1 full second | Correct! 1000 milliseconds equals 1 full second.
-    [ ] 10 seconds | Incorrect. 10 seconds would be written as sleep(10000).
+    .. multichoice::
 
-----
+        How long will sleep(1000) pause a micro:bit program?
+        [ ] Half a second | Incorrect. Half a second is written as sleep(500).
+        [x] 1 full second | Correct! 1000 milliseconds equals 1 full second.
+        [ ] 10 seconds | Incorrect. 10 seconds would be written as sleep(10000).
 
-Question 4
-----------
+    ----
 
-.. multichoice::
+    Question 4
+    ----------
 
-    What does display.clear() do to the micro:bit LED screen?
-    [ ] It scrolls the screen backward. | Incorrect. Scrolling is done with display.scroll().
-    [x] It wipes the screen to make it completely blank. | Correct! display.clear() turns off all LEDs to blank the screen.
-    [ ] It resets the micro:bit program back to line 1. | Incorrect. It only clears the screen lights, not the program state.
+    .. multichoice::
 
-----
+        What does display.clear() do to the micro:bit LED screen?
+        [ ] It scrolls the screen backward. | Incorrect. Scrolling is done with display.scroll().
+        [x] It wipes the screen to make it completely blank. | Correct! display.clear() turns off all LEDs to blank the screen.
+        [ ] It resets the micro:bit program back to line 1. | Incorrect. It only clears the screen lights, not the program state.
 
-Question 5
-----------
+    ----
 
-.. multichoice::
+    Question 5
+    ----------
 
-    Which setting makes text display faster when using display.show("Hi", delay=...)?
-    [x] A smaller delay number (like 150) | Correct! A smaller delay time speeds up letter transitions.
-    [ ] A larger delay number (like 2000) | Incorrect. Larger delay numbers make letter transitions slower.
-    [ ] Setting delay=0 | Incorrect. Setting delay to 0 causes letters to flash by instantly without being readable.
+    .. multichoice::
+
+        Which setting makes text display faster when using display.show("Hi", delay=...)?
+        [x] A smaller delay number (like 150) | Correct! A smaller delay time speeds up letter transitions.
+        [ ] A larger delay number (like 2000) | Incorrect. Larger delay numbers make letter transitions slower.
+        [ ] Setting delay=0 | Incorrect. Setting delay to 0 causes letters to flash by instantly without being readable.
 
 ----
 
