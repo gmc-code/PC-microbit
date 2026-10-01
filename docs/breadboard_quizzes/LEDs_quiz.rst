@@ -8,20 +8,12 @@ Section 1: Multiple Choice
 .. mcqgroup::
     :show_instant_feedback:
 
-    Question 1
-    ----------
-
     .. multichoice::
 
         Why is a 47 ohm resistor required for each LED in the circuit?
         [ ] To make the LED shine at maximum brightness | Incorrect. Resistors reduce current flow rather than increasing brightness.
         [x] To limit current and prevent damage to the LED | Correct! The resistor prevents too much electricity from damaging the LED.
         [ ] To change the color of the light emitted by the LED | Incorrect. Resistors control current flow, not light color.
-
-    ----
-
-    Question 2
-    ----------
 
     .. multichoice::
 
@@ -30,11 +22,6 @@ Section 1: Multiple Choice
         [ ] write_digital(0) | Incorrect. `write_digital(0)` turns the LED OFF.
         [ ] write_digital(1023) | Incorrect. `1023` is used with `write_analog()`, not `write_digital()`.
 
-    ----
-
-    Question 3
-    ----------
-
     .. multichoice::
 
         Which command turns an LED completely OFF using digital control?
@@ -42,22 +29,12 @@ Section 1: Multiple Choice
         [x] write_digital(0) | Correct. `write_digital(0)` turns the LED OFF.
         [ ] write_digital(1023) | Incorrect. `1023` is used with `write_analog()`, not `write_digital()`.
 
-    ----
-
-    Question 4
-    ----------
-
     .. multichoice::
 
         What brightness level does `pin0.write_analog(512)` set on the LED?
         [ ] Very dim | Incorrect. `256` represents a very dim setting.
         [x] Half brightness | Correct! `512` is half of the maximum analog value (`1023`).
         [ ] Full brightness | Incorrect. `1023` represents full brightness.
-
-    ----
-
-    Question 5
-    ----------
 
     .. multichoice::
 
