@@ -1,5 +1,5 @@
 ====================================================
-micro:bit Selection & Buttons Quiz
+Selection & Buttons Quiz
 ====================================================
 
 Section 1: Multiple Choice

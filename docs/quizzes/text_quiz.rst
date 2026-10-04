@@ -1,5 +1,5 @@
 ====================================================
-micro:bit Text, Screen & Library Quiz
+Text, Screen & Library Quiz
 ====================================================
 
 Section 1: Multiple Choice

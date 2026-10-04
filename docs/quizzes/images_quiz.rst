@@ -1,5 +1,5 @@
 ====================================================
-micro:bit Built-in Images Quiz
+Built-in Images Quiz
 ====================================================
 
 Section 1: Multiple Choice
