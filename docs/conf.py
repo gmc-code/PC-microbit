@@ -27,7 +27,10 @@ extensions = [
     'sphinx_design',
     "sphinx_new_tab_link",
     "sphinx_simplepdf",
+    "speak_role",
     "mcqgroup.mcqgroup",  # custom directive
+    "clozegroup.clozegroup",  # custom directive
+    "quizgroup",  # custom directive
     "multichoice.multichoice",  # custom directive
     "cloze.cloze",  # custom directive
     "gapfill.gapfill",  # custom directive
