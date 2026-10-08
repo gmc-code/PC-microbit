@@ -70,7 +70,7 @@ Control all three LEDs
 * Press **Button B** → All LEDs turn OFF.
 
 .. image:: images_edublocks/LED_0_btnA_btnB.png
-    :scale: 25 %
+    :scale: 15 %
 
 ----
 
@@ -86,7 +86,7 @@ Try These Challenges
 | * Turn on the **yellow and green LEDs only** on pin1 and pin2 respectively.
 
 .. image:: images_edublocks/LED_012_btnA_btnB_b.png
-    :scale: 25 %
+    :scale: 15 %
 
 ----
 
@@ -99,7 +99,7 @@ Try These Challenges
 | * Turn on the **red and yellow LEDs only** on pin0 and pin1 respectively.
 
 .. image:: images_edublocks/LED_012_btnA_btnB_c.png
-    :scale: 25 %
+    :scale: 15 %
 
 
 
