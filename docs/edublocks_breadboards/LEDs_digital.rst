@@ -23,17 +23,17 @@ Building the circuit
 --------------------------
 
 .. image:: images/3LEDS_1_bb.png
-    :scale: 40 %
+    :scale: 50 %
 
 .. image:: images/3LEDS_2_bb.png
-    :scale: 40 %
+    :scale: 50 %
 
 .. image:: images/3LEDS_3_bb.png
-    :scale: 40 %
+    :scale: 50 %
 
 
 .. image:: images/LEDS.jpg
-    :scale: 40 %
+    :scale: 35 %
 
 ----
 
