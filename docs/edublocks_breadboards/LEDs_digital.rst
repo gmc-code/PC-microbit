@@ -5,17 +5,17 @@ LEDs digital
 Each LED needs a **47 ohm resistor** to protect it from too much electricity.
 
 .. image:: images/47ohm.png
-    :scale: 25 %
+    :scale: 40 %
 
 | Bend each resistor into a **U shape**.
 
 .. image:: images/resistor_shape.png
-    :scale: 25 %
+    :scale: 40 %
 
 | Push the resistor legs into the breadboard.
 
 .. image:: images/resistor_on_breadboard_low.png
-    :scale: 25 %
+    :scale: 40 %
 
 ----
 
@@ -23,17 +23,17 @@ Building the circuit
 --------------------------
 
 .. image:: images/3LEDS_1_bb.png
-    :scale: 25 %
+    :scale: 40 %
 
 .. image:: images/3LEDS_2_bb.png
-    :scale: 25 %
+    :scale: 40 %
 
 .. image:: images/3LEDS_3_bb.png
-    :scale: 25 %
+    :scale: 40 %
 
 
 .. image:: images/LEDS.jpg
-    :scale: 30 %
+    :scale: 40 %
 
 ----
 
