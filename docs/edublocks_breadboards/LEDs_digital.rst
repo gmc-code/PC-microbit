@@ -5,17 +5,17 @@ LEDs digital
 Each LED needs a **47 ohm resistor** to protect it from too much electricity.
 
 .. image:: images/47ohm.png
-    :scale: 50 %
+    :scale: 25 %
 
 | Bend each resistor into a **U shape**.
 
 .. image:: images/resistor_shape.png
-    :scale: 50 %
+    :scale: 25 %
 
 | Push the resistor legs into the breadboard.
 
 .. image:: images/resistor_on_breadboard_low.png
-    :scale: 50 %
+    :scale: 25 %
 
 ----
 
@@ -23,13 +23,13 @@ Building the circuit
 --------------------------
 
 .. image:: images/3LEDS_1_bb.png
-    :scale: 50 %
+    :scale: 25 %
 
 .. image:: images/3LEDS_2_bb.png
-    :scale: 50 %
+    :scale: 25 %
 
 .. image:: images/3LEDS_3_bb.png
-    :scale: 50 %
+    :scale: 25 %
 
 
 .. image:: images/LEDS.jpg
@@ -41,7 +41,7 @@ Turning an LED ON and OFF
 ----------------------------------------
 
 .. image:: images_edublocks/LED_0_on_off.png
-    :scale: 50 %
+    :scale: 25 %
 
 ----
 
@@ -49,7 +49,7 @@ Control one LED with button A
 ----------------------------------------
 
 .. image:: images_edublocks/LED_0_btnA.png
-    :scale: 50 %
+    :scale: 25 %
 
 
 Control one LED with buttons A and B
@@ -59,7 +59,7 @@ Control one LED with buttons A and B
 * Press **Button B** → Red LED turns **OFF**
 
 .. image:: images_edublocks/LED_0_btnA_btnB.png
-    :scale: 50 %
+    :scale: 25 %
 
 ----
 
@@ -70,7 +70,7 @@ Control all three LEDs
 * Press **Button B** → All LEDs turn OFF.
 
 .. image:: images_edublocks/LED_0_btnA_btnB.png
-    :scale: 50 %
+    :scale: 25 %
 
 ----
 
@@ -86,7 +86,7 @@ Try These Challenges
 | * Turn on the **yellow and green LEDs only** on pin1 and pin2 respectively.
 
 .. image:: images_edublocks/LED_012_btnA_btnB_b.png
-    :scale: 50 %
+    :scale: 25 %
 
 ----
 
@@ -99,7 +99,7 @@ Try These Challenges
 | * Turn on the **red and yellow LEDs only** on pin0 and pin1 respectively.
 
 .. image:: images_edublocks/LED_012_btnA_btnB_c.png
-    :scale: 50 %
+    :scale: 25 %
 
 
 
