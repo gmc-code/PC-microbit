@@ -2,9 +2,9 @@
 Introduction
 ====================================================
 
-Welcome to the micro:bit Python course!
+Welcome to the microbit Python course!
 
-You will learn how to make the micro:bit:
+You will learn how to make the microbit:
 
 * show words
 * show pictures
@@ -13,7 +13,7 @@ You will learn how to make the micro:bit:
 
 
 
-Open the micro:bit Python editor:
+Open the microbit Python editor:
 
 https://python.microbit.org/v/3
 

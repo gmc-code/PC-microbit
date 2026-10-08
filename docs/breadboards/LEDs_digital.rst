@@ -2,7 +2,7 @@
 LEDs digital
 ==========================
 
-| In this lesson you will connect **three LEDs** to a micro:bit.
+| In this lesson you will connect **three LEDs** to a microbit.
 | You will learn how to make LEDs turn **ON** and **OFF** using code.
 
 ----
@@ -12,7 +12,7 @@ What you need
 
 You need:
 
-* A micro:bit
+* A microbit
 * A breadboard
 * Three LEDs (red, yellow, green)
 * Three 47 ohm resistors (bands of: yellow, violet, black, gold)
@@ -56,7 +56,7 @@ Follow these steps:
 #. Put the three resistors into the breadboard first.
 #. Add the three LEDs.
 #. Look for the **long leg** of each LED.
-#. The long leg goes towards the micro:bit pins.
+#. The long leg goes towards the microbit pins.
 #. In this model, the long leg is on the **left side**.
 #. Add the jumper wires.
 

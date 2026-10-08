@@ -102,7 +102,7 @@ Try it!
 Built-in image lists
 --------------------
 
-The micro:bit already has some image lists.
+The microbit already has some image lists.
 
 Two useful ones are:
 

@@ -39,8 +39,8 @@ Section 1: Multiple Choice
     .. multichoice::
 
         When connecting an LED to the breadboard, which way should the long leg point?
-        [x] Towards the micro:bit pins | Correct! The long leg (anode) connects towards the micro:bit control pin.
-        [ ] Towards the ground rail | Incorrect. The long leg connects towards the micro:bit control pin.
+        [x] Towards the microbit pins | Correct! The long leg (anode) connects towards the microbit control pin.
+        [ ] Towards the ground rail | Incorrect. The long leg connects towards the microbit control pin.
         [ ] Orientation does not matter for LEDs | Incorrect. LEDs are diodes and only allow current to flow in one direction.
 
 ----

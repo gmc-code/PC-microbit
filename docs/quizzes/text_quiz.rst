@@ -13,7 +13,7 @@ Section 1: Multiple Choice
 
     .. multichoice::
 
-        Which line must be placed at the very top of every micro:bit program?
+        Which line must be placed at the very top of every microbit program?
         [x] from microbit import * | Correct! This gives your program access to display, buttons, and sensors.
         [ ] import microbit | Incorrect. While valid Python, this forces you to write microbit.display.show() instead.
         [ ] from microbot import * | Incorrect. "microbit" is spelled wrong in this line.
@@ -37,7 +37,7 @@ Section 1: Multiple Choice
 
     .. multichoice::
 
-        How long will sleep(1000) pause a micro:bit program?
+        How long will sleep(1000) pause a microbit program?
         [ ] Half a second | Incorrect. Half a second is written as sleep(500).
         [x] 1 full second | Correct! 1000 milliseconds equals 1 full second.
         [ ] 10 seconds | Incorrect. 10 seconds would be written as sleep(10000).
@@ -49,10 +49,10 @@ Section 1: Multiple Choice
 
     .. multichoice::
 
-        What does display.clear() do to the micro:bit LED screen?
+        What does display.clear() do to the microbit LED screen?
         [ ] It scrolls the screen backward. | Incorrect. Scrolling is done with display.scroll().
         [x] It wipes the screen to make it completely blank. | Correct! display.clear() turns off all LEDs to blank the screen.
-        [ ] It resets the micro:bit program back to line 1. | Incorrect. It only clears the screen lights, not the program state.
+        [ ] It resets the microbit program back to line 1. | Incorrect. It only clears the screen lights, not the program state.
 
     ----
 
@@ -74,7 +74,7 @@ Section 2: Cloze
 Question 6
 ----------
 
-| Complete the standard import line used to start micro:bit Python programs.
+| Complete the standard import line used to start microbit Python programs.
 
 .. cloze::
 

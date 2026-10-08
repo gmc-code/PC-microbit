@@ -16,7 +16,7 @@ You can connect:
 * transistors
 * potentiometers
 
-The micro:bit controls these parts.
+The microbit controls these parts.
 
 ----
 

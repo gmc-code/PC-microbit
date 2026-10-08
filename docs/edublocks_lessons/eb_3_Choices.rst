@@ -3,7 +3,7 @@ Three Choices: if elif else
 ====================================================
 
 | Make the following programs in edublocks.
-| Try them on the simulator first and then on your micro:bit.
+| Try them on the simulator first and then on your microbit.
 
 ----
 

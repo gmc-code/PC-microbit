@@ -5,9 +5,9 @@ Microbit library
 Import the microbit library
 ----------------------------------------
 
-Every micro:bit program starts the same way.
+Every microbit program starts the same way.
 
-The first line tells Python to use the micro:bit library.
+The first line tells Python to use the microbit library.
 
 Always begin your program with:
 
@@ -15,7 +15,7 @@ Always begin your program with:
 
     from microbit import *
 
-This gives your program access to the micro:bit's buttons, display, sensors and other features.
+This gives your program access to the microbit's buttons, display, sensors and other features.
 
 ----
 
@@ -182,7 +182,7 @@ The shorter version is easier to read and type.
 Remember
 ----------------------------------------
 
-Every micro:bit program should:
+Every microbit program should:
 
 1. Start with ``from microbit import *``.
 2. Leave one blank line.
@@ -206,4 +206,4 @@ Can you write a program that:
 
 1. Starts with the correct import line.
 2. Leaves one blank line.
-3. Shows your name on the micro:bit screen.
+3. Shows your name on the microbit screen.

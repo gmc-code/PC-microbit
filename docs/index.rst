@@ -18,6 +18,31 @@ Index:
 
 .. toctree::
     :maxdepth: 2
+    :caption: edublocks BreadBoards
+    :numbered:
+
+    edublocks_breadboards/Breadboard_connections.rst
+    edublocks_breadboards/Edge_Connector.rst
+    edublocks_breadboards/LEDs_digital.rst
+
+    .. edublocks_breadboards/LEDs_blink.rst
+    .. edublocks_breadboards/LEDs_brightness.rst
+
+    .. edublocks_breadboards/Motor_with_transistor_1.rst
+    .. edublocks_breadboards/Motor_with_transistor_2.rst
+    .. edublocks_breadboards/Motor_with_transistor_alt.rst
+
+    .. edublocks_breadboards/Potentiometer.rst
+    .. edublocks_breadboards/Potentiometer_with_LED.rst
+
+    .. edublocks_breadboards/Piezo_Buzzer_1.rst
+    .. edublocks_breadboards/Piezo_Buzzer_2.rst
+    .. edublocks_breadboards/Piezo_Buzzer_3.rst
+
+
+
+.. toctree::
+    :maxdepth: 2
     :caption: edublocks Lessons
     :numbered:
 

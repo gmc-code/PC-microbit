@@ -13,7 +13,7 @@ Section 1: Multiple Choice
 
     .. multichoice::
 
-        Which method is used to check if Button A is currently being held down on the micro:bit?
+        Which method is used to check if Button A is currently being held down on the microbit?
         [x] button_a.is_pressed() | Correct! is_pressed() returns True if the button is currently pressed.
         [ ] button_a.was_pressed() | Incorrect. was_pressed() checks if the button was pressed since the last check.
         [ ] button_a.get_presses() | Incorrect. get_presses() returns the total count of button presses.
@@ -52,7 +52,7 @@ Section 1: Multiple Choice
         What happens if both button_a and button_b are pressed at the same time in an if/elif chain in which button_a is first checked?
         [x] Only the code inside the `if button_a.is_pressed():` block executes. | Correct! Python checks conditions sequentially and executes only the first branch that is True.
         [ ] Both code blocks execute simultaneously. | Incorrect. Python evaluates sequentially and skips remaining elif blocks once a match is found.
-        [ ] An error occurs and the micro:bit resets. | Incorrect. Python safely executes the first valid conditional branch.
+        [ ] An error occurs and the microbit resets. | Incorrect. Python safely executes the first valid conditional branch.
 
     ----
 

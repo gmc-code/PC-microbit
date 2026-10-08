@@ -13,7 +13,7 @@ Section 1: Multiple Choice
 
     .. multichoice::
 
-        Which line of code correctly displays a built-in heart image on the micro:bit?
+        Which line of code correctly displays a built-in heart image on the microbit?
         [x] display.show(Image.HEART) | Correct! "Image" starts with a capital I and HEART is in ALL CAPS.
         [ ] display.show(image.HEART) | Incorrect. The word "Image" must start with a capital "I".
         [ ] display.show(Image.heart) | Incorrect. Built-in image names like HEART must be in ALL CAPS.
@@ -37,7 +37,7 @@ Section 1: Multiple Choice
 
     .. multichoice::
 
-        Which function is used to show a single built-in image on the micro:bit screen?
+        Which function is used to show a single built-in image on the microbit screen?
         [ ] display.scroll() | Incorrect. scroll() is used for text words and messages.
         [x] display.show() | Correct! show() is used to display images on the screen.
         [ ] display.draw() | Incorrect. There is no draw() function in the microbit library.
@@ -49,8 +49,8 @@ Section 1: Multiple Choice
 
     .. multichoice::
 
-        What happens when you type "Image." (with the dot) in the micro:bit Python editor?
-        [ ] The micro:bit immediately turns on. | Incorrect. Code only runs when you download it.
+        What happens when you type "Image." (with the dot) in the microbit Python editor?
+        [ ] The microbit immediately turns on. | Incorrect. Code only runs when you download it.
         [x] A drop-down menu pops up showing available images. | Correct! The editor shows a list of images you can pick from.
         [ ] An error message appears on the screen. | Incorrect. Typing "Image." is correct syntax and will not trigger an error.
 
@@ -64,7 +64,7 @@ Section 1: Multiple Choice
         When using "display.show(image_list, delay=500)", what does the delay number control?
         [x] How many milliseconds each image stays on the screen. | Correct! The delay sets the pause time between images in milliseconds.
         [ ] How many total images are in your list. | Incorrect. The list size depends on how many images you add to it.
-        [ ] The brightness of the micro:bit LED lights. | Incorrect. Delay controls time, not screen brightness.
+        [ ] The brightness of the microbit LED lights. | Incorrect. Delay controls time, not screen brightness.
 
 ----
 
@@ -74,7 +74,7 @@ Section 2: Cloze
 Question 6
 -----------
 
-| Complete the code to import the micro:bit library and display a built-in duck picture.
+| Complete the code to import the microbit library and display a built-in duck picture.
 
 .. cloze::
 
@@ -150,7 +150,7 @@ Section 3: Code Ordering
 Question 11
 ------------
 
-| Put the lines of code in order to show a built-in HAPPY face on the micro:bit screen.
+| Put the lines of code in order to show a built-in HAPPY face on the microbit screen.
 
 .. ordering::
     :theme: light

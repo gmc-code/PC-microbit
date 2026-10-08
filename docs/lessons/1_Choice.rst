@@ -2,7 +2,7 @@
 One Choice: if
 ====================================================
 
-The micro:bit has two buttons.
+The microbit has two buttons.
 
 * Button A
 * Button B

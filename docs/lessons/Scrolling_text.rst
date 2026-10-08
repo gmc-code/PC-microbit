@@ -5,7 +5,7 @@ Scrolling Text
 What is ``display.scroll()``?
 ----------------------------------------
 
-``display.scroll()`` moves text or numbers across the micro:bit screen.
+``display.scroll()`` moves text or numbers across the microbit screen.
 
 You can scroll:
 
@@ -89,7 +89,7 @@ Example: Scroll a number
 Challenge
 ----------------------------------------
 
-Make your micro:bit scroll:
+Make your microbit scroll:
 
 * your name
 * your age

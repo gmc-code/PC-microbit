@@ -2,7 +2,7 @@
 Built-in Images
 ====================================================
 
-The micro:bit has lots of pictures you can use.
+The microbit has lots of pictures you can use.
 
 Examples:
 
@@ -30,7 +30,7 @@ Use ``display.show()`` to show a picture.
 
     display.show(Image.HEART)
 
-The micro:bit shows a heart.
+The microbit shows a heart.
 
 ----
 

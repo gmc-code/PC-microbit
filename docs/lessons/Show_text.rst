@@ -5,7 +5,7 @@ Show Text
 What is ``display.show()``?
 ----------------------------------------
 
-``display.show()`` shows text or numbers on the micro:bit screen.
+``display.show()`` shows text or numbers on the microbit screen.
 
 The text does **not** move.
 
@@ -28,9 +28,9 @@ Example: Show text
 
 .. note::
 
-    ``while True:`` tells the micro:bit to keep running the code again and again.
+    ``while True:`` tells the microbit to keep running the code again and again.
 
-    Nearly every micro:bit program uses ``while True:``.
+    Nearly every microbit program uses ``while True:``.
 
 
 Example: Show a number
@@ -161,7 +161,7 @@ Slow example
 Challenge
 ----------------------------------------
 
-Can you make the micro:bit show:
+Can you make the microbit show:
 
 * your name
 * your age

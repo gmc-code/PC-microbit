@@ -2,10 +2,10 @@
 Edge Connector
 ==========================
 
-Connecting the micro:bit
+Connecting the microbit
 --------------------------
 
-The edge connector lets the micro:bit plug into the breadboard.
+The edge connector lets the microbit plug into the breadboard.
 
 .. image:: images/edge_connector.jpg
     :scale: 100 %
@@ -30,7 +30,7 @@ The male end plugs into the breadboard.
 
 ----
 
-The micro:bit faces upwards.
+The microbit faces upwards.
 
 .. image:: images/main_pins.jpg
     :scale: 50 %
