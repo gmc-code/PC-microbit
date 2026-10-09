@@ -25,6 +25,10 @@ Building the circuit
 .. image:: images/3LEDS_1_bb.png
     :scale: 50 %
 
+
+| Place the long leg of each LED on the left side of the breadboard.
+
+
 .. image:: images/3LEDS_2_bb.png
     :scale: 50 %
 
