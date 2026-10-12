@@ -45,6 +45,6 @@ Control the Motor with Buttons A and B
 Motor timing challenges
 ----------------------------------------
 
-.. image:: images_edublocks/Motor_btnAB_timimg.png
+.. image:: images_edublocks/Motor_btnAB_timing.png
     :scale: 25 %
 
