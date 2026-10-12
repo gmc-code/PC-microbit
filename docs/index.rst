@@ -24,9 +24,8 @@ Index:
     edublocks_breadboards/Breadboard_connections.rst
     edublocks_breadboards/Edge_Connector.rst
     edublocks_breadboards/LEDs_digital.rst
-
-    .. edublocks_breadboards/LEDs_blink.rst
-    .. edublocks_breadboards/LEDs_brightness.rst
+    edublocks_breadboards/LEDs_blink.rst
+    edublocks_breadboards/LEDs_brightness.rst
 
     .. edublocks_breadboards/Motor_with_transistor_1.rst
     .. edublocks_breadboards/Motor_with_transistor_2.rst
