@@ -27,7 +27,7 @@ Index:
     edublocks_breadboards/LEDs_blink.rst
     edublocks_breadboards/LEDs_brightness.rst
 
-    .. edublocks_breadboards/Motor_with_transistor_1.rst
+    edublocks_breadboards/Motor_with_transistor_1.rst
     .. edublocks_breadboards/Motor_with_transistor_2.rst
     .. edublocks_breadboards/Motor_with_transistor_alt.rst
 
