@@ -28,10 +28,8 @@ Index:
     edublocks_breadboards/LEDs_brightness.rst
 
     edublocks_breadboards/Motor_with_transistor_1.rst
+    edublocks_breadboards/Motor_with_transistor_2.rst
 
-
-    .. edublocks_breadboards/Motor_with_transistor_2.rst
-    .. edublocks_breadboards/Motor_with_transistor_alt.rst
 
     .. edublocks_breadboards/Potentiometer.rst
     .. edublocks_breadboards/Potentiometer_with_LED.rst
