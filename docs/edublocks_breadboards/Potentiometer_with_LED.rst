@@ -20,7 +20,7 @@ Controlling LED brightness
 ----------------------------------------
 
 .. image:: images_edublocks/potentiometer_write.png
-    :scale: 25 %
+    :scale: 20 %
 
 ----
 
@@ -42,7 +42,7 @@ Challenge 1
 
 
 .. image:: images_edublocks/potentiometer_write2.png
-    :scale: 25 %
+    :scale: 20 %
 
 ----
 
@@ -54,7 +54,7 @@ Challenge 2
 | Hint: use ``1023 - pot_val``
 
 .. image:: images_edublocks/potentiometer_write2_reverse.png
-    :scale: 25 %
+    :scale: 20 %
 
 
 ----
@@ -74,7 +74,7 @@ Challenge 3
 
 
 .. image:: images_edublocks/potentiometer_write2_condition.png
-    :scale: 25 %
+    :scale: 20 %
 
 
 

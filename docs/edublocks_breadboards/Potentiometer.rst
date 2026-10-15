@@ -17,7 +17,7 @@ Reading the potentiometer analog value
 ----------------------------------------
 
 .. image:: images_edublocks/potentiometer_read.png
-    :scale: 25 %
+    :scale: 20 %
 
 ----
 
