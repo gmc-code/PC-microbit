@@ -17,13 +17,14 @@ Changing motor speed with a list
 ----------------------------------------
 
 .. image:: images_edublocks/Motor_analog_list.png
-    :scale: 25 %
+    :scale: 20 %
 
+----
 
 Changing motor speed via button A
 ----------------------------------------
 
 .. image:: images_edublocks/Motor_analog_btnA.png
-    :scale: 25 %
+    :scale: 20 %
 
 

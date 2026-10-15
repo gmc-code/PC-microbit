@@ -30,7 +30,7 @@ Control the Motor with Button A
 ----------------------------------------
 
 .. image:: images_edublocks/Motor_btnA.png
-    :scale: 25 %
+    :scale: 20 %
 
 ----
 
@@ -38,7 +38,7 @@ Control the Motor with Buttons A and B
 ----------------------------------------
 
 .. image:: images_edublocks/Motor_btnAB.png
-    :scale: 25 %
+    :scale: 20 %
 
 ----
 
@@ -46,5 +46,5 @@ Motor timing challenges
 ----------------------------------------
 
 .. image:: images_edublocks/Motor_btnAB_timing.png
-    :scale: 25 %
+    :scale: 20 %
 
