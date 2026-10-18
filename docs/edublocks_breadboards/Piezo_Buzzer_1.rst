@@ -2,26 +2,8 @@
 Piezo_Buzzer_1
 ====================================
 
-Making Sounds with a Piezo Buzzer
-====================================
-
-In this lesson you will learn how to:
-
-* Connect a piezo buzzer.
-* Use the ``music`` library.
-* Play single notes.
-* Play a short tune.
-
-----
-
 Build the circuit
 ----------------------------------------
-
-Follow these steps.
-
-#. Place the buzzer into the breadboard.
-#. Connect one side to **pin0**.
-#. Connect the other side to **Ground (0V)**.
 
 .. image:: images/buzzer_bb.png
     :scale: 50 %
@@ -36,6 +18,10 @@ Using the music library
 
 | To play sounds we need the ``music`` library.
 | If you are using: **A buzzer on a breadboard**, turn the built-in speaker **OFF** using ``speaker.off()``
+
+.. image:: images_edublocks/Motor_analog_list.png
+    :scale: 20 %
+
 
 .. code-block:: python
 
