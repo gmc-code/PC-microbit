@@ -33,9 +33,7 @@ Index:
     edublocks_breadboards/Potentiometer.rst
     edublocks_breadboards/Potentiometer_with_LED.rst
 
-    edublocks_breadboards/Piezo_Buzzer_1.rst
-    edublocks_breadboards/Piezo_Buzzer_2.rst
-    edublocks_breadboards/Piezo_Buzzer_3.rst
+    edublocks_breadboards/Piezo_Buzzer.rst
 
 
 
