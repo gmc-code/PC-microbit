@@ -6,9 +6,6 @@
 /* ========================================== */
 /* remove read the docs fly out menu          */
 /* ========================================== */
-.your-floating-element-class {
-    display: none !important;
-}
 
 .switch-menus {
     display: none !important;
@@ -162,21 +159,6 @@ details.sd-dropdown .sd-summary-up, details.sd-dropdown .sd-summary-down {
     padding: 0.2rem 0.5rem;
 }
 
-/* ========================================== */
-/* Hide sections from versions menu           */
-/* ========================================== */
-div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(5) {
-    display: none;
-}
-div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
-    display: none;
-}
-div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(3) {
-    display: none;
-}
-div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(1) {
-    display: none;
-}
 
 /* ========================================== */
 /* kbd role for keyboard shortcuts            */
