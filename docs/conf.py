@@ -44,6 +44,8 @@ extensions = [
     "structuredquestion.structuredquestion",  # custom directive
 ]
 
+# Make WeasyPrint respect the width/height that :scale: writes onto <img> tags
+simplepdf_weasyprint_flags = ['--presentational-hints']
 
 # for copybutton to allow use of :class: no-copybutton  in code blocks
 # copybutton_selector = "div:not(.no-copybutton) > div.highlight > pre"

@@ -314,6 +314,14 @@ code, pre {
         font-size: 0.9em;
     }
 
+
+    /* Cap image size in the PDF; keeps proportions */
+    img:not(.logo) {
+        max-width: 50% !important;
+        height: auto !important;
+    }
+
+
     /* FORCE PAGE BREAKS BEFORE TOP-LEVEL H3 */
     /* NOTE: check these selectors against the HTML simplepdf generates;
        in standard Sphinx output every h3 sits inside section > section > section,

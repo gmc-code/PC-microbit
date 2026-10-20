@@ -293,22 +293,39 @@
 
 /* ============================================================
    PRINT STYLESHEET
-   Prints every .sq-container in normal document flow.
 
-   Strategy: rather than hiding the page with `visibility: hidden`
+   Two parts:
+
+   A. "Questions only" mode — browser printing (Ctrl+P) of a page on
+      the Read the Docs site. Everything except the structured questions
+      is removed so the printout is a clean question sheet.
+      These rules are scoped to `body.wy-body-for-nav`, a class that only
+      the sphinx_rtd_theme puts on <body>. sphinx-simplepdf uses its own
+      theme without that class, so these rules never apply to the PDF
+      and the rest of the document prints normally there.
+      (If you change HTML theme, replace `body.wy-body-for-nav` with a
+      class that theme puts on <body>.)
+
+   B. General print tidy-up — applies everywhere, including simplepdf:
+      hide buttons and answer drawers, expand tabs, keep subquestions
+      together.
+
+   Part A strategy: rather than hiding the page with `visibility: hidden`
    (which still reserves space -> blank trailing pages) and pulling one
    container to the top with `position: absolute` (which makes multiple
-   containers overlap), we remove everything that is not part of a
-   structured question from layout with `display: none`, and flatten the
-   ancestors of the questions so they flow like a plain document.
-   Requires :has() (Chrome/Edge 105+, Safari 15.4+, Firefox 121+).
+   containers overlap), everything that is not part of a structured
+   question is removed from layout with `display: none`, and the
+   ancestors of the questions are flattened so they flow like a plain
+   document. Requires :has() (Chrome/Edge 105+, Safari 15.4+, Firefox 121+).
    ============================================================ */
 @media print {
   @page {
     margin: 1cm;
   }
 
-  html, body {
+  /* ---------- A. Questions-only mode (website printing only) ---------- */
+
+  body.wy-body-for-nav {
     height: auto !important;
     min-height: 0 !important;
     overflow: visible !important;
@@ -317,17 +334,17 @@
     background: #ffffff !important;
   }
 
-  /* 1. Remove from layout anything that neither contains nor is inside
-        a structured question (sidebars, nav, headings, other prose,
-        code blocks, footers...). */
-  body *:not(.sq-container):not(.sq-container *):not(:has(.sq-container)) {
+  /* A1. Remove from layout anything that neither contains nor is inside
+         a structured question (sidebars, nav, headings, other prose,
+         code blocks, footers...). */
+  body.wy-body-for-nav *:not(.sq-container):not(.sq-container *):not(:has(.sq-container)) {
     display: none !important;
   }
 
-  /* 2. Flatten the wrappers around the questions so theme layout
-        (sidebar margins, flex/grid columns, fixed widths) can't push
-        content sideways or leave gaps. */
-  body *:has(.sq-container) {
+  /* A2. Flatten the wrappers around the questions so theme layout
+         (sidebar margins, flex/grid columns, fixed widths) can't push
+         content sideways or leave gaps. */
+  body.wy-body-for-nav *:has(.sq-container) {
     display: block !important;
     position: static !important;
     float: none !important;
@@ -343,7 +360,20 @@
     background: transparent !important;
   }
 
-  /* 3. The questions themselves: normal flow, allowed to span pages */
+  /* A3. Start each question on a fresh page. Applied to every container
+         (not `~ .sq-container`) because Sphinx wraps each heading's
+         content in its own <section>, so containers usually aren't
+         siblings. A forced break before the first container doesn't
+         create a blank page.
+         Delete this rule to let questions run on continuously. */
+  body.wy-body-for-nav .sq-container {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  /* ---------- B. General print tidy-up (website and simplepdf) ---------- */
+
+  /* B1. The questions themselves: normal flow, allowed to span pages */
   .sq-container {
     display: block !important;
     position: static !important;
@@ -355,24 +385,14 @@
     page-break-inside: auto !important;
   }
 
-  /* Start each question on a fresh page. Applied to every container (not
-     `~ .sq-container`) because Sphinx wraps each heading's content in its
-     own <section>, so containers usually aren't siblings. A forced break
-     before the first container doesn't create a blank page.
-     Delete this rule to let questions run on continuously. */
-  .sq-container {
-    break-before: page !important;
-    page-break-before: always !important;
-  }
-
   .sq-header {
     break-after: avoid !important;
     page-break-after: avoid !important;
   }
 
-  /* 4. Expand all sphinx-design tabs so every subquestion prints.
-        sphinx-design draws the tab panel's top/bottom lines with both
-        `border` and `box-shadow`, so both are cleared here. */
+  /* B2. Expand all sphinx-design tabs so every subquestion prints.
+         sphinx-design draws the tab panel's top/bottom lines with both
+         `border` and `box-shadow`, so both are cleared here. */
   .sd-tab-set,
   .sd-tab-set .sd-tab-content {
     border: 0 !important;
@@ -393,10 +413,8 @@
     display: none !important;
   }
 
-  /* 5. Hide interactive UI components
-  ,
-  .sq-score-tracker
-  */
+  /* B3. Hide interactive UI components
+         (add .sq-score-tracker here to hide the score too) */
   .sq-answer-drawer,
   .sq-actions,
   .sq-btn,
@@ -404,7 +422,7 @@
     display: none !important;
   }
 
-  /* 6. Printable text areas */
+  /* B4. Printable text areas */
   .sq-textarea {
     border: 1px solid #aaa !important;
     box-shadow: none !important;
@@ -413,7 +431,7 @@
     resize: none !important;
   }
 
-  /* 7. Keep each subquestion / stimulus together on a page */
+  /* B5. Keep each subquestion / stimulus together on a page */
   .sq-subquestion,
   .sq-stimulus {
     page-break-inside: avoid !important;
