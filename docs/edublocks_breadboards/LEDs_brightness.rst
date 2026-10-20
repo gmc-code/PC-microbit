@@ -33,5 +33,5 @@ Using a list of brightness values
     :scale: 25 %
 
 
-    .. image:: images_edublocks/LED_012_list_brightness_btnAB.png
+.. image:: images_edublocks/LED_012_list_brightness_btnAB.png
     :scale: 25 %

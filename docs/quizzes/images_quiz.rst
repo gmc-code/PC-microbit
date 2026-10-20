@@ -8,8 +8,6 @@ Section 1: Multiple Choice
 .. mcqgroup::
     :show_instant_feedback:
 
-    Question 1
-    ----------
 
     .. multichoice::
 
