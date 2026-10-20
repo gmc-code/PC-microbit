@@ -8,20 +8,12 @@ Section 1: Multiple Choice
 .. mcqgroup::
     :show_instant_feedback:
 
-    Question 1
-    ----------
-
     .. multichoice::
 
         When iterating over a string like `word = "HELLO"` using a `for` loop, what does the loop variable hold during each step?
         [x] A single character/letter from the string | Correct! The loop works through one letter at a time.
         [ ] The entire word "HELLO" | Incorrect. `word` holds the full string, while the loop variable accesses one letter at a time.
         [ ] The index position of the letter | Incorrect. The loop yields each character directly rather than its index.
-
-    ----
-
-    Question 2
-    ----------
 
     .. multichoice::
 
@@ -30,10 +22,6 @@ Section 1: Multiple Choice
         [x] 0, 1, 2, 3, 4 | Correct! `range()` counts starting from 0 and stops right before the given number.
         [ ] 0, 1, 2, 3, 4, 5 | Incorrect. It always stops before reaching the specified limit.
 
-    ----
-
-    Question 3
-    ----------
 
     .. multichoice::
 
@@ -42,10 +30,6 @@ Section 1: Multiple Choice
         [x] 3 times | Correct! There are 3 items in the list, so the loop runs 3 times.
         [ ] 12 times | Incorrect. It iterates per item in the list, not per letter.
 
-    ----
-
-    Question 4
-    ----------
 
     .. multichoice::
 
@@ -54,10 +38,6 @@ Section 1: Multiple Choice
         [x] 1, 2, 3, 4, 5 | Correct! Adding 1 to each generated value (0 through 4) produces numbers 1 to 5.
         [ ] 1, 3, 5, 7, 9 | Incorrect. This would require multiplying by 2 or stepping by 2.
 
-    ----
-
-    Question 5
-    ----------
 
     .. multichoice::
 

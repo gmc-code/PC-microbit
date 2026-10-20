@@ -16,10 +16,6 @@ Section 1: Multiple Choice
         [ ] display.show(image.HEART) | Incorrect. The word "Image" must start with a capital "I".
         [ ] display.show(Image.heart) | Incorrect. Built-in image names like HEART must be in ALL CAPS.
 
-    ----
-
-    Question 2
-    ----------
 
     .. multichoice::
 
@@ -28,10 +24,6 @@ Section 1: Multiple Choice
         [x] In ALL CAPS letters | Correct! All built-in image names must be written in ALL CAPS.
         [ ] Inside quotation marks | Incorrect. You do not put quotation marks around image names.
 
-    ----
-
-    Question 3
-    ----------
 
     .. multichoice::
 
@@ -40,10 +32,6 @@ Section 1: Multiple Choice
         [x] display.show() | Correct! show() is used to display images on the screen.
         [ ] display.draw() | Incorrect. There is no draw() function in the microbit library.
 
-    ----
-
-    Question 4
-    ----------
 
     .. multichoice::
 
@@ -52,10 +40,6 @@ Section 1: Multiple Choice
         [x] A drop-down menu pops up showing available images. | Correct! The editor shows a list of images you can pick from.
         [ ] An error message appears on the screen. | Incorrect. Typing "Image." is correct syntax and will not trigger an error.
 
-    ----
-
-    Question 5
-    ----------
 
     .. multichoice::
 

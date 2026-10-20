@@ -8,9 +8,6 @@ Section 1: Multiple Choice
 .. mcqgroup::
     :show_instant_feedback:
 
-    Question 1
-    ----------
-
     .. multichoice::
 
         Which line must be placed at the very top of every microbit program?
@@ -18,10 +15,6 @@ Section 1: Multiple Choice
         [ ] import microbit | Incorrect. While valid Python, this forces you to write microbit.display.show() instead.
         [ ] from microbot import * | Incorrect. "microbit" is spelled wrong in this line.
 
-    ----
-
-    Question 2
-    ----------
 
     .. multichoice::
 
@@ -30,10 +23,6 @@ Section 1: Multiple Choice
         [x] The text does not move and letters appear one at a time. | Correct! display.show() displays stationary characters one by one.
         [ ] The letters flash on the screen all at the exact same time. | Incorrect. Each letter is shown sequentially, one after another.
 
-    ----
-
-    Question 3
-    ----------
 
     .. multichoice::
 
@@ -42,10 +31,6 @@ Section 1: Multiple Choice
         [x] 1 full second | Correct! 1000 milliseconds equals 1 full second.
         [ ] 10 seconds | Incorrect. 10 seconds would be written as sleep(10000).
 
-    ----
-
-    Question 4
-    ----------
 
     .. multichoice::
 
@@ -54,10 +39,6 @@ Section 1: Multiple Choice
         [x] It wipes the screen to make it completely blank. | Correct! display.clear() turns off all LEDs to blank the screen.
         [ ] It resets the microbit program back to line 1. | Incorrect. It only clears the screen lights, not the program state.
 
-    ----
-
-    Question 5
-    ----------
 
     .. multichoice::
 

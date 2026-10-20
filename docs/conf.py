@@ -124,7 +124,7 @@ html_theme_options = {
     'navigation_depth': 2,  # -1 for no limit, slow to build
     'includehidden': False,  # displays toctree that are hidden
     'titles_only': False,  # False so page subheadings are in the nav.
-    'flyout_display': 'attached',  # 'attached' so subheadings in nav
+    # 'flyout_display': 'attached',  # 'attached' so subheadings in nav
 }
 
 # -- RTDs logos -------------------------------

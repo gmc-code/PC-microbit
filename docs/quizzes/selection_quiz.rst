@@ -8,9 +8,6 @@ Section 1: Multiple Choice
 .. mcqgroup::
     :show_instant_feedback:
 
-    Question 1
-    ----------
-
     .. multichoice::
 
         Which method is used to check if Button A is currently being held down on the microbit?
@@ -18,10 +15,6 @@ Section 1: Multiple Choice
         [ ] button_a.was_pressed() | Incorrect. was_pressed() checks if the button was pressed since the last check.
         [ ] button_a.get_presses() | Incorrect. get_presses() returns the total count of button presses.
 
-    ----
-
-    Question 2
-    ----------
 
     .. multichoice::
 
@@ -30,10 +23,6 @@ Section 1: Multiple Choice
         [x] elif | Correct! "elif" stands for "else if" in Python.
         [ ] otherwise | Incorrect. "otherwise" is not a valid Python keyword.
 
-    ----
-
-    Question 3
-    ----------
 
     .. multichoice::
 
@@ -42,10 +31,6 @@ Section 1: Multiple Choice
         [x] When none of the preceding `if` or `elif` conditions are True. | Correct! `else` acts as the fallback option when no prior condition matches.
         [ ] Only when the program first starts up. | Incorrect. `else` evaluates every time through the loop when previous conditions are False.
 
-    ----
-
-    Question 4
-    ----------
 
     .. multichoice::
 
@@ -54,10 +39,6 @@ Section 1: Multiple Choice
         [ ] Both code blocks execute simultaneously. | Incorrect. Python evaluates sequentially and skips remaining elif blocks once a match is found.
         [ ] An error occurs and the microbit resets. | Incorrect. Python safely executes the first valid conditional branch.
 
-    ----
-
-    Question 5
-    ----------
 
     .. multichoice::
 
