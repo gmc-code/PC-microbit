@@ -50,6 +50,7 @@ Turn the potentiometer slowly. Watch what happens to the LED.
 
 .. ordering::
     :show-code:
+    :fixed: 2
 
     from microbit import *
 
@@ -132,6 +133,7 @@ Challenge 3
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2
 
     from microbit import *
 

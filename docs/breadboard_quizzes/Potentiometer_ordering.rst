@@ -9,7 +9,7 @@ Question 1
 
 .. ordering::
     :theme: light
-
+    :fixed: 2
     from microbit import *
 
     while True:
@@ -27,6 +27,7 @@ Question 2
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -45,6 +46,7 @@ Question 3
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -64,6 +66,7 @@ Question 4
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -84,7 +87,7 @@ Question 5
 
 .. ordering::
     :theme: light
-    :no-padding:
+    :fixed: 2
 
     from microbit import *
 
@@ -110,6 +113,7 @@ Question 6
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -133,6 +137,7 @@ Question 7
 .. ordering::
     :theme: light:
     :no-padding:
+    :fixed: 2
 
     from microbit import *
 

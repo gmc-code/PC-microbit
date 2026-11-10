@@ -131,6 +131,7 @@ Question 11
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -146,6 +147,7 @@ Question 12
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -161,6 +163,7 @@ Question 13
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -179,6 +182,7 @@ Question 14
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -197,6 +201,7 @@ Question 15
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 

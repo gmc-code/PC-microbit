@@ -1,0 +1,668 @@
+/* wordsearch directive — interactive behaviour */
+document.addEventListener("DOMContentLoaded", () => {
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const COLOURS = [
+    "#f59e0b", "#10b981", "#3b82f6", "#ec4899", "#8b5cf6", "#ef4444",
+    "#14b8a6", "#f97316", "#84cc16", "#06b6d4", "#d946ef", "#eab308",
+  ];
+
+  // One keyboard listener for the whole page. Keys go to the puzzle that was
+  // last clicked/focused, or to the only puzzle if there is just one.
+  const registry = [];
+  let activeEntry = null;
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    const target =
+      registry.find((r) => r.el.contains(document.activeElement)) ||
+      activeEntry ||
+      (registry.length === 1 ? registry[0] : null);
+    if (target && target.onKey(e)) e.preventDefault();
+  });
+
+  document.querySelectorAll(".wordsearch-block").forEach((block) => {
+    let puzzle;
+    try {
+      puzzle = JSON.parse(block.dataset.puzzle || "{}");
+    } catch (e) {
+      return;
+    }
+    const rows = puzzle.rows || puzzle.size;
+    const cols = puzzle.cols || puzzle.size;
+    let words = puzzle.words || [];
+    const grid = block.querySelector(".ws-grid:not(.ws-grid-key)");
+    const overlay = block.querySelector(".ws-overlay:not(.ws-overlay-key)");
+    const toolbar = block.querySelector(".ws-toolbar");
+    const status = block.querySelector(".ws-status");
+    const countEl = block.querySelector(".ws-count");
+    const answersMode = block.dataset.answers || "button";
+    const timerMode = block.dataset.timer || "";
+
+    // Keys for both directions of each word
+    const keyOf = (a, b) => `${a[0]},${a[1]}-${b[0]},${b[1]}`;
+    const lookup = new Map();
+    const buildLookup = () => {
+      lookup.clear();
+      words.forEach((w) => {
+        const first = w.cells[0];
+        const last = w.cells[w.cells.length - 1];
+        lookup.set(keyOf(first, last), w);
+        lookup.set(keyOf(last, first), w);
+      });
+    };
+    buildLookup();
+
+    // ---------------- New puzzle (for :seed: random) ----------------
+    // Same placement rules as the Python builder: longest words first,
+    // words may cross on matching letters unless noOverlap is set.
+    const shuffle = (arr) => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    };
+    const tryPlace = (letters, vectors, noOverlap) => {
+      const g = Array.from({ length: rows }, () => Array(cols).fill(null));
+      const placed = [];
+      const order = letters.map((_, i) => i).sort((a, b) => letters[b].length - letters[a].length);
+      for (const i of order) {
+        const w = letters[i];
+        const opts = [];
+        for (const [dr, dc] of vectors) {
+          for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+              const er = r + dr * (w.length - 1);
+              const ec = c + dc * (w.length - 1);
+              if (er < 0 || er >= rows || ec < 0 || ec >= cols) continue;
+              let ok = true;
+              let overlap = 0;
+              for (let k = 0; k < w.length; k++) {
+                const cur = g[r + dr * k][c + dc * k];
+                if (cur === null) continue;
+                if (noOverlap || cur !== w[k]) { ok = false; break; }
+                overlap++;
+              }
+              if (ok && overlap < w.length) opts.push([overlap, r, c, dr, dc]);
+            }
+          }
+        }
+        if (!opts.length) return null;
+        shuffle(opts);
+        if (!noOverlap && Math.random() < 0.35) opts.sort((a, b) => b[0] - a[0]);
+        const [, r, c, dr, dc] = opts[0];
+        const cells = [];
+        for (let k = 0; k < w.length; k++) {
+          g[r + dr * k][c + dc * k] = w[k];
+          cells.push([r + dr * k, c + dc * k]);
+        }
+        placed[i] = { id: i, cells };
+      }
+      return { g, placed };
+    };
+    const newPuzzle = () => {
+      const rg = puzzle.regen;
+      if (!rg) return;
+      let result = null;
+      for (let t = 0; t < 200 && !result; t++) {
+        result = tryPlace(rg.letters, rg.vectors, rg.noOverlap);
+      }
+      if (!result) return; // keep the current puzzle if no layout fits
+      const pool = rg.fill === "words" ? rg.letters.join("") : "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const { g, placed } = result;
+      for (let r = 0; r < rows; r++)
+        for (let c = 0; c < cols; c++)
+          if (g[r][c] === null) g[r][c] = pool[Math.floor(Math.random() * pool.length)];
+      // Update the live grid and the printed answer key
+      block.querySelectorAll(".ws-cell").forEach((el) => {
+        const ch = g[+el.dataset.r][+el.dataset.c];
+        el.textContent = rg.lower ? ch.toLowerCase() : ch;
+      });
+      const keySvg = block.querySelector(".ws-overlay-key");
+      if (keySvg) {
+        keySvg.innerHTML = placed
+          .map((w) => {
+            const a = w.cells[0];
+            const b = w.cells[w.cells.length - 1];
+            return `<line class="ws-key-line" x1="${a[1] + 0.5}" y1="${a[0] + 0.5}" x2="${b[1] + 0.5}" y2="${b[0] + 0.5}" />`;
+          })
+          .join("");
+      }
+      words = placed;
+      buildLookup();
+    };
+    // :seed: random — every page load gets its own puzzle
+    if (puzzle.regen) newPuzzle();
+
+    // :sort: random — shuffle the word/clue list on load and on Reset
+    const shuffleList = () => {
+      const list = block.querySelector(".ws-list");
+      if (!list || !puzzle.shuffleList) return;
+      shuffle([...list.children]).forEach((li) => list.appendChild(li));
+    };
+    shuffleList();
+
+    const found = new Set();
+    let revealed = false;
+
+    // ---------------- Toolbar ----------------
+    const mkBtn = (text, cls) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = `ws-btn ${cls}`;
+      b.textContent = text;
+      toolbar.appendChild(b);
+      return b;
+    };
+
+    let timerEl = null;
+    if (timerMode) {
+      timerEl = document.createElement("span");
+      timerEl.className = "ws-timer";
+      toolbar.appendChild(timerEl);
+    }
+    const btnReveal =
+      answersMode === "hidden" ? null : mkBtn("Show answers", "ws-btn-reveal");
+    const btnReset = mkBtn("Reset", "ws-btn-reset");
+    const btnPrint = mkBtn("🖨 Print", "ws-btn-print");
+
+    // ---------------- Settings (saved in this browser) ----------------
+    const THEMES = [["white", "White"], ["light", "Light"], ["dark", "Dark"],
+      ["auto", "Auto"], ["ocean", "Ocean"], ["forest", "Forest"],
+      ["sunset", "Sunset"], ["contrast", "High contrast"]];
+    const allowSettings = puzzle.settings !== false;
+    const blockIndex = [...document.querySelectorAll(".wordsearch-block")].indexOf(block);
+    const settingsKey = "wordsearch-settings:" + location.pathname + ":" + blockIndex;
+    const teacherTheme = (THEMES.find(([t]) => block.classList.contains("theme-" + t)) || ["white"])[0];
+    const teacher = { theme: teacherTheme, scale: 100, keyHints: puzzle.keyHints !== false };
+    let saved = null;
+    if (allowSettings) {
+      try { saved = JSON.parse(localStorage.getItem(settingsKey) || "null"); } catch (e) { saved = null; }
+    }
+    const settings = Object.assign({}, teacher, saved || {});
+    if (!THEMES.some(([t]) => t === settings.theme)) settings.theme = teacher.theme;
+    settings.scale = Math.min(160, Math.max(80, +settings.scale || 100));
+    const saveSettings = () => {
+      try { localStorage.setItem(settingsKey, JSON.stringify(settings)); } catch (e) { /* ignore */ }
+    };
+    const applyTheme = () => {
+      THEMES.forEach(([t]) => block.classList.remove("theme-" + t));
+      block.classList.add("theme-" + settings.theme);
+    };
+    const applyScale = () => {
+      const f = settings.scale / 100;
+      block.style.setProperty("--ws-scale", String(f));
+      // When the grid can't get any wider, bigger letters fill more of each square.
+      block.style.setProperty("--ws-letter", String(f > 1 ? Math.min(1.3, f) : 1));
+    };
+    applyTheme();
+    applyScale();
+
+    // Letter highlight: press a letter key to light up every cell with it
+    let keyHints = settings.keyHints;
+    const hintChip = document.createElement("span");
+    hintChip.className = "ws-hint-chip";
+    hintChip.hidden = !keyHints;
+    toolbar.insertBefore(hintChip, btnPrint);
+    btnPrint.title = "Print this word search";
+
+    let btnSettings = null;
+    let panel = null;
+    if (allowSettings) {
+      btnSettings = mkBtn("\u2699", "ws-btn-settings");
+      btnSettings.title = "Settings";
+      btnSettings.setAttribute("aria-label", "Settings");
+      btnSettings.setAttribute("aria-expanded", "false");
+
+      panel = document.createElement("div");
+      panel.className = "ws-settings";
+      panel.hidden = true;
+
+      const row = (label, control, extra) => {
+        const l = document.createElement("label");
+        l.className = "ws-set-row";
+        const span = document.createElement("span");
+        span.className = "ws-set-label";
+        span.textContent = label;
+        l.append(span, control);
+        if (extra) l.append(extra);
+        return l;
+      };
+
+      const themeSel = document.createElement("select");
+      themeSel.className = "ws-set-select";
+      THEMES.forEach(([v, label]) => {
+        const o = document.createElement("option");
+        o.value = v; o.textContent = label;
+        themeSel.append(o);
+      });
+      themeSel.value = settings.theme;
+      themeSel.addEventListener("change", () => {
+        settings.theme = themeSel.value; saveSettings(); applyTheme();
+      });
+
+      const sizeIn = document.createElement("input");
+      sizeIn.type = "range"; sizeIn.min = "80"; sizeIn.max = "160"; sizeIn.step = "10";
+      sizeIn.value = String(settings.scale);
+      const sizeVal = document.createElement("span");
+      sizeVal.className = "ws-set-val";
+      sizeVal.textContent = settings.scale + "%";
+      sizeIn.addEventListener("input", () => {
+        settings.scale = +sizeIn.value; sizeVal.textContent = sizeIn.value + "%";
+        saveSettings(); applyScale();
+      });
+
+      const hlIn = document.createElement("input");
+      hlIn.type = "checkbox"; hlIn.checked = keyHints;
+      const hlRow = document.createElement("label");
+      hlRow.className = "ws-set-row ws-set-check";
+      const hlText = document.createElement("span");
+      hlText.textContent = "Letter highlight (press a letter key)";
+      hlRow.append(hlIn, hlText);
+      hlIn.addEventListener("change", () => {
+        settings.keyHints = keyHints = hlIn.checked; saveSettings();
+        hintChip.hidden = !keyHints;
+        if (!keyHints) setHint(null); else applyHint();
+      });
+
+      const resetBtn = document.createElement("button");
+      resetBtn.type = "button";
+      resetBtn.className = "ws-set-reset";
+      resetBtn.textContent = "Reset settings";
+      resetBtn.addEventListener("click", () => {
+        try { localStorage.removeItem(settingsKey); } catch (e) { /* ignore */ }
+        Object.assign(settings, teacher);
+        themeSel.value = settings.theme; sizeIn.value = "100"; sizeVal.textContent = "100%";
+        hlIn.checked = keyHints = settings.keyHints;
+        hintChip.hidden = !keyHints;
+        if (!keyHints) setHint(null); else applyHint();
+        applyTheme(); applyScale();
+      });
+
+      panel.append(row("Theme", themeSel), row("Letter size", sizeIn, sizeVal), hlRow, resetBtn);
+      toolbar.after(panel);
+      btnSettings.addEventListener("click", () => {
+        panel.hidden = !panel.hidden;
+        btnSettings.setAttribute("aria-expanded", String(!panel.hidden));
+      });
+    }
+
+    // ---------------- Full screen ----------------
+    const btnFull = mkBtn("", "ws-btn-fullscreen");
+    // A drawn icon rather than the ⛶ character, which isn't in most fonts
+    // and made this button taller than the others.
+    btnFull.innerHTML = '<svg class="ws-full-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const isFull = () => document.fullscreenElement === block || document.webkitFullscreenElement === block;
+    const fitFull = () => {
+      // Room left below the title and toolbar, so the grid fits the screen.
+      const wrap = block.querySelector(".ws-body .ws-grid-wrap");
+      if (!wrap) return;
+      wrap.style.width = "";
+      const top = wrap.getBoundingClientRect().top - block.getBoundingClientRect().top + block.scrollTop;
+      const pad = parseFloat(getComputedStyle(block).paddingBottom) || 0;
+      block.style.setProperty("--ws-fs-avail", Math.max(200, block.clientHeight - top - pad - 8) + "px");
+    };
+    const updateFull = () => {
+      const on = isFull();
+      block.classList.toggle("ws-full", on);
+      btnFull.title = on ? "Exit full screen (Esc)" : "Full screen";
+      btnFull.setAttribute("aria-label", btnFull.title);
+      btnFull.classList.toggle("ws-btn-on", on);
+      if (on) requestAnimationFrame(fitFull);
+      else block.style.removeProperty("--ws-fs-avail");
+    };
+    btnFull.addEventListener("click", () => {
+      if (isFull()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else if (block.requestFullscreen) block.requestFullscreen().catch(() => {});
+      else if (block.webkitRequestFullscreen) block.webkitRequestFullscreen();
+    });
+    document.addEventListener("fullscreenchange", updateFull);
+    document.addEventListener("webkitfullscreenchange", updateFull);
+    window.addEventListener("resize", () => { if (isFull()) fitFull(); });
+    updateFull();
+
+    // Print just this puzzle (plus its answer key page, if it has one).
+    // The puzzle is copied into a hidden frame so the rest of the page
+    // isn't printed and page breaks still work.
+    btnPrint.addEventListener("click", () => {
+      const cssLink = document.querySelector('link[href*="wordsearch.css"]');
+      const cssHref = cssLink ? cssLink.href : "";
+      const title = (block.querySelector(".ws-title") || {}).textContent || "Word search";
+      const frame = document.createElement("iframe");
+      frame.setAttribute("aria-hidden", "true");
+      frame.style.cssText =
+        "position:fixed;right:0;bottom:0;width:0;height:0;border:0;";
+      document.body.appendChild(frame);
+      const doc = frame.contentDocument;
+      doc.open();
+      doc.write(
+        `<!doctype html><html><head><meta charset="utf-8"><title>${title.replace(/</g, "&lt;")}</title>` +
+          (cssHref ? `<link rel="stylesheet" href="${cssHref}">` : "") +
+          `<style>body{margin:1.2cm;font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:#000;}` +
+          `@page{margin:1.2cm;} @media print{body{margin:0;}}</style>` +
+          `</head><body>${block.outerHTML}</body></html>`
+      );
+      doc.close();
+      let printed = false;
+      const go = () => {
+        if (printed) return;
+        printed = true;
+        frame.contentWindow.focus();
+        frame.contentWindow.print();
+        setTimeout(() => frame.remove(), 1000);
+      };
+      frame.addEventListener("load", go);
+      setTimeout(go, 1500); // in case the load event already fired
+    });
+
+    // ---------------- Timer ----------------
+    let startTime = null;
+    let timerId = null;
+    let timeUp = false;
+    const countdown = timerMode && timerMode !== "up" ? parseInt(timerMode, 10) : 0;
+    const fmt = (s) => {
+      s = Math.max(0, Math.round(s));
+      return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+    };
+    const elapsed = () => (startTime ? (Date.now() - startTime) / 1000 : 0);
+    const drawTimer = () => {
+      if (!timerEl) return;
+      if (countdown) {
+        const left = countdown - elapsed();
+        timerEl.textContent = `⏱ ${fmt(left)}`;
+        timerEl.classList.toggle("ws-timer-low", left <= 30 && left > 0);
+        if (left <= 0 && !timeUp) {
+          timeUp = true;
+          stopTimer();
+          timerEl.classList.add("ws-timer-up");
+          setStatus(`Time's up! You found ${found.size} of ${words.length}.`, "low");
+        }
+      } else {
+        timerEl.textContent = `⏱ ${fmt(elapsed())}`;
+      }
+    };
+    const startTimer = () => {
+      if (!timerMode || startTime || revealed) return;
+      startTime = Date.now();
+      timerId = setInterval(drawTimer, 250);
+    };
+    const stopTimer = () => {
+      clearInterval(timerId);
+      timerId = null;
+    };
+    drawTimer();
+
+    // ---------------- Helpers ----------------
+    const setStatus = (text, level) => {
+      status.textContent = text;
+      status.className = "ws-status" + (level ? ` ws-status-${level}` : "");
+    };
+    const updateCount = () => {
+      if (countEl) countEl.textContent = `(${found.size} / ${words.length})`;
+    };
+    const cellFromPoint = (x, y) => {
+      const el = document.elementFromPoint(x, y);
+      if (!el || !el.classList.contains("ws-cell") || !grid.contains(el)) return null;
+      return [parseInt(el.dataset.r, 10), parseInt(el.dataset.c, 10)];
+    };
+    const makeLine = (a, b, cls, colour) => {
+      const ln = document.createElementNS(SVGNS, "line");
+      ln.setAttribute("x1", a[1] + 0.5);
+      ln.setAttribute("y1", a[0] + 0.5);
+      ln.setAttribute("x2", b[1] + 0.5);
+      ln.setAttribute("y2", b[0] + 0.5);
+      ln.setAttribute("class", cls);
+      if (colour) ln.style.stroke = colour;
+      overlay.appendChild(ln);
+      return ln;
+    };
+    // Snap the end cell onto one of the 8 straight-line directions
+    const snap = (a, b) => {
+      const dr = b[0] - a[0];
+      const dc = b[1] - a[1];
+      if (dr === 0 && dc === 0) return b;
+      const ang = Math.atan2(dr, dc);
+      const oct = Math.round(ang / (Math.PI / 4));
+      const ur = Math.round(Math.sin((oct * Math.PI) / 4));
+      const uc = Math.round(Math.cos((oct * Math.PI) / 4));
+      let len = Math.max(Math.abs(dr), Math.abs(dc));
+      // keep within grid
+      while (len > 0) {
+        const r = a[0] + ur * len;
+        const c = a[1] + uc * len;
+        if (r >= 0 && r < rows && c >= 0 && c < cols) break;
+        len--;
+      }
+      return [a[0] + ur * len, a[1] + uc * len];
+    };
+    const markCells = (cells, on) => {
+      cells.forEach(([r, c]) => {
+        const el = grid.querySelector(`.ws-cell[data-r="${r}"][data-c="${c}"]`);
+        if (el) el.classList.toggle("ws-cell-found", on);
+      });
+    };
+
+    const markFound = (w, byReveal) => {
+      if (found.has(w.id)) return;
+      found.add(w.id);
+      const colour = COLOURS[found.size % COLOURS.length];
+      makeLine(
+        w.cells[0],
+        w.cells[w.cells.length - 1],
+        byReveal ? "ws-line ws-line-revealed" : "ws-line ws-line-found",
+        byReveal ? null : colour
+      );
+      markCells(w.cells, true);
+      const li = block.querySelector(`.ws-item[data-id="${w.id}"]`);
+      if (li) {
+        li.classList.add(byReveal ? "ws-item-revealed" : "ws-item-found");
+        if (!byReveal) li.style.setProperty("--ws-found", colour);
+      }
+      updateCount();
+    };
+
+    // ---------------- Selection ----------------
+    let anchor = null; // start cell
+    let dragging = false;
+    let moved = false;
+    let tapAnchor = null; // for tap-tap selection
+    let tempLine = null;
+
+    const clearTemp = () => {
+      if (tempLine) tempLine.remove();
+      tempLine = null;
+      grid.querySelectorAll(".ws-cell-anchor").forEach((c) => c.classList.remove("ws-cell-anchor"));
+    };
+    const showTemp = (a, b) => {
+      if (!tempLine) tempLine = makeLine(a, b, "ws-line ws-line-temp");
+      tempLine.setAttribute("x1", a[1] + 0.5);
+      tempLine.setAttribute("y1", a[0] + 0.5);
+      tempLine.setAttribute("x2", b[1] + 0.5);
+      tempLine.setAttribute("y2", b[0] + 0.5);
+    };
+    const tryWord = (a, b) => {
+      const w = lookup.get(keyOf(a, b));
+      if (w && !found.has(w.id)) {
+        markFound(w, false);
+        if (found.size === words.length) finish();
+        else setStatus("");
+        return true;
+      }
+      if (w && found.has(w.id)) setStatus("Already found!", "medium");
+      else {
+        setStatus("Not a word in the list — try again.", "low");
+        grid.classList.add("ws-shake");
+        setTimeout(() => grid.classList.remove("ws-shake"), 350);
+      }
+      return false;
+    };
+
+    const finish = () => {
+      stopTimer();
+      let msg = `🎉 All ${words.length} words found!`;
+      if (timerMode) {
+        msg += countdown
+          ? ` ${fmt(countdown - elapsed())} to spare.`
+          : ` Time: ${fmt(elapsed())}.`;
+      }
+      setStatus(msg, "high");
+      block.classList.add("ws-complete");
+      if (btnReveal) btnReveal.disabled = true;
+    };
+
+    const locked = () => revealed || found.size === words.length;
+
+    grid.addEventListener("pointerdown", (e) => {
+      if (locked()) return;
+      const cell = cellFromPoint(e.clientX, e.clientY);
+      if (!cell) return;
+      e.preventDefault();
+      block.focus({ preventScroll: true });
+      startTimer();
+      anchor = tapAnchor || cell;
+      dragging = true;
+      moved = false;
+      if (!tapAnchor) {
+        clearTemp();
+        showTemp(anchor, anchor);
+      }
+    });
+
+    window.addEventListener("pointermove", (e) => {
+      if (!dragging || !anchor) return;
+      const cell = cellFromPoint(e.clientX, e.clientY);
+      if (!cell) return;
+      const end = snap(anchor, cell);
+      if (end[0] !== anchor[0] || end[1] !== anchor[1]) moved = true;
+      showTemp(anchor, end);
+    });
+
+    window.addEventListener("pointerup", (e) => {
+      if (!dragging) return;
+      dragging = false;
+      const cell = cellFromPoint(e.clientX, e.clientY);
+      const end = cell ? snap(anchor, cell) : null;
+
+      if (tapAnchor) {
+        // second tap of a tap-tap selection
+        const a = tapAnchor;
+        tapAnchor = null;
+        clearTemp();
+        if (end && (end[0] !== a[0] || end[1] !== a[1])) tryWord(a, end);
+        anchor = null;
+        return;
+      }
+      if (!moved || !end || (end[0] === anchor[0] && end[1] === anchor[1])) {
+        // first tap — remember it and wait for the second tap
+        tapAnchor = anchor;
+        clearTemp();
+        const el = grid.querySelector(
+          `.ws-cell[data-r="${anchor[0]}"][data-c="${anchor[1]}"]`
+        );
+        if (el) el.classList.add("ws-cell-anchor");
+        anchor = null;
+        return;
+      }
+      clearTemp();
+      tryWord(anchor, end);
+      anchor = null;
+    });
+
+    // ---------------- Letter highlight ----------------
+    let hintLetter = null;
+    const applyHint = () => {
+      let count = 0;
+      grid.querySelectorAll(".ws-cell").forEach((c) => {
+        const on = !!hintLetter && c.textContent.toUpperCase() === hintLetter;
+        c.classList.toggle("ws-cell-hint", on);
+        if (on) count++;
+      });
+      if (hintLetter) {
+        hintChip.classList.add("ws-hint-on");
+        hintChip.innerHTML = "";
+        const label = document.createElement("span");
+        label.textContent = `${hintLetter} × ${count}`;
+        const x = document.createElement("button");
+        x.type = "button";
+        x.className = "ws-hint-clear";
+        x.title = "Clear highlight (Esc)";
+        x.textContent = "✕";
+        x.addEventListener("click", () => setHint(null));
+        hintChip.append(label, x);
+      } else {
+        hintChip.classList.remove("ws-hint-on");
+        hintChip.textContent = "⌨ Type a letter";
+        hintChip.title = "Press a letter key to highlight it in the grid";
+      }
+    };
+    const setHint = (letter) => {
+      hintLetter = letter;
+      applyHint();
+    };
+    applyHint();
+
+    const entry = {
+      el: block,
+      onKey: (e) => {
+        if (e.key === "Escape") {
+          const had = tapAnchor || hintLetter;
+          tapAnchor = null;
+          clearTemp();
+          if (hintLetter) setHint(null);
+          return !!had;
+        }
+        if (keyHints && e.key.length === 1 && /[a-z0-9]/i.test(e.key)) {
+          const L = e.key.toUpperCase();
+          setHint(hintLetter === L ? null : L); // same key again clears
+          return true;
+        }
+        return false;
+      },
+    };
+    registry.push(entry);
+    block.setAttribute("tabindex", "0");
+    block.addEventListener("pointerdown", () => { activeEntry = entry; });
+    block.addEventListener("focusin", () => { activeEntry = entry; });
+
+    // ---------------- Buttons ----------------
+    const reveal = () => {
+      revealed = true;
+      stopTimer();
+      const before = found.size;
+      words.forEach((w) => markFound(w, true));
+      setStatus(`Answers shown. You found ${before} of ${words.length}.`, "medium");
+      if (btnReveal) btnReveal.disabled = true;
+    };
+    if (btnReveal) btnReveal.addEventListener("click", reveal);
+
+    btnReset.addEventListener("click", () => {
+      found.clear();
+      revealed = false;
+      timeUp = false;
+      tapAnchor = null;
+      overlay.innerHTML = "";
+      tempLine = null;
+      grid.querySelectorAll(".ws-cell").forEach((c) =>
+        c.classList.remove("ws-cell-found", "ws-cell-anchor")
+      );
+      block.querySelectorAll(".ws-item").forEach((li) => {
+        li.classList.remove("ws-item-found", "ws-item-revealed");
+        li.style.removeProperty("--ws-found");
+      });
+      block.classList.remove("ws-complete");
+      if (btnReveal) btnReveal.disabled = false;
+      stopTimer();
+      startTime = null;
+      if (timerEl) timerEl.classList.remove("ws-timer-up", "ws-timer-low");
+      drawTimer();
+      newPuzzle();
+      shuffleList();
+      if (keyHints) setHint(null);
+      updateCount();
+      setStatus(puzzle.regen ? "New puzzle!" : "");
+    });
+
+    if (answersMode === "shown") reveal();
+  });
+});

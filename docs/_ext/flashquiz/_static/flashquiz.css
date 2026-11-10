@@ -1,0 +1,765 @@
+/* ============================================================
+   flashquiz – timed question / answer slideshow
+   ============================================================ */
+
+.flashquiz {
+  --fq-accent: #ffc93c;
+  /* Dark theme (default) */
+  --fq-bg: #0f1b2d;
+  --fq-bg-2: #1b2e4a;
+  --fq-text: #ffffff;
+  --fq-muted: #9fb3c8;
+  --fq-ink: #0f1b2d;
+  --fq-unit: #3fa7d6;
+  --fq-frame: transparent;
+  --fq-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  --fq-toolbar: #0a1422;
+  --fq-btn-bg: rgba(255, 255, 255, 0.06);
+  --fq-btn-border: rgba(255, 255, 255, 0.18);
+  --fq-btn-hover: rgba(255, 255, 255, 0.16);
+  --fq-btn-text: #ffffff;
+  --fq-track: rgba(255, 255, 255, 0.12);
+  --fq-accent-text: var(--fq-accent);
+  --fq-panel-bg: #13233a;
+  --fq-panel-text: #e2e8f0;
+  --fq-panel-muted: #b6c4d6;
+  --fq-panel-border: #2a3f5f;
+  --fq-link: #7cc4f0;
+  --fq-num-bg: #1b2e4a;
+  --fq-num-text: #ffffff;
+  --fq-current-ring: #ffffff;
+
+  max-width: 900px;
+  margin: 1.5rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--fq-bg);
+  color: var(--fq-text);
+  border: 1px solid var(--fq-frame);
+  box-shadow: var(--fq-shadow);
+  font-family: inherit;
+  outline: none;
+  container-type: inline-size;
+}
+
+.flashquiz:focus-visible {
+  box-shadow: 0 0 0 3px #3fa7d6, var(--fq-shadow);
+}
+
+/* ---------- Themes ----------
+   Dark is the default (above). Light is set with the fq-theme-light
+   class; fq-theme-auto follows the computer's light/dark setting.
+   ocean, forest, sunset and contrast are the shared colour sets used by
+   all the game directives; they start from the light theme. */
+
+.flashquiz.fq-theme-light,
+.flashquiz.fq-theme-ocean,
+.flashquiz.fq-theme-forest,
+.flashquiz.fq-theme-sunset,
+.flashquiz.fq-theme-contrast {
+  --fq-bg: #ffffff;
+  --fq-bg-2: #eef3f9;
+  --fq-text: #0f1b2d;
+  --fq-muted: #475569;
+  --fq-ink: #0f1b2d;
+  --fq-unit: #1d6fa5;
+  --fq-frame: #d5dee9;
+  --fq-shadow: 0 2px 10px rgba(15, 27, 45, 0.10);
+  --fq-toolbar: #f1f5f9;
+  --fq-btn-bg: #ffffff;
+  --fq-btn-border: #cbd5e1;
+  --fq-btn-hover: #e2e8f0;
+  --fq-btn-text: #0f1b2d;
+  --fq-track: rgba(15, 27, 45, 0.10);
+  /* Bright unit colours are too pale as text on white, so darken them */
+  --fq-accent-text: color-mix(in srgb, var(--fq-accent) 45%, #0f1b2d);
+  --fq-panel-bg: #f8fafc;
+  --fq-panel-text: #1e293b;
+  --fq-panel-muted: #334155;
+  --fq-panel-border: #cbd5e1;
+  --fq-link: #2563eb;
+  --fq-num-bg: #ffffff;
+  --fq-num-text: #0f1b2d;
+  --fq-current-ring: #0f1b2d;
+}
+
+@media (prefers-color-scheme: light) {
+  .flashquiz.fq-theme-auto {
+    --fq-bg: #ffffff;
+    --fq-bg-2: #eef3f9;
+    --fq-text: #0f1b2d;
+    --fq-muted: #475569;
+    --fq-ink: #0f1b2d;
+    --fq-unit: #1d6fa5;
+    --fq-frame: #d5dee9;
+    --fq-shadow: 0 2px 10px rgba(15, 27, 45, 0.10);
+    --fq-toolbar: #f1f5f9;
+    --fq-btn-bg: #ffffff;
+    --fq-btn-border: #cbd5e1;
+    --fq-btn-hover: #e2e8f0;
+    --fq-btn-text: #0f1b2d;
+    --fq-track: rgba(15, 27, 45, 0.10);
+    /* Bright unit colours are too pale as text on white, so darken them */
+    --fq-accent-text: color-mix(in srgb, var(--fq-accent) 45%, #0f1b2d);
+    --fq-panel-bg: #f8fafc;
+    --fq-panel-text: #1e293b;
+    --fq-panel-muted: #334155;
+    --fq-panel-border: #cbd5e1;
+    --fq-link: #2563eb;
+    --fq-num-bg: #ffffff;
+    --fq-num-text: #0f1b2d;
+    --fq-current-ring: #0f1b2d;
+}
+}
+
+/* Shared colour sets */
+.flashquiz.fq-theme-ocean {
+  --fq-bg: #f4fbfb; --fq-bg-2: #d1f2eb; --fq-toolbar: #e8f6f3; --fq-frame: #a3e4d7;
+  --fq-unit: #138d90; --fq-panel-bg: #f4fbfb; --fq-panel-border: #a3e4d7;
+  --fq-btn-border: #a3e4d7; --fq-btn-hover: #d1f2eb; --fq-link: #117864;
+}
+.flashquiz.fq-theme-forest {
+  --fq-bg: #f6faf2; --fq-bg-2: #dcedc8; --fq-toolbar: #eef3e6; --fq-frame: #c5e1a5;
+  --fq-unit: #2e7d32; --fq-panel-bg: #f6faf2; --fq-panel-border: #c5e1a5;
+  --fq-btn-border: #c5e1a5; --fq-btn-hover: #dcedc8; --fq-link: #2e7d32;
+}
+.flashquiz.fq-theme-sunset {
+  --fq-bg: #fffaf5; --fq-bg-2: #fde3cf; --fq-toolbar: #fbeee4; --fq-frame: #f9c9a5;
+  --fq-unit: #c0510a; --fq-panel-bg: #fffaf5; --fq-panel-border: #f9c9a5;
+  --fq-btn-border: #f9c9a5; --fq-btn-hover: #fde3cf; --fq-link: #a24408;
+}
+.flashquiz.fq-theme-contrast {
+  --fq-bg: #ffffff; --fq-bg-2: #e0e0e0; --fq-toolbar: #e0e0e0; --fq-frame: #000000;
+  --fq-text: #000000; --fq-muted: #000000; --fq-ink: #000000; --fq-unit: #0033cc;
+  --fq-btn-border: #000000; --fq-btn-text: #000000; --fq-panel-bg: #ffffff;
+  --fq-panel-text: #000000; --fq-panel-muted: #000000; --fq-panel-border: #000000;
+  --fq-link: #0033cc; --fq-track: #bdbdbd;
+  --fq-accent-text: color-mix(in srgb, var(--fq-accent) 30%, #000000);
+}
+
+/* ---------- Stage (the "slide") ---------- */
+
+.fq-stage {
+  position: relative;
+  /* 16:9 on wide screens, but never shorter than 300px on a phone */
+  min-height: max(300px, 56.25cqw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: max(4%, 3.4rem) 6% 4%;
+  text-align: center;
+  container-type: inline-size;
+  transition: background-color 0.4s ease;
+}
+
+.fq-stage.fq-is-section {
+  background: var(--fq-bg-2);
+}
+
+.fq-unit {
+  position: absolute;
+  top: 4.5%;
+  left: 4%;
+  right: 16%;
+  text-align: left;
+  font-size: clamp(0.7rem, 2cqi, 1.1rem);
+  font-weight: 700;
+  color: var(--fq-unit);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fq-num {
+  position: absolute;
+  top: 3.5%;
+  right: 3.5%;
+  width: 8cqi;
+  height: 8cqi;
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fq-accent);
+  color: var(--fq-ink);
+  font-weight: 800;
+  font-size: clamp(0.8rem, 2.6cqi, 1.6rem);
+}
+
+.fq-question {
+  font-size: clamp(1.1rem, 5cqi, 3.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  max-width: 92%;
+  margin-bottom: 6%;
+}
+
+.fq-answer {
+  display: inline-block;
+  min-width: 40%;
+  padding: 2.2cqi 5cqi;
+  border-radius: 2cqi;
+  background: var(--fq-accent);
+  color: var(--fq-ink);
+  font-size: clamp(1.1rem, 5.6cqi, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  cursor: pointer;
+}
+
+/* The hidden answer keeps its space so the question doesn't jump. */
+.fq-answer.fq-shown {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fq-section-title {
+  font-size: clamp(1.4rem, 6.4cqi, 4.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.fq-section-sub {
+  margin-top: 3%;
+  font-size: clamp(0.9rem, 2.8cqi, 1.8rem);
+  color: var(--fq-accent-text);
+  font-weight: 600;
+}
+
+/* Fade between slides */
+.fq-slide {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fq-fade-in 0.4s ease;
+}
+
+@keyframes fq-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- Start / end screens ---------- */
+
+.fq-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3cqi;
+}
+
+.fq-start-title {
+  font-size: clamp(1.4rem, 6.4cqi, 4.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.fq-start-sub {
+  font-size: clamp(0.9rem, 2.8cqi, 1.8rem);
+  color: var(--fq-accent-text);
+  font-weight: 600;
+}
+
+/* ---------- Tagging for review ---------- */
+
+.fq-start-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2cqi;
+}
+
+.fq-btn-big.fq-review-btn {
+  background: transparent;
+  color: var(--fq-text);
+  border: 2px solid var(--fq-accent);
+}
+
+.fq-btn-big.fq-review-btn:hover {
+  background: var(--fq-btn-hover);
+}
+
+/* Flag on the slide, just left of the number circle.
+   Faint until the question is tagged; click it to tag. */
+.fq-tag-badge {
+  position: absolute;
+  top: 3.5%;
+  right: calc(3.5% + max(8cqi, 2rem) + 1.2cqi);
+  width: max(8cqi, 2rem);
+  height: max(8cqi, 2rem);
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--fq-text);
+  font-size: clamp(0.9rem, 3.4cqi, 2rem);
+  line-height: 1;
+  opacity: 0.22;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.fq-tag-badge:hover,
+.fq-tag-badge:focus-visible {
+  opacity: 0.6;
+  outline: none;
+}
+
+.fq-tagged .fq-tag-badge {
+  opacity: 1;
+  color: #ff5a5f;
+  transform: scale(1.1);
+}
+
+.fq-btn.fq-tag.fq-on {
+  background: #ff5a5f;
+  border-color: #ff5a5f;
+  color: #ffffff;
+}
+
+.fq-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.fq-jump-num.fq-jump-tagged {
+  position: relative;
+}
+
+.fq-jump-num.fq-jump-tagged::after {
+  content: "\2691";
+  position: absolute;
+  top: -0.55em;
+  right: -0.35em;
+  font-size: 0.75rem;
+  color: #e5383b;
+}
+
+.fq-tag-line {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+}
+
+/* ---------- Countdown bar ---------- */
+
+.fq-timer {
+  height: 6px;
+  background: var(--fq-track);
+}
+
+.fq-timer[hidden] {
+  display: none;
+}
+
+.fq-timer-bar {
+  height: 100%;
+  width: 0;
+  background: var(--fq-accent);
+  opacity: 0.5;  /* 50% transparent */
+}
+
+/* ---------- Toolbar ---------- */
+
+.fq-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--fq-toolbar);
+}
+
+.fq-spacer {
+  flex: 1;
+}
+
+.fq-progress {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--fq-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.fq-btn {
+  min-width: 2.4rem;
+  height: 2.2rem;
+  padding: 0 0.6rem;
+  border: 1px solid var(--fq-btn-border);
+  border-radius: 6px;
+  background: var(--fq-btn-bg);
+  color: var(--fq-btn-text);
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.fq-btn:hover {
+  background: var(--fq-btn-hover);
+}
+
+/* Brief flash when a long-press on ◀◀ / ▶▶ skips a section */
+.fq-btn.fq-long {
+  background: var(--fq-accent);
+  color: var(--fq-ink);
+}
+
+.fq-prev,
+.fq-next {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.fq-btn:focus-visible {
+  outline: 2px solid #3fa7d6;
+  outline-offset: 1px;
+}
+
+.fq-btn-big {
+  height: auto;
+  padding: 0.7em 1.6em;
+  font-size: clamp(1rem, 3cqi, 1.8rem);
+  font-weight: 700;
+  background: var(--fq-accent);
+  color: var(--fq-ink);
+  border: none;
+  border-radius: 999px;
+}
+
+.fq-btn-big:hover {
+  background: var(--fq-accent);
+  filter: brightness(1.08);
+}
+
+/* ---------- Numbered-question grid ---------- */
+
+.fq-jump {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 0.8rem 1rem 1rem;
+  background: var(--fq-panel-bg);
+  color: var(--fq-panel-text);
+  border-top: 1px solid var(--fq-panel-border);
+  font-size: 0.92rem;
+}
+
+.fq-jump[hidden] {
+  display: none;
+}
+
+.fq-jump-head {
+  margin-bottom: 0.4rem;
+}
+
+.fq-jump-sec {
+  margin: 0.6rem 0 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--fq-panel-muted);
+}
+
+.fq-jump-nums {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.fq-jump-num {
+  min-width: 2.3rem;
+  height: 2.1rem;
+  padding: 0 0.35rem;
+  border: 2px solid var(--fq-num-col, #ffc93c);
+  border-radius: 6px;
+  background: var(--fq-num-bg);
+  color: var(--fq-num-text);
+  font: inherit;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.fq-jump-num:hover,
+.fq-jump-num:focus-visible {
+  background: var(--fq-num-col, #ffc93c);
+  color: #0f1b2d;
+  outline: none;
+}
+
+.fq-jump-num.fq-jump-current {
+  background: var(--fq-num-col, #ffc93c);
+  color: #0f1b2d;
+  box-shadow: 0 0 0 2px var(--fq-current-ring);
+}
+
+.flashquiz:fullscreen .fq-jump {
+  max-height: 40vh;
+}
+
+.flashquiz:fullscreen.fq-idle .fq-jump {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Settings panel ---------- */
+
+.fq-settings {
+  padding: 0.7rem 1rem 0.75rem;
+  background: var(--fq-panel-bg);
+  color: var(--fq-panel-text);
+  border-top: 1px solid var(--fq-panel-border);
+  font-size: 0.88rem;
+}
+
+.fq-settings[hidden] {
+  display: none;
+}
+
+/* Compact layout: timings on row 1, switches and theme on row 2,
+   tags and sections on row 3. */
+.fq-set-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 1rem;
+}
+
+.fq-set-row + .fq-set-row { margin-top: 0.5rem; }
+
+.fq-set-row > label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.fq-set-row input[type="range"] { width: 6rem; }
+
+.fq-val-q, .fq-val-a, .fq-val-s {
+  display: inline-block;
+  min-width: 1.6em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fq-set-row3 {
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--fq-panel-border);
+  gap: 0.35rem 1rem;
+}
+
+/* Sections heading on the left above its list; tag count on the right. */
+.fq-set-row3 .fq-sections-head { order: 1; }
+.fq-set-row3 .fq-tag-line { order: 2; margin-left: auto; white-space: nowrap; }
+.fq-set-row3 .fq-sections { order: 3; }
+
+.fq-sections-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
+.fq-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--fq-link);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Section tick boxes: a tidy list under row 3, two columns when there's room. */
+.fq-sections {
+  flex-basis: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.2rem 1rem;
+  margin-top: 0.1rem;
+}
+.fq-sections label { min-width: 0; }
+.fq-sections[hidden], .fq-sections-head[hidden] { display: none !important; }
+
+.fq-sections label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fq-swatch {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  flex: none;
+}
+
+/* The page theme (e.g. Read the Docs) colours <label> text itself;
+   use the quiz theme's colour instead so labels show in dark mode. */
+.fq-settings label,
+.fq-jump-head,
+.fq-sections-head strong {
+  color: var(--fq-panel-text);
+}
+
+.fq-in-theme {
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--fq-panel-border);
+  border-radius: 5px;
+  background: var(--fq-num-bg);
+  color: var(--fq-panel-text);
+  font: inherit;
+  font-weight: 400;
+}
+
+/* ---------- Full screen ---------- */
+
+.flashquiz:fullscreen {
+  max-width: none;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.flashquiz:fullscreen .fq-stage {
+  flex: 1;
+  min-height: 0;
+}
+
+.flashquiz:fullscreen .fq-settings {
+  max-height: 40vh;
+  overflow: auto;
+}
+
+/* Hide the toolbar in full screen until the mouse moves */
+.flashquiz:fullscreen.fq-idle .fq-toolbar,
+.flashquiz:fullscreen.fq-idle .fq-settings {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flashquiz:fullscreen.fq-idle {
+  cursor: none;
+}
+
+.flashquiz:fullscreen .fq-toolbar {
+  transition: opacity 0.3s ease;
+}
+
+/* ---------- Print: fold-and-cut sheet (same as flashcards) ---------- */
+
+.fq-print {
+  display: none;
+}
+
+/* The Print button's copy is never shown on screen. */
+.flashquiz.fq-print-host { display: none; }
+
+@media print {
+  .flashquiz {
+    box-shadow: none;
+    background: none !important;
+    color: #000 !important;
+    border: none !important;
+  }
+  .fq-stage,
+  .fq-timer,
+  .fq-toolbar,
+  .fq-jump,
+  .fq-settings {
+    display: none !important;
+  }
+  .fq-print {
+    display: block;
+  }
+  .fq-print .fq-print-title { font-size: 16pt; font-weight: 700; margin-bottom: 2pt; }
+  .fq-print .fq-print-help { font-size: 9pt; color: #555; margin-bottom: 8pt; }
+  .fq-print .fq-print-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  .fq-print .fq-print-table td {
+    width: 50%;
+    height: 1.9cm;
+    padding: 6pt 10pt;
+    border: 1px dashed #888;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 12pt;
+    color: #000;
+    break-inside: avoid;
+  }
+  .fq-print .fq-print-table td:first-child {
+    font-weight: 700;
+    border-right: 2px solid #000; /* the fold line */
+  }
+  .fq-print .fq-print-table tr { break-inside: avoid; }
+  .fq-print .fq-print-sec th {
+    text-align: left;
+    font-size: 11pt;
+    padding: 8pt 0 3pt;
+    border: none;
+    color: #000;
+  }
+
+  /* Print button: only a copy of this quiz's sheet, with the rest of the
+     page taken out of the layout (so no blank pages). */
+  html.fq-printing body > *:not(.fq-print-host) { display: none !important; }
+  html.fq-printing .fq-print-host { display: block !important; margin: 0; padding: 0; }
+  html.fq-printing body { margin: 0 !important; padding: 0 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fq-slide { animation: none; }
+  .fq-answer { transition: none; }
+}
+
+/* Narrow screens: tighter toolbar so all buttons fit */
+@container (max-width: 440px) {
+  .fq-toolbar {
+    gap: 0.25rem;
+    padding: 0.45rem 0.5rem;
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+  }
+  .fq-btn {
+    min-width: 1.85rem;
+    padding: 0 0.3rem;
+    font-size: 0.85rem;
+  }
+  .fq-progress {
+    margin-left: 0.2rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Very narrow: drop the restart button (R key and the end screen still restart) */
+@container (max-width: 340px) {
+  .fq-restart {
+    display: none;
+  }
+}
+
+/* One-section quiz: no section list, so keep the tag count on the left. */
+.fq-set-row3:has(.fq-sections-head[hidden]) .fq-tag-line { margin-left: 0; }

@@ -63,6 +63,7 @@ Reading the potentiometer analog value
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2
 
     from microbit import *
 

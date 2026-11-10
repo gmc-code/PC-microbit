@@ -11,6 +11,7 @@ Question 1
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -30,6 +31,7 @@ Question 2
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -51,6 +53,7 @@ Question 3
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -70,6 +73,7 @@ Question 4
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 
@@ -88,6 +92,7 @@ Question 5
 
 .. ordering::
     :theme: light
+    :fixed: 2
 
     from microbit import *
 

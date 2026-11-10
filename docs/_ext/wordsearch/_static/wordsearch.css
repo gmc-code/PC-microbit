@@ -1,0 +1,589 @@
+/* ==========================================================================
+   wordsearch directive
+   ========================================================================== */
+
+/* ==========================================================================
+   Colour themes – shared with flashquiz, flashcards, crossword, guessword.
+   white is the default; light has a soft grey panel; auto follows the
+   computer's light/dark setting.
+   ========================================================================== */
+.wordsearch-block {
+  --ws-bg: #ffffff;
+  --ws-border: #cbd5e1;
+  --ws-ink: #1e293b;
+  --ws-instr: #334155;
+  --ws-muted: #64748b;
+  --ws-faint: #94a3b8;
+  --ws-btn-bg: #ffffff;
+  --ws-btn-border: #cbd5e1;
+  --ws-btn-text: #475569;
+  --ws-btn-hover: #f1f5f9;
+  --ws-accent: #2563eb;
+  --ws-accent-hover: #1d4ed8;
+  --ws-accent-text: #ffffff;
+  --ws-chip: #f1f5f9;
+  --ws-chip-text: #0f172a;
+  --ws-grid-line: #334155;
+  --ws-grid-bg: #ffffff;
+  --ws-cell-ink: #0f172a;
+  --ws-cell-hover: rgba(37, 99, 235, 0.08);
+  --ws-anchor: rgba(37, 99, 235, 0.25);
+}
+.wordsearch-block.theme-light { --ws-bg: #f8fafc; --ws-border: #e2e8f0; }
+
+.wordsearch-block.theme-ocean {
+  --ws-bg: #f4fbfb; --ws-border: #a3e4d7; --ws-btn-border: #a3e4d7; --ws-btn-hover: #d1f2eb;
+  --ws-chip: #d1f2eb; --ws-grid-line: #1b4f5a; --ws-accent: #138d90; --ws-accent-hover: #0f7a7d;
+  --ws-cell-hover: rgba(19, 141, 144, 0.12); --ws-anchor: rgba(19, 141, 144, 0.3);
+}
+.wordsearch-block.theme-forest {
+  --ws-bg: #f6faf2; --ws-border: #c5e1a5; --ws-btn-border: #c5e1a5; --ws-btn-hover: #dcedc8;
+  --ws-chip: #dcedc8; --ws-grid-line: #33402c; --ws-accent: #2e7d32; --ws-accent-hover: #256628;
+  --ws-cell-hover: rgba(46, 125, 50, 0.12); --ws-anchor: rgba(46, 125, 50, 0.3);
+}
+.wordsearch-block.theme-sunset {
+  --ws-bg: #fffaf5; --ws-border: #f9c9a5; --ws-btn-border: #f9c9a5; --ws-btn-hover: #fde3cf;
+  --ws-chip: #fde3cf; --ws-grid-line: #5d3a1a; --ws-accent: #c0510a; --ws-accent-hover: #a24408;
+  --ws-cell-hover: rgba(192, 81, 10, 0.12); --ws-anchor: rgba(192, 81, 10, 0.3);
+}
+.wordsearch-block.theme-contrast {
+  --ws-bg: #ffffff; --ws-border: #000000; --ws-ink: #000000; --ws-instr: #000000;
+  --ws-muted: #000000; --ws-faint: #444444; --ws-btn-border: #000000; --ws-btn-text: #000000;
+  --ws-btn-hover: #e0e0e0; --ws-accent: #0033cc; --ws-accent-hover: #00248f; --ws-chip: #e0e0e0;
+  --ws-chip-text: #000000; --ws-grid-line: #000000; --ws-cell-ink: #000000;
+  --ws-cell-hover: rgba(0, 51, 204, 0.12); --ws-anchor: rgba(0, 51, 204, 0.3);
+}
+.wordsearch-block.theme-contrast { border-width: 2px; }
+
+/* dark: the navy used by flashquiz and flashcards */
+.wordsearch-block.theme-dark {
+  --ws-bg: #0f1b2d; --ws-border: #2a3f5f; --ws-ink: #ffffff; --ws-instr: #e2e8f0;
+  --ws-muted: #9fb3c8; --ws-faint: #7d8fa5; --ws-btn-bg: #1b2e4a; --ws-btn-border: #2a3f5f;
+  --ws-btn-text: #e2e8f0; --ws-btn-hover: #24384f; --ws-accent: #3b82f6; --ws-accent-hover: #2563eb;
+  --ws-chip: #1b2e4a; --ws-chip-text: #ffffff; --ws-grid-line: #9fb3c8; --ws-grid-bg: #13233a;
+  --ws-cell-ink: #ffffff; --ws-cell-hover: rgba(124, 196, 240, 0.15);
+  --ws-anchor: rgba(124, 196, 240, 0.35);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  .wordsearch-block.theme-auto {
+    --ws-bg: #0f1b2d; --ws-border: #2a3f5f; --ws-ink: #ffffff; --ws-instr: #e2e8f0;
+    --ws-muted: #9fb3c8; --ws-faint: #7d8fa5; --ws-btn-bg: #1b2e4a; --ws-btn-border: #2a3f5f;
+    --ws-btn-text: #e2e8f0; --ws-btn-hover: #24384f; --ws-accent: #3b82f6; --ws-accent-hover: #2563eb;
+    --ws-chip: #1b2e4a; --ws-chip-text: #ffffff; --ws-grid-line: #9fb3c8; --ws-grid-bg: #13233a;
+    --ws-cell-ink: #ffffff; --ws-cell-hover: rgba(124, 196, 240, 0.15);
+    --ws-anchor: rgba(124, 196, 240, 0.35);
+    color-scheme: dark;
+  }
+}
+/* very dark instruction colours would vanish on navy */
+.wordsearch-block.theme-dark.ws-color-blue .ws-instructions,
+.wordsearch-block.theme-dark.ws-color-circumstance .ws-instructions { color: #8ab4ff; }
+@media (prefers-color-scheme: dark) {
+  .wordsearch-block.theme-auto.ws-color-blue .ws-instructions,
+  .wordsearch-block.theme-auto.ws-color-circumstance .ws-instructions { color: #8ab4ff; }
+}
+.wordsearch-block.theme-dark.ws-color-rheme .ws-instructions,
+.wordsearch-block.theme-dark.ws-color-conj .ws-instructions,
+.wordsearch-block.theme-dark.ws-color-part .ws-instructions { color: var(--ws-instr); }
+@media (prefers-color-scheme: dark) {
+  .wordsearch-block.theme-auto.ws-color-rheme .ws-instructions,
+  .wordsearch-block.theme-auto.ws-color-conj .ws-instructions,
+  .wordsearch-block.theme-auto.ws-color-part .ws-instructions { color: var(--ws-instr); }
+}
+
+.wordsearch-block {
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--ws-border);
+  background-color: var(--ws-bg);
+  color: var(--ws-ink);
+}
+
+.wordsearch-block.ws-style-border { border-width: 2px; }
+.wordsearch-block.ws-style-plain { border: none; padding: 0.4rem 0; background: transparent; }
+
+.ws-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.ws-instructions {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  color: var(--ws-instr);
+}
+
+/* Instruction colours — same palette as wordjumble */
+.wordsearch-block.ws-color-red .ws-instructions,
+.wordsearch-block.ws-color-participant .ws-instructions { color: #d62728; }
+.wordsearch-block.ws-color-green .ws-instructions,
+.wordsearch-block.ws-color-process .ws-instructions { color: #2ca02c; }
+.wordsearch-block.ws-color-blue .ws-instructions,
+.wordsearch-block.ws-color-circumstance .ws-instructions { color: #4a3dff; }
+.wordsearch-block.ws-color-conj .ws-instructions,
+.wordsearch-block.ws-color-part .ws-instructions { color: #6b7280; }
+.wordsearch-block.ws-color-theme .ws-instructions { color: #1f77b4; }
+.wordsearch-block.ws-color-rheme .ws-instructions { color: #111827; }
+.wordsearch-block.ws-color-dependent .ws-instructions { color: #b45309; }
+.wordsearch-block.ws-color-embedded .ws-instructions { color: #7c3aed; }
+.wordsearch-block.ws-color-relative .ws-instructions { color: #0f766e; }
+.wordsearch-block.ws-color-projected .ws-instructions { color: #be185d; }
+
+/* ---------------- Toolbar ---------------- */
+.ws-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ws-btn {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid var(--ws-btn-border);
+  background: var(--ws-btn-bg);
+  color: var(--ws-btn-text);
+  transition: all 0.15s ease-in-out;
+}
+.ws-btn:hover { background: var(--ws-btn-hover); color: var(--ws-ink); }
+.ws-btn-reveal { background: var(--ws-accent); border-color: var(--ws-accent); color: var(--ws-accent-text); }
+.ws-btn-reveal:hover { background: var(--ws-accent-hover); color: var(--ws-accent-text); }
+.ws-btn-print { margin-left: auto; }
+.ws-hint-chip ~ .ws-btn-print { margin-left: 0; }
+.ws-timer + .ws-btn ~ .ws-btn-print,
+.ws-timer ~ .ws-btn-print { margin-left: 0; }
+.ws-btn:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(100%); }
+
+.ws-timer {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  background: var(--ws-chip);
+  color: var(--ws-chip-text);
+  margin-right: auto;
+}
+.ws-timer-low { background: #fef9c3; color: #a16207; }
+.ws-timer-up { background: #fee2e2; color: #b91c1c; }
+
+/* ---------------- Settings panel ---------------- */
+.ws-btn-settings { padding: 0.4rem 0.6rem; }
+.ws-hint-chip[hidden] { display: none !important; }
+/* keep Print on the right when the highlight tip is turned off */
+.ws-hint-chip[hidden] ~ .ws-btn-print { margin-left: auto; }
+.ws-timer ~ .ws-hint-chip[hidden] ~ .ws-btn-print { margin-left: 0; }
+.ws-settings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1.4rem;
+  margin: -0.25rem 0 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--ws-border);
+  border-radius: 6px;
+  background: var(--ws-chip);
+  color: var(--ws-ink);
+  font-size: 0.9rem;
+}
+.ws-settings[hidden] { display: none; }
+.wordsearch-block .ws-settings label,
+.wordsearch-block .ws-settings span { color: var(--ws-ink); }
+.ws-set-row { display: inline-flex; align-items: center; gap: 0.45rem; margin: 0; }
+.ws-set-label { font-weight: 600; }
+.ws-set-val { min-width: 2.8em; font-variant-numeric: tabular-nums; }
+.ws-set-select {
+  font: inherit; font-size: 0.9rem; color: var(--ws-ink); background: var(--ws-btn-bg);
+  border: 1px solid var(--ws-btn-border); border-radius: 6px; padding: 0.15rem 0.4rem;
+  height: auto; box-shadow: none;
+}
+.ws-set-select option { color: #0f172a; background: #fff; }
+.ws-settings input[type="range"] { width: 8rem; accent-color: var(--ws-accent); }
+.ws-settings input[type="checkbox"] { accent-color: var(--ws-accent); margin: 0; }
+.ws-set-reset {
+  font: inherit; font-size: 0.9rem; background: none; border: none; padding: 0;
+  color: var(--ws-accent); text-decoration: underline; cursor: pointer;
+}
+
+/* ---------------- Layout ---------------- */
+.ws-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.ws-grid-wrap {
+  position: relative;
+  flex: 1 1 22rem;
+  max-width: min(100%, calc(var(--ws-cols, 12) * 2.6rem * var(--ws-scale, 1)));
+  width: 100%;
+}
+
+.ws-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--ws-cols), 1fr);
+  border: 2px solid var(--ws-grid-line);
+  border-radius: 6px;
+  background: var(--ws-grid-bg);
+  container-type: inline-size;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  overflow: hidden;
+}
+
+.ws-cell {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  font-size: calc(100cqi / var(--ws-cols) * 0.55 * var(--ws-letter, 1));
+  line-height: 1;
+  color: var(--ws-cell-ink);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+.ws-grid:not(.ws-grid-key) .ws-cell:hover { background: var(--ws-cell-hover); }
+.ws-cell-anchor { background: var(--ws-anchor) !important; border-radius: 50%; }
+
+/* Letter highlight (press a letter key) */
+.ws-cell-hint {
+  background: rgba(250, 204, 21, 0.45);
+  box-shadow: inset 0 0 0 2px #eab308;
+  border-radius: 4px;
+}
+.wordsearch-block:focus { outline: none; }
+.wordsearch-block:focus-visible { outline: 3px solid rgba(37, 99, 235, 0.35); outline-offset: 2px; }
+
+.ws-hint-chip {
+  font-size: 0.8rem;
+  color: var(--ws-faint);
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.ws-timer ~ .ws-hint-chip { margin-left: 0; }
+.ws-hint-chip.ws-hint-on {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #854d0e;
+  background: #fef9c3;
+  border: 1px solid #eab308;
+  border-radius: 999px;
+  padding: 0.15rem 0.3rem 0.15rem 0.7rem;
+}
+.ws-hint-clear {
+  border: none;
+  background: transparent;
+  color: #854d0e;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0 0.3rem;
+  line-height: 1;
+}
+/* No keyboard on touch-only screens, so hide the tip there */
+@media (hover: none) {
+  .ws-hint-chip:not(.ws-hint-on) { display: none; }
+}
+
+.ws-shake { animation: ws-shake 0.3s; }
+@keyframes ws-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* SVG highlight overlay (viewBox units = cells) */
+.ws-overlay {
+  position: absolute;
+  inset: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+}
+.ws-line {
+  stroke-width: 0.72;
+  stroke-linecap: round;
+  fill: none;
+}
+.ws-line-found { stroke-opacity: 0.45; }
+.ws-line-temp { stroke: var(--ws-accent); stroke-opacity: 0.3; }
+.ws-line-revealed {
+  stroke: var(--ws-faint);
+  stroke-opacity: 0.35;
+}
+.ws-key-line {
+  stroke: #2563eb;
+  stroke-opacity: 0.35;
+  stroke-width: 0.72;
+  stroke-linecap: round;
+}
+
+/* ---------------- Word / clue list ---------------- */
+.ws-list-wrap { flex: 1 1 13rem; min-width: 12rem; }
+
+/* Direction indicator (compass of allowed directions) */
+.ws-dirs {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+  padding: 0.35rem 0.6rem 0.35rem 0.35rem;
+  border: 1px solid var(--ws-border);
+  border-radius: 8px;
+  background: var(--ws-chip);
+  width: fit-content;
+  max-width: 100%;
+}
+.ws-dirs-icon { width: 46px; height: 46px; flex: 0 0 auto; }
+/* Screen: compact compass in the toolbar. Print: labelled box by the word list */
+.ws-dirs-print { display: none; }
+.ws-dirs-compact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1rem;
+  border: 1px solid var(--ws-border);
+  border-radius: 6px;
+  background: var(--ws-chip);
+  cursor: help;
+}
+.ws-dirs-compact .ws-dirs-icon { width: 36px; height: 36px; }
+.ws-dirs-compact .ws-dir-on line { stroke-width: 3.6; }
+.ws-dirs-compact .ws-dir-off line { stroke-width: 1.8; }
+.ws-dirs-icon .ws-dir-on line { stroke: var(--ws-accent); stroke-width: 3; stroke-linecap: round; }
+.ws-dirs-icon .ws-dir-on polygon { fill: var(--ws-accent); }
+.ws-dirs-icon .ws-dir-off line { stroke: var(--ws-faint); stroke-width: 1.5; stroke-linecap: round; opacity: 0.45; }
+.ws-dirs-icon .ws-dir-off polygon { fill: var(--ws-faint); opacity: 0.45; }
+.ws-dirs-icon .ws-dir-dot { fill: var(--ws-muted); }
+.ws-dirs-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  color: var(--ws-ink);
+}
+.ws-dirs-head {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ws-muted);
+}
+
+.ws-list-title {
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--ws-instr);
+}
+.ws-count { font-weight: 500; color: var(--ws-muted); font-size: 0.9em; }
+
+.wordsearch-block ul.ws-list,
+.wordsearch-block ol.ws-list {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.wordsearch-block ul.ws-list {
+  list-style: none !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.25rem 0.75rem;
+}
+.wordsearch-block ul.ws-list li { list-style: none !important; margin: 0 !important; }
+.wordsearch-block ol.ws-list { padding-left: 1.4rem !important; }
+.wordsearch-block ol.ws-list li { margin: 0 0 0.45rem 0 !important; }
+
+.ws-word {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.ws-item-found .ws-word {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  color: var(--ws-muted);
+  background: color-mix(in srgb, var(--ws-found, #10b981) 25%, transparent);
+}
+.ws-item-revealed .ws-word { color: var(--ws-faint); font-style: italic; }
+
+.ws-len { color: var(--ws-muted); font-size: 0.9em; }
+.wordsearch-block ol.ws-list li { line-height: 1.6; }
+.ws-reveal { display: none; }
+.ws-blank {
+  display: inline-block;
+  min-width: 6rem;
+  border-bottom: 1px solid var(--ws-faint);
+  margin-left: 0.4rem;
+}
+.ws-item-found .ws-reveal,
+.ws-item-revealed .ws-reveal {
+  display: inline;
+  margin-left: 0.4rem;
+  font-weight: 700;
+  padding: 0.05rem 0.4rem;
+  border-radius: 4px;
+}
+.ws-item-found .ws-reveal { background: color-mix(in srgb, var(--ws-found, #10b981) 30%, transparent); }
+.ws-item-revealed .ws-reveal { color: var(--ws-muted); font-style: italic; }
+.ws-item-found .ws-blank,
+.ws-item-revealed .ws-blank { display: none; }
+.ws-item-found .ws-clue { color: var(--ws-muted); }
+
+/* ---------------- Status ---------------- */
+.ws-status:empty { display: none; }
+.ws-status {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  display: inline-block;
+  background: var(--ws-chip);
+  color: var(--ws-instr);
+}
+.ws-status-high { background: #dcfce7; color: #15803d; }
+.ws-status-medium { background: #fef9c3; color: #a16207; }
+.ws-status-low { background: #fee2e2; color: #b91c1c; }
+
+.ws-complete .ws-grid { border-color: #16a34a; }
+
+/* Answer key: print only */
+.ws-key { display: none; }
+.ws-print-only { display: none; }
+
+/* ==========================================================================
+   Print
+   ========================================================================== */
+@media print {
+  .ws-dirs-print { display: flex !important; }
+  .ws-dirs { background: none !important; border: 1px solid #000 !important; }
+  .ws-dirs-icon .ws-dir-on line { stroke: #000 !important; }
+  .ws-dirs-icon .ws-dir-on polygon, .ws-dirs-icon .ws-dir-dot { fill: #000 !important; }
+  .ws-dirs-icon .ws-dir-off line { stroke: #999 !important; }
+  .ws-dirs-icon .ws-dir-off polygon { fill: #999 !important; }
+  .ws-dirs-text, .ws-dirs-head { color: #000 !important; }
+  /* !important so the colour themes (more specific) can't win in print */
+  .wordsearch-block {
+    --ws-ink: #000 !important; --ws-instr: #000 !important;
+    --ws-muted: #333 !important; --ws-faint: #666 !important;
+    --ws-grid-bg: #fff !important; --ws-grid-line: #000 !important;
+    --ws-cell-ink: #000 !important;
+    --ws-scale: 1 !important; --ws-letter: 1 !important;
+    color: #000 !important;
+  }
+  .wordsearch-block .ws-instructions { color: #000 !important; }
+  .wordsearch-block {
+    border: none !important;
+    padding: 0 !important;
+    background: #fff !important;
+    break-inside: avoid;
+  }
+  .ws-toolbar,
+  .ws-settings,
+  .ws-status,
+  .ws-count,
+  .ws-overlay:not(.ws-overlay-key) { display: none !important; }
+
+  .ws-body { display: block; }
+  .ws-print-only { display: inline; }
+  .ws-screen-only { display: none; }
+  .ws-grid-wrap {
+    max-width: min(17cm, calc(var(--ws-cols, 12) * 1.15cm), calc(17cm * var(--ws-cols, 12) / var(--ws-rows, 12)));
+    margin: 0 0 0.6cm 0;
+  }
+  .ws-grid, .ws-complete .ws-grid {
+    border: 2px solid #000 !important;
+    border-radius: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .ws-cell { color: #000; background: none !important; box-shadow: none !important; }
+
+  /* Print the worksheet blank, even if the student had found words */
+  .ws-item-found .ws-word,
+  .ws-item-revealed .ws-word {
+    text-decoration: none; background: none; color: #000; font-style: normal;
+  }
+  .ws-item-found .ws-reveal,
+  .ws-item-revealed .ws-reveal { display: none; }
+  .ws-item-found .ws-blank,
+  .ws-item-revealed .ws-blank { display: inline-block; }
+  .ws-blank { min-width: 4.5cm; border-bottom: 1px solid #000; }
+  .wordsearch-block ul.ws-list { grid-template-columns: repeat(3, 1fr); }
+
+  .ws-key {
+    display: block;
+    break-before: page;
+    page-break-before: always;
+  }
+  .ws-key .ws-grid-wrap { max-width: min(14cm, calc(var(--ws-cols, 12) * 0.9cm), calc(14cm * var(--ws-cols, 12) / var(--ws-rows, 12))); }
+  .ws-key-line {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .ws-key-list { margin-top: 0.4cm; }
+}
+
+/* ---------------- Full screen ---------------- */
+.wordsearch-block:fullscreen {
+  margin: 0;
+  border-radius: 0;
+  padding: 1.2rem 1.6rem;
+  overflow: auto;
+  box-sizing: border-box;
+  background-color: var(--ws-bg) !important;
+}
+.wordsearch-block:fullscreen .ws-title { font-size: 1.6rem; }
+.wordsearch-block:fullscreen .ws-body { flex-wrap: nowrap; gap: 2rem; }
+/* The grid is as big as the screen allows; the word list sits beside it. */
+.wordsearch-block:fullscreen .ws-body .ws-grid-wrap {
+  flex: 0 0 auto;
+  max-width: none;
+  width: min(calc(100vw - 3.2rem - 2rem - 16rem),
+             calc(var(--ws-fs-avail, calc(100vh - 10rem)) * var(--ws-cols, 12) / var(--ws-rows, 12)));
+}
+.wordsearch-block:fullscreen .ws-list-wrap { font-size: 1.15rem; min-width: 14rem; }
+@media (max-width: 899px) {
+  .wordsearch-block:fullscreen .ws-body { flex-wrap: wrap; }
+  .wordsearch-block:fullscreen .ws-body .ws-grid-wrap {
+    width: min(100%, calc(var(--ws-fs-avail, calc(100vh - 10rem)) * var(--ws-cols, 12) / var(--ws-rows, 12)));
+  }
+}
+.ws-btn-fullscreen { padding: 0.4rem 0.6rem; }
+.ws-full-icon { width: 1em; height: 1em; vertical-align: -0.15em; display: inline-block; }
+
+/* ---------------- Toolbar: every control the same height ---------------- */
+.ws-toolbar { --ws-ctl: 2rem; }
+.ws-toolbar > .ws-btn,
+.ws-toolbar > .ws-timer,
+.ws-toolbar > .ws-dirs-compact,
+.ws-toolbar > .ws-hint-chip.ws-hint-on {
+  box-sizing: border-box;
+  height: var(--ws-ctl);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/* The direction compass is a square the same height as the buttons. */
+.ws-toolbar > .ws-dirs-compact { width: var(--ws-ctl); padding: 0.1rem; }
+.ws-toolbar > .ws-dirs-compact .ws-dirs-icon { width: 100%; height: 100%; }

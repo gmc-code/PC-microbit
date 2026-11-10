@@ -138,6 +138,7 @@ This list stores five brightness levels:
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2, 5
 
     from microbit import *
 
@@ -167,6 +168,7 @@ Making an LED dimmer
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2, 5
 
     from microbit import *
 

@@ -113,6 +113,7 @@ Makes the red LED blink **3 times** in 3 seconds followed by a 3 second pause.
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2,9
 
     from microbit import *
 

@@ -137,6 +137,7 @@ Fix the indenting in the code below to do this:
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2
 
     from microbit import *
 
@@ -161,6 +162,7 @@ Fix the indenting in the code below to do this:
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2
 
     from microbit import *
 

@@ -9,6 +9,7 @@ Question 1
 
 .. ordering::
     :theme: light
+    :fixed: 3
 
     from microbit import *
 
@@ -28,6 +29,7 @@ Question 2
 
 .. ordering::
     :theme: light
+    :fixed: 3
 
     from microbit import *
 

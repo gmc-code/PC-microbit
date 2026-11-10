@@ -57,6 +57,7 @@ Fix the indenting in the code below:
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2, 4
 
     from microbit import *
 
@@ -87,6 +88,7 @@ Challenge 1
     :no-padding:
     :no-reorder:
     :show-code:
+    :fixed: 2,4
 
     from microbit import *
 

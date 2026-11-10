@@ -9,6 +9,7 @@ Question 1
 
 .. ordering::
     :theme: light
+    :fixed: 3
 
     from microbit import *
     import music
@@ -27,6 +28,7 @@ Question 2
 
 .. ordering::
     :theme: light
+    :fixed: 3
 
     from microbit import *
     import music
@@ -45,6 +47,7 @@ Question 3
 
 .. ordering::
     :theme: light
+    :fixed: 3
 
     from microbit import *
     import music
@@ -64,6 +67,7 @@ Question 4
 
 .. ordering::
     :theme: light
+    :fixed: 3
 
     from microbit import *
     import music
@@ -86,6 +90,7 @@ Question 5
 .. ordering::
     :theme: light
     :no-padding:
+    :fixed: 3
 
     from microbit import *
     import music
